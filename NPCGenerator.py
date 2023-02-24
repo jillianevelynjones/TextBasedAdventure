@@ -9,6 +9,7 @@ class NPCGenerator:
     def __init__(self, num_npcs):
         self.num_npcs = num_npcs
 
+
     def generate_npcs(self):
         races = ["human", "high elf", "wood elf", "eladrin elf",
                  "hill dwarf", "mountain dwarf", "stout halfling",
@@ -34,6 +35,7 @@ class NPCGenerator:
                         3, 3, 3,
                         3, 3, 1,
                         1, 1, 1,
+                        1, 1, 1,
                         1, 1, 1]
         genders = ["male", "female", "non-binary"]
         gender_weights = [9,9,1]
@@ -49,10 +51,10 @@ class NPCGenerator:
 
         npcs = []
         for i in range(self.num_npcs):
-            race = random.choice(races)
+            race = random.choices(races, weights=race_weights)[0]
             age = random.randint(15, 90)
-            gender = random.choice(genders)
-            skin_color = random.choice(skin_colors)
+            gender = random.choices(genders, weights=gender_weights)[0]
+            skin_colors = random.choice(skin_colors)
             physical_feature = random.choice(physical_features)
             hair_color = random.choice(hair_colors)
             hair_length = random.choice(hair_lengths)
@@ -81,11 +83,11 @@ class NPCGenerator:
             else:
                 skin_colors = ["1", "2", "3", "4", "5", "6"]
 
-            skin_color = random.choice(skin_colors)
+            skin_colors = random.choice(skin_colors)
 
 
             npc = NPC(race, age, gender,
-                      skin_color, physical_feature, hair_color,
+                      skin_colors, physical_feature, hair_color,
                       hair_length, hair_texture, facial_hair,
                       speech_patterns, personality_traits, mannerisms)
             npcs.append(npc)
