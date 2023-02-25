@@ -11,34 +11,33 @@ class NPCGenerator:
 
 
     def generate_npcs(self):
-        races = ["human", "high elf", "wood elf", "eladrin elf",
-                 "hill dwarf", "mountain dwarf", "stout halfling",
-                 "lightfoot halfling", "ghostwise halfling", "forest gnome",
-                 "rock gnome", "deep gnome", "half orc",
-                 "half elf", "dragonborn", "infernal tiefling",
-                 "feral tiefliing", "feral tiefling", "protector aasimar",
-                 "scourge aasimar", "fallen aasimar", "aarakocra",
-                 "goliath", "air genasi", "earth genasi",
-                 "fire genasi", "water genasi", "tabaxi",
+        races = ["human", "wood elf", "mountain dwarf", "lightfoot halfling",
+                 "forest gnome", "stout halfling", "rock gnome",
+                 "dragonborn", "hill dwarf", "high elf",
+                 "half elf", "aarakocra", "half orc",
+                 "infernal tiefling", "protector aasimar", "tabaxi",
                  "firbolg", "triton", "kenku",
-                 "lizardfolk", "deurgar dwarf", "drow",
-                 "kobold", "orc", "hobgoblin",
-                 "goblin", "bugbear", "yuan-ti pureblood"]
-        race_weights = [10, 5, 5, 1,
-                        3, 5, 5,
-                        5, 1, 2,
-                        2, 1, 2,
-                        3, 2, 2,
-                        2, 1, 1,
-                        3, 4, 1,
-                        1, 1, 1,
-                        3, 3, 3,
-                        3, 3, 1,
-                        1, 1, 1,
-                        1, 1, 1,
-                        1, 1, 1]
+                 "scourge aasimar", "fallen aasimar", "goliath",
+                 "water genasi", "air genasi", "earth genasi",
+                 "fire genasi", "feral tiefling", "eladrin elf",
+                 "ghostwise halfling", "deep gnome", "lizardfolk",
+                 "duergar dwarf", "drow", "kobold", "orc",
+                 "hobgoblin", "goblin", "bugbear", "yaun-ti pureblood"]
+        race_weights = [1500, 350, 350, 350,
+                        350, 300, 300,
+                        250, 250, 250,
+                        250, 200, 200,
+                        100, 100, 90,
+                        80, 75, 70,
+                        65, 60, 55,
+                        50, 50, 50,
+                        50, 40, 35,
+                        30, 30, 25,
+                        10, 10, 5,
+                        5, 3, 3,
+                        2, 1]
         genders = ["male", "female", "non-binary"]
-        gender_weights = [9,9,1]
+        gender_weights = [50, 45, 5]
         skin_colors = ["pale", "fair", "tan", "olive", "brown", "dark"]
         physical_features = ["scar", "tattoo", "birthmark", "missing limb", "deformity"]
         hair_colors = ["black", "brown", "blonde", "red", "gray", "white"]

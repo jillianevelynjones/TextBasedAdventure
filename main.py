@@ -14,6 +14,8 @@ num_npcs = int(input("How many NPCs do you want to generate? "))
 npc_generator = NPCGenerator(num_npcs)
 npcs = npc_generator.generate_npcs()
 
+"""Below writes the top row in the CSV"""
+
 csv_filename = os.path.join(directory, "NPC Random Generator.csv")
 with open(csv_filename, "w", newline="") as file:
     writer = csv.writer(file)
@@ -21,6 +23,8 @@ with open(csv_filename, "w", newline="") as file:
                  "skin_color", "physical_feature", "hair_color",
                  "hair_length", "hair_texture", "facial_hair",
                  "speech_patterns", "personality_traits", "mannerisms"])
+
+    """Below is the part that writes a row in the CSV"""
     for npc in npcs:
         writer.writerow([npc.race, npc.age, npc.gender,
                          npc.skin_color, npc.physical_feature,
