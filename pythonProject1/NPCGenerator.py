@@ -38,8 +38,7 @@ class NPCGenerator:
         genders = ["male", "female", "non-binary"]
         gender_weights = [50, 45, 5]
 
-        def correct_skin_color(race, gender):
-
+        def get_skin_color(race, gender):
             if race in ["human", "high elf", "wood elf",
                         "eladrin elf", "hill dwarf", "mountain dwarf",
                         "stout halfling", "lightfoot halfling", "ghostwise halfling",
@@ -88,28 +87,40 @@ class NPCGenerator:
                 cskin_color = ["brown fur"]
             else:
                 cskin_color = ["error - skin color races"]
-
             return cskin_color
 
-        def correct_hair_length(race, gender):
+        def get_hair_length(race, gender):
             if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
                         "stout halfling", "lightfoot halfling", "ghostwise halfling", "forest gnome", "rock gnome",
                         "deep gnome", "half elf", "protector aasimar", "scourge aasimar", "fallen aasimar", "half orc",
                         "goliath", "air genasi", "earth genasi", "fire genasi", "water genasi", "duergar dwarf", "drow",
                         "hobgoblin", "goblin", "yuan-ti pureblood"]:
                 if gender in ["female"]:
-                    chair_length = ["long", "medium length", "short", "buzzed"]
-                    hair_lengths_weights = [4, 3, 2, 1]
+                    chair_length = random.choices(["long", "medium length", "short", "buzzed"], weights=[4, 3, 2, 1])[0]
                 elif gender in ["male"]:
-                    chair_length = ["long", "medium length", "short", "no"]
-                    hair_lengths_weights = [2, 3, 4, 1]
+                    chair_length = random.choices(["long", "medium length", "short", "no"], weights=[2, 3, 4, 1])[0]
                 elif gender in ["non binary"]:
-                    chair_length = ["long", "medium length", "short", "no"]
+                    chair_length = random.choice(["long", "medium length", "short", "no"])
                 else:
-                    chair_length = ["error - hair length"]
+                    chair_length = "error - hair length"
             else:
-                chair_length = [" "]
+                chair_length = ""
             return chair_length
+
+        def get_hair_color(race):
+            if race in ["human", "high elf", "wood elf",
+                        "eladrin elf", "hill dwarf", "mountain dwarf",
+                        "stout halfling", "lightfoot halfling", "ghostwise halfling",
+                        "forest gnome", "rock gnome", "deep gnome",
+                        "half elf", "protector aasimar", "scourge aasimar",
+                        "fallen aasimar"]:
+                if hair_length != "no":
+                    chair_color = [" "]
+                else:
+                    chair_color = ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"]
+            else:
+                chair_color = [" "]
+            return chair_color
 
         npcs = []
         for i in range(self.num_npcs):
@@ -119,11 +130,13 @@ class NPCGenerator:
             print(age)
             gender = random.choices(genders, weights=gender_weights)[0]
             print(gender)
-            skin_color = correct_skin_color(race, gender)
+            skin_color = get_skin_color(race, gender)
             print(skin_color)
-            hair_length = correct_hair_length(race, gender)
+            hair_length = get_hair_length(race, gender)
             print(hair_length)
+            hair_color = get_hair_color(race)
+            print(hair_color)
 
-            npc = NPC(race, age, gender, skin_color, hair_length)
+            npc = NPC(race, age, gender, skin_color, hair_length, hair_color)
             npcs.append(npc)
         return npcs
