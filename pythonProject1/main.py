@@ -14,10 +14,10 @@ def save_npcs_to_file(npcs, csv_filename):
     with open(csv_path, "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(["race", "age", "gender",
-                         "skin_color"])
+                         "skin_color", "hair length"])
         for npc in npcs:
             writer.writerow([npc.race, npc.age, npc.gender,
-                             npc.skin_color])
+                             npc.skin_color, npc.hair_length])
 
     print(f"Generated {len(npcs)} NPCs in {csv_path}")
 
