@@ -37,6 +37,9 @@ class NPCGenerator:
                         2, 1]
         genders = ["male", "female", "non-binary"]
         gender_weights = [50, 45, 5]
+        physical_features1 = ["completely normal", " ", "fat", "skinny",
+                              "short", "tall", "built", "wearing glasses",
+                              "missing", "scarred"]
 
         def get_skin_color(race, gender):
             if race in ["human", "high elf", "wood elf",
@@ -98,13 +101,13 @@ class NPCGenerator:
                 if gender in ["female"]:
                     chair_length = random.choices(["long", "medium length", "short", "buzzed"], weights=[4, 3, 2, 1])[0]
                 elif gender in ["male"]:
-                    chair_length = random.choices(["long", "medium length", "short", "no"], weights=[2, 3, 4, 1])[0]
-                elif gender in ["non binary"]:
-                    chair_length = random.choice(["long", "medium length", "short", "no"])
+                    chair_length = random.choices(["long", "medium length", "short", "no hair length"], weights=[2, 3, 4, 1])[0]
+                elif gender in ["non-binary"]:
+                    chair_length = random.choice(["long", "medium length", "short", "no hair length"])
                 else:
-                    chair_length = "error - hair length"
+                    chair_length = ["error - hair length"]
             else:
-                chair_length = ""
+                chair_length = ["no hair length"]
             return chair_length
 
         def get_hair_color(race):
@@ -115,18 +118,19 @@ class NPCGenerator:
                         "half elf", "protector aasimar", "scourge aasimar",
                         "fallen aasimar"]:
                 if hair_length != "no":
-                    chair_color = [" "]
+                    chair_color = ["no hair color"]
                 else:
-                    chair_color = random.choice(["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"])
+                    chair_color = random.choice(
+                        ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"])
             else:
-                chair_color = [" "]
+                chair_color = ["no hair color"]
             return chair_color
 
         def get_hair_texture(hair_length):
             if hair_length != "no":
                 chair_texture = random.choice(["straight", "wavy", "curly", "kinky curly"])
             else:
-                chair_texture = [" "]
+                chair_texture = ["no hair texture"]
             return chair_texture
 
         def get_facial_hair(gender, age):
@@ -135,16 +139,16 @@ class NPCGenerator:
                     cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
                                                   "a mustache", "mutton chops"])
                 else:
-                    cfacial_hair = [" "]
+                    cfacial_hair = ["no facial hair"]
             if gender in ["non-binary"]:
                 if age > 18:
                     cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
-                                                  "a mustache", "mutton chops", " "])
-                    facial_weights = [1, 1, 1, 1, 1, 1, 7]
+                                                  "a mustache", "mutton chops", "no facial hair"])
+                    cfacial_weights = [1, 1, 1, 1, 1, 1, 7]
                 else:
                     cfacial_hair = [" "]
             else:
-                cfacial_hair = [" "]
+                cfacial_hair = ["no facial hair"]
             return cfacial_hair
 
         npcs = []
@@ -165,7 +169,11 @@ class NPCGenerator:
             print(hair_texture)
             facial_hair = get_facial_hair(gender, age)
             print(facial_hair)
+            physical_feature1 = random.choices(physical_features1)
+            print(physical_feature1)
 
-            npc = NPC(race, age, gender, skin_color, hair_length, hair_color, hair_texture, facial_hair)
+            npc = NPC(race, age, gender,
+                      skin_color, hair_length, hair_color,
+                      hair_texture, facial_hair, physical_feature1)
             npcs.append(npc)
         return npcs
