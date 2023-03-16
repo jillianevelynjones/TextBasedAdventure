@@ -3,12 +3,13 @@ that will represent an individual NPC with various attributes"""
 
 
 class NPC:
-    def __init__(self,
+    def __init__(self, first_name,
                  race, age, gender,
                  skin_color, hair_length, hair_color,
                  hair_texture, facial_hair, physical_feature1,
                  physical_feature2, speech_pattern1, speech_pattern2,
                  personality_trait, mannerism):
+        self.first_name = first_name
         self.race = race
         self.age = age
         self.gender = gender

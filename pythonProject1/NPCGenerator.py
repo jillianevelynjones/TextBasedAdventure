@@ -1,5 +1,6 @@
 import random
 from NPC import NPC
+from NPCNames import NPCNames
 
 """Next, we'll create a class called NPCGenerator 
 that will generate a list of random NPCs based on the user input"""
@@ -7,6 +8,7 @@ that will generate a list of random NPCs based on the user input"""
 
 class NPCGenerator:
     def __init__(self, num_npcs):
+        self.npc_names = NPCNames()
         self.num_npcs = num_npcs
 
     def generate_npcs(self):
@@ -191,6 +193,8 @@ class NPCGenerator:
 
         npcs = []
         for i in range(self.num_npcs):
+            first_name = self.npc_names.generate_name()
+            print(first_name)
             race = random.choices(races, weights=race_weights)[0]
             print(race)
             age = random.randint(15, 90)
@@ -220,7 +224,7 @@ class NPCGenerator:
             mannerism = random.choices(mannerisms)
             print(mannerism)
 
-            npc = NPC(race, age, gender,
+            npc = NPC(first_name, race, age, gender,
                       skin_color, hair_length, hair_color,
                       hair_texture, facial_hair, physical_feature1,
                       physical_feature2, speech_pattern1, speech_pattern2,

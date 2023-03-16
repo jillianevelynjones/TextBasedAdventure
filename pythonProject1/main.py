@@ -13,13 +13,13 @@ def save_npcs_to_file(npcs, csv_filename):
     csv_path = os.path.join(directory, csv_filename)
     with open(csv_path, "w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(["race", "age", "gender",
+        writer.writerow(["name", "race", "age", "gender",
                          "skin color", "hair length", "hair texture",
                          "hair color", "facial_hair", "physical feature 1",
                          "physical feature 2", "speech pattern 1", "speech pattern 2",
                          "personality trait", "mannerism"])
         for npc in npcs:
-            writer.writerow([npc.race, npc.age, npc.gender,
+            writer.writerow([npc.first_name, npc.race, npc.age, npc.gender,
                              npc.skin_color, npc.hair_length, npc.hair_texture,
                              npc.hair_color, npc.facial_hair, npc.physical_feature1,
                              npc.physical_feature2, npc.speech_pattern1, npc.speech_pattern2,
