@@ -15,11 +15,13 @@ def save_npcs_to_file(npcs, csv_filename):
         writer = csv.writer(file)
         writer.writerow(["race", "age", "gender",
                          "skin color", "hair length", "hair texture",
-                         "hair color", "facial_hair", "physical feature 1"])
+                         "hair color", "facial_hair", "physical feature 1",
+                         "physical feature 2", "speech pattern 1", "speech pattern 2"])
         for npc in npcs:
             writer.writerow([npc.race, npc.age, npc.gender,
                              npc.skin_color, npc.hair_length, npc.hair_texture,
-                             npc.hair_color, npc.facial_hair, npc.physical_feature1])
+                             npc.hair_color, npc.facial_hair, npc.physical_feature1,
+                             npc.physical_feature2, npc.speech_pattern1, npc.speech_pattern2])
 
     print(f"Generated {len(npcs)} NPCs in {csv_path}")
 

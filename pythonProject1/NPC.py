@@ -6,7 +6,8 @@ class NPC:
     def __init__(self,
                  race, age, gender,
                  skin_color, hair_length, hair_color,
-                 hair_texture, facial_hair, physical_feature1):
+                 hair_texture, facial_hair, physical_feature1,
+                 physical_feature2, speech_pattern1, speech_pattern2):
         self.race = race
         self.age = age
         self.gender = gender
@@ -16,6 +17,9 @@ class NPC:
         self.hair_texture = hair_texture
         self.facial_hair = facial_hair
         self.physical_feature1 = physical_feature1
+        self.physical_feature2 = physical_feature2
+        self.speech_pattern1 = speech_pattern1
+        self.speech_pattern2 = speech_pattern2
 
     """def __str__(self):
         return f"{self.age}-year-old {self.gender} {self.race} " 

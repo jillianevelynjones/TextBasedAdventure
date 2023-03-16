@@ -36,10 +36,13 @@ class NPCGenerator:
                         5, 3, 3,
                         2, 1]
         genders = ["male", "female", "non-binary"]
-        gender_weights = [50, 45, 5]
-        physical_features1 = ["completely normal", " ", "fat", "skinny",
-                              "short", "tall", "built", "wearing glasses",
+        gender_weights = [45, 50, 5]
+        physical_features1 = ["completely normal", "fat", "skinny",
+                              "short", "tall", "built", "has a tattoo", "wearing glasses",
                               "missing", "scarred"]
+        speech_patterns1 = ["in a normal tone", "in a soft spoken voice", "loudly",
+                            "quickly", "slowly", "with a heavy accent",
+                            "in a mumble", "in a stutter", "with foul language"]
 
         def get_skin_color(race, gender):
             if race in ["human", "high elf", "wood elf",
@@ -101,7 +104,8 @@ class NPCGenerator:
                 if gender in ["female"]:
                     chair_length = random.choices(["long", "medium length", "short", "buzzed"], weights=[4, 3, 2, 1])[0]
                 elif gender in ["male"]:
-                    chair_length = random.choices(["long", "medium length", "short", "no hair length"], weights=[2, 3, 4, 1])[0]
+                    chair_length = \
+                        random.choices(["long", "medium length", "short", "no hair length"], weights=[2, 3, 4, 1])[0]
                 elif gender in ["non-binary"]:
                     chair_length = random.choice(["long", "medium length", "short", "no hair length"])
                 else:
@@ -140,7 +144,7 @@ class NPCGenerator:
                                                   "a mustache", "mutton chops"])
                 else:
                     cfacial_hair = ["no facial hair"]
-            if gender in ["non-binary"]:
+            elif gender in ["non-binary"]:
                 if age > 18:
                     cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
                                                   "a mustache", "mutton chops", "no facial hair"])
@@ -150,6 +154,38 @@ class NPCGenerator:
             else:
                 cfacial_hair = ["no facial hair"]
             return cfacial_hair
+
+        def get_physical_feature2(physical_feature1):
+            if physical_feature1 in ["completely normal", "fat", "tall", "short",
+                                     "skinny", "built", "wears glasses"]:
+                cphysical_feature2 = "no second physical feature"
+            elif physical_feature1 in ["has a tattoo"]:
+                cphysical_feature2 = random.choice(["butterfly tattoo", "rose tattoo",
+                                                    "dragon tattoo", "flower tattoo", "snake tattoo",
+                                                    "geometric tattoo", "lion tattoo", "heart tattoo",
+                                                    "skull tattoo", "tribal tattoo", "nautical tattoo",
+                                                    "moon tattoo", "pierced ear", "pierced cartilage",
+                                                    "pierced nose", "eyebrow piercing", "lip piercing"])
+            elif physical_feature1 in ["missing"]:
+                cphysical_feature2 = random.choice(["an ear", "an arm", "a hand",
+                                                    "a finger", "both arms", "a leg",
+                                                    "both legs"])
+            elif physical_feature1 in ["scarred"]:
+                cphysical_feature2 = random.choice(["above the eye", "across the nose",
+                                                    "on the cheek", "on the shoulder", "on their arm",
+                                                    "on their hand", "on their back", "on their leg"])
+            else:
+                cphysical_feature2 = ["error - physical feature 2"]
+            return cphysical_feature2
+
+        def get_speech_pattern2(speech_pattern1):
+            if speech_patterns1 in ["with a heavy accent"]:
+                cspeech_pattern2 = ["midwestern accent", "english accent", "scottish accent",
+                                    "russian accent", "french accent", "southern accent",
+                                    "californian accent"]
+            else:
+                cspeech_pattern2 = ["no accent"]
+            return cspeech_pattern2
 
         npcs = []
         for i in range(self.num_npcs):
@@ -171,9 +207,16 @@ class NPCGenerator:
             print(facial_hair)
             physical_feature1 = random.choices(physical_features1)
             print(physical_feature1)
+            physical_feature2 = get_physical_feature2(physical_feature1)
+            print(physical_feature2)
+            speech_pattern1 = random.choices(speech_patterns1)
+            print(speech_pattern1)
+            speech_pattern2 = get_speech_pattern2(speech_pattern1)
+            print(speech_pattern2)
 
             npc = NPC(race, age, gender,
                       skin_color, hair_length, hair_color,
-                      hair_texture, facial_hair, physical_feature1)
+                      hair_texture, facial_hair, physical_feature1,
+                      physical_feature2, speech_pattern1, speech_pattern2)
             npcs.append(npc)
         return npcs
