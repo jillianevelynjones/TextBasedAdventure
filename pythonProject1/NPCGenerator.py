@@ -129,6 +129,24 @@ class NPCGenerator:
                 chair_texture = [" "]
             return chair_texture
 
+        def get_facial_hair(gender, age):
+            if gender in ["male"]:
+                if age > 18:
+                    cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
+                                                  "a mustache", "mutton chops"])
+                else:
+                    cfacial_hair = [" "]
+            if gender in ["non-binary"]:
+                if age > 18:
+                    cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
+                                                  "a mustache", "mutton chops", " "])
+                    facial_weights = [1, 1, 1, 1, 1, 1, 7]
+                else:
+                    cfacial_hair = [" "]
+            else:
+                cfacial_hair = [" "]
+            return cfacial_hair
+
         npcs = []
         for i in range(self.num_npcs):
             race = random.choices(races, weights=race_weights)[0]
@@ -145,7 +163,9 @@ class NPCGenerator:
             print(hair_color)
             hair_texture = get_hair_texture(hair_length)
             print(hair_texture)
+            facial_hair = get_facial_hair(gender, age)
+            print(facial_hair)
 
-            npc = NPC(race, age, gender, skin_color, hair_length, hair_color, hair_texture)
+            npc = NPC(race, age, gender, skin_color, hair_length, hair_color, hair_texture, facial_hair)
             npcs.append(npc)
         return npcs
