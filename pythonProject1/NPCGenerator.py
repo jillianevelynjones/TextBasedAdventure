@@ -117,10 +117,17 @@ class NPCGenerator:
                 if hair_length != "no":
                     chair_color = [" "]
                 else:
-                    chair_color = ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"]
+                    chair_color = random.choice(["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"])
             else:
                 chair_color = [" "]
             return chair_color
+
+        def get_hair_texture(hair_length):
+            if hair_length != "no":
+                chair_texture = random.choice(["straight", "wavy", "curly", "kinky curly"])
+            else:
+                chair_texture = [" "]
+            return chair_texture
 
         npcs = []
         for i in range(self.num_npcs):
@@ -136,7 +143,9 @@ class NPCGenerator:
             print(hair_length)
             hair_color = get_hair_color(race)
             print(hair_color)
+            hair_texture = get_hair_texture(hair_length)
+            print(hair_texture)
 
-            npc = NPC(race, age, gender, skin_color, hair_length, hair_color)
+            npc = NPC(race, age, gender, skin_color, hair_length, hair_color, hair_texture)
             npcs.append(npc)
         return npcs
