@@ -8,35 +8,34 @@ that will generate a list of random NPCs based on the user input"""
 
 class NPCGenerator:
     def __init__(self, num_npcs):
-        self.npc_names = NPCNames()
         self.num_npcs = num_npcs
-
+        self.races = ["human", "wood elf", "mountain dwarf", "lightfoot halfling",
+                      "forest gnome", "stout halfling", "rock gnome",
+                      "dragonborn", "hill dwarf", "high elf",
+                      "half elf", "aarakocra", "half orc",
+                      "infernal tiefling", "protector aasimar", "tabaxi",
+                      "firbolg", "triton", "kenku",
+                      "scourge aasimar", "fallen aasimar", "goliath",
+                      "water genasi", "air genasi", "earth genasi",
+                      "fire genasi", "feral tiefling", "eladrin elf",
+                      "ghostwise halfling", "deep gnome", "lizardfolk",
+                      "duergar dwarf", "drow", "kobold", "orc",
+                      "hobgoblin", "goblin", "bugbear", "yaun-ti pureblood"]
+        self.race_weights = [1500, 350, 350, 350,
+                             350, 300, 300,
+                             250, 250, 250,
+                             250, 200, 200,
+                             100, 100, 90,
+                             80, 75, 70,
+                             65, 60, 55,
+                             50, 50, 50,
+                             50, 40, 35,
+                             30, 30, 25,
+                             10, 10, 5,
+                             5, 3, 3,
+                             2, 1]
+        self.npc_names = NPCNames(None)
     def generate_npcs(self):
-        races = ["human", "wood elf", "mountain dwarf", "lightfoot halfling",
-                 "forest gnome", "stout halfling", "rock gnome",
-                 "dragonborn", "hill dwarf", "high elf",
-                 "half elf", "aarakocra", "half orc",
-                 "infernal tiefling", "protector aasimar", "tabaxi",
-                 "firbolg", "triton", "kenku",
-                 "scourge aasimar", "fallen aasimar", "goliath",
-                 "water genasi", "air genasi", "earth genasi",
-                 "fire genasi", "feral tiefling", "eladrin elf",
-                 "ghostwise halfling", "deep gnome", "lizardfolk",
-                 "duergar dwarf", "drow", "kobold", "orc",
-                 "hobgoblin", "goblin", "bugbear", "yaun-ti pureblood"]
-        race_weights = [1500, 350, 350, 350,
-                        350, 300, 300,
-                        250, 250, 250,
-                        250, 200, 200,
-                        100, 100, 90,
-                        80, 75, 70,
-                        65, 60, 55,
-                        50, 50, 50,
-                        50, 40, 35,
-                        30, 30, 25,
-                        10, 10, 5,
-                        5, 3, 3,
-                        2, 1]
         genders = ["male", "female", "non-binary"]
         gender_weights = [45, 50, 5]
         physical_features1 = ["completely normal", "fat", "skinny",
@@ -193,9 +192,10 @@ class NPCGenerator:
 
         npcs = []
         for i in range(self.num_npcs):
+            race = random.choices(self.races, weights=self.race_weights)[0]
+            self.npc_names.race = race
             first_name = self.npc_names.generate_name()
             print(first_name)
-            race = random.choices(races, weights=race_weights)[0]
             print(race)
             age = random.randint(15, 90)
             print(age)
