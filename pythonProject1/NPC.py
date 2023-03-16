@@ -7,7 +7,8 @@ class NPC:
                  race, age, gender,
                  skin_color, hair_length, hair_color,
                  hair_texture, facial_hair, physical_feature1,
-                 physical_feature2, speech_pattern1, speech_pattern2):
+                 physical_feature2, speech_pattern1, speech_pattern2,
+                 personality_trait, mannerism):
         self.race = race
         self.age = age
         self.gender = gender
@@ -20,6 +21,8 @@ class NPC:
         self.physical_feature2 = physical_feature2
         self.speech_pattern1 = speech_pattern1
         self.speech_pattern2 = speech_pattern2
+        self.personality_trait = personality_trait
+        self.mannerism = mannerism
 
     """def __str__(self):
         return f"{self.age}-year-old {self.gender} {self.race} " 

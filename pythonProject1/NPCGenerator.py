@@ -43,6 +43,8 @@ class NPCGenerator:
         speech_patterns1 = ["in a normal tone", "in a soft spoken voice", "loudly",
                             "quickly", "slowly", "with a heavy accent",
                             "in a mumble", "in a stutter", "with foul language"]
+        personality_traits = ["arrogant", "brave", "cowardly", "deceitful", "honest", "loyal"]
+        mannerisms = ["nervous", "confident", "cocky", "polite", "rude"]
 
         def get_skin_color(race, gender):
             if race in ["human", "high elf", "wood elf",
@@ -213,10 +215,15 @@ class NPCGenerator:
             print(speech_pattern1)
             speech_pattern2 = get_speech_pattern2(speech_pattern1)
             print(speech_pattern2)
+            personality_trait = random.choices(personality_traits)
+            print(personality_trait)
+            mannerism = random.choices(mannerisms)
+            print(mannerism)
 
             npc = NPC(race, age, gender,
                       skin_color, hair_length, hair_color,
                       hair_texture, facial_hair, physical_feature1,
-                      physical_feature2, speech_pattern1, speech_pattern2)
+                      physical_feature2, speech_pattern1, speech_pattern2,
+                      personality_trait, mannerism)
             npcs.append(npc)
         return npcs
