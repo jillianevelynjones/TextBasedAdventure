@@ -34,10 +34,13 @@ class NPCGenerator:
                              10, 10, 5,
                              5, 3, 3,
                              2, 1]
-        self.npc_names = NPCNames(None)
+        self.race = random.choices(self.races, weights=self.race_weights)[0]
+        self.genders = ["male", "female", "non-binary"]
+        self.gender_weights = [45, 50, 5]
+        self.gender = random.choices(self.genders, weights=self.gender_weights)[0]
+        self.npc_names = NPCNames(race=self.race, gender=self.gender)
+
     def generate_npcs(self):
-        genders = ["male", "female", "non-binary"]
-        gender_weights = [45, 50, 5]
         physical_features1 = ["completely normal", "fat", "skinny",
                               "short", "tall", "built", "has a tattoo", "wearing glasses",
                               "missing", "scarred"]
@@ -192,24 +195,26 @@ class NPCGenerator:
 
         npcs = []
         for i in range(self.num_npcs):
-            race = random.choices(self.races, weights=self.race_weights)[0]
-            self.npc_names.race = race
+            self.race = random.choices(self.races, weights=self.race_weights)[0]
+            self.gender = random.choices(self.genders, weights=self.gender_weights)[0]
+            mean_age = 35
+            stdev_age = 10
+            self.age = int(random.normalvariate(mean_age, stdev_age))
+            self.age = max(0, min(self.age, 90))
             first_name = self.npc_names.generate_name()
             print(first_name)
-            print(race)
-            age = random.randint(15, 90)
-            print(age)
-            gender = random.choices(genders, weights=gender_weights)[0]
-            print(gender)
-            skin_color = get_skin_color(race, gender)
+            print(self.race)
+            print(self.age)
+            print(self.gender)
+            skin_color = get_skin_color(self.race, self.gender)
             print(skin_color)
-            hair_length = get_hair_length(race, gender)
+            hair_length = get_hair_length(self.race, self.gender)
             print(hair_length)
-            hair_color = get_hair_color(race)
+            hair_color = get_hair_color(self.race)
             print(hair_color)
             hair_texture = get_hair_texture(hair_length)
             print(hair_texture)
-            facial_hair = get_facial_hair(gender, age)
+            facial_hair = get_facial_hair(self.gender, self.age)
             print(facial_hair)
             physical_feature1 = random.choices(physical_features1)
             print(physical_feature1)
@@ -224,7 +229,7 @@ class NPCGenerator:
             mannerism = random.choices(mannerisms)
             print(mannerism)
 
-            npc = NPC(first_name, race, age, gender,
+            npc = NPC(first_name, self.race, self.age, self.gender,
                       skin_color, hair_length, hair_color,
                       hair_texture, facial_hair, physical_feature1,
                       physical_feature2, speech_pattern1, speech_pattern2,

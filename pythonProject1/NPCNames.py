@@ -3,10 +3,79 @@ import random
 
 class NPCNames:
 
-    def __init__(self, race):
-        match race:
-            case "human":
-                self.first_names = ["John", "Emily", "Michael", "Samantha"]
+    def __init__(self, race, gender):
+        match race, gender:
+            case "dragonborn":
+                if self.gender in ["female"]:
+                    self.first_names = ["Akra", "Aasathra", "Antrara",
+                                        "Arava", "Biri", "Blendaeth",
+                                        "Burana", "Chassath", "Daar",
+                                        "Dentratha", "Doudra", "Driindar",
+                                        "Eggren", "Farideh", "Findex",
+                                        "Furrele", "Gesrethe", "Gilkass",
+                                        "Harann", "Havilar", "Hethress",
+                                        "Hillanot", "Jaxi", "Jezean",
+                                        "Jheri", "Kadana", "Kava",
+                                        "Korinn", "Megren", "Mijira",
+                                        "Mishann", "Nala", "Nuthra",
+                                        "Perra", "Pogranix", "Pyxrin",
+                                        "Quespa", "Raiann", "Rezena",
+                                        "Ruloth", "Saphara", "Savaran",
+                                        "Sora", "Surina", "Synthrin",
+                                        "Tatyan", "Thava", "Uadjit",
+                                        "Vezera", "Zykroff"]
+                elif self.gender in ["male"]:
+                    self.first_name = ["Adrex", "Arjhan", "Azzakh",
+                                       "Balasar", "Baradad", "Bharash",
+                                       "Bidreked", "Dadalan", "Dazzazn",
+                                       "Direcris", "Donaar", "Fax",
+                                       "Gargax", "Ghesh", "Gorbundus",
+                                       "Greethen", "Heskan", "Hirrathak",
+                                       "Ildrex", "Kaladan", "Kerkad",
+                                       "Kiirith", "Kriv", "Maagog",
+                                       "Medrash", "Mehen", "Mozikth",
+                                       "Mreksh", "Mugrunden", "Nadarr",
+                                       "Nithther", "Norkuuth", "Nykkan",
+                                       "Pandjed", "Patrin", "Pijjirik",
+                                       "Quarethon", "Rathkran", "Rhogar",
+                                       "Rivaan", "Sethrekar", "Shamash",
+                                       "Shedinn", "Srorthen", "Tarhun",
+                                       "Torinn" "Trynnicus", "Valorean",
+                                       "Vrondiss", "Zedaar"]
+                else:
+                    self.first_name = ["Akra", "Aasathra", "Antrara",
+                                       "Arava", "Biri", "Blendaeth",
+                                       "Burana", "Chassath", "Daar",
+                                       "Dentratha", "Doudra", "Driindar",
+                                       "Eggren", "Farideh", "Findex",
+                                       "Furrele", "Gesrethe", "Gilkass",
+                                       "Harann", "Havilar", "Hethress",
+                                       "Hillanot", "Jaxi", "Jezean",
+                                       "Jheri", "Kadana", "Kava",
+                                       "Korinn", "Megren", "Mijira",
+                                       "Mishann", "Nala", "Nuthra",
+                                       "Perra", "Pogranix", "Pyxrin",
+                                       "Quespa", "Raiann", "Rezena",
+                                       "Ruloth", "Saphara", "Savaran",
+                                       "Sora", "Surina", "Synthrin",
+                                       "Tatyan", "Thava", "Uadjit",
+                                       "Vezera", "Zykroff", "Adrex",
+                                       "Arjhan", "Azzakh", "Balasar",
+                                       "Baradad", "Bharash", "Bidreked",
+                                       "Dadalan", "Dazzazn", "Direcris",
+                                       "Donaar", "Fax", "Gargax",
+                                       "Ghesh", "Gorbundus", "Greethen",
+                                       "Heskan", "Hirrathak", "Ildrex",
+                                       "Kaladan", "Kerkad", "Kiirith",
+                                       "Kriv", "Maagog", "Medrash",
+                                       "Mehen", "Mozikth", "Mreksh",
+                                       "Mugrunden", "Nadarr", "Nithther",
+                                       "Norkuuth", "Nykkan", "Pandjed",
+                                       "Patrin", "Pijjirik", "Quarethon",
+                                       "Rathkran", "Rhogar", "Rivaan",
+                                       "Sethrekar", "Shamash", "Shedinn",
+                                       "Srorthen", "Tarhun", "Torinn"
+                                       "Trynnicus", "Valorean", "Vrondiss", "Zedaar"]
             case _:
                 self.first_names = ["Legolas", "Arwen", "Elrond", "Galadriel"]
 
