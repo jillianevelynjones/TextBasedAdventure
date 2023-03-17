@@ -38,7 +38,11 @@ class NPCGenerator:
         self.genders = ["male", "female", "non-binary"]
         self.gender_weights = [45, 50, 5]
         self.gender = random.choices(self.genders, weights=self.gender_weights)[0]
-        self.npc_names = NPCNames(race=self.race, gender=self.gender)
+        mean_age = 35
+        stdev_age = 10
+        self.age = int(random.normalvariate(mean_age, stdev_age))
+        self.age = max(0, min(self.age, 90))
+        self.npc_names = NPCNames(race=self.race, gender=self.gender, age=self.age)
 
     def generate_npcs(self):
         physical_features1 = ["completely normal", "fat", "skinny",
@@ -192,11 +196,7 @@ class NPCGenerator:
         for i in range(self.num_npcs):
             self.race = random.choices(self.races, weights=self.race_weights)[0]
             self.gender = random.choices(self.genders, weights=self.gender_weights)[0]
-            mean_age = 35
-            stdev_age = 10
-            self.age = int(random.normalvariate(mean_age, stdev_age))
-            self.age = max(0, min(self.age, 90))
-            self.npc_names = NPCNames(self.race, self.gender)
+            self.npc_names = NPCNames(self.race, self.gender, self.age)
             first_name = self.npc_names.generate_name()
             print(first_name)
             print(self.race)
