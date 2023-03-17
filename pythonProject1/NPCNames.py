@@ -73,8 +73,8 @@ class NPCNames:
                                     "Patrin", "Pijjirik", "Quarethon",
                                     "Rathkran", "Rhogar", "Rivaan",
                                     "Sethrekar", "Shamash", "Shedinn",
-                                    "Srorthen", "Tarhun", "Torinn"
-                                                          "Trynnicus", "Valorean", "Vrondiss", "Zedaar"]
+                                    "Srorthen", "Tarhun", "Torinn",
+                                    "Trynnicus", "Valorean", "Vrondiss", "Zedaar"]
         else:
             self.first_names = ["other"]
         self.generate_name()

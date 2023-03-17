@@ -196,6 +196,7 @@ class NPCGenerator:
             stdev_age = 10
             self.age = int(random.normalvariate(mean_age, stdev_age))
             self.age = max(0, min(self.age, 90))
+            self.npc_names = NPCNames(self.race, self.gender)
             first_name = self.npc_names.generate_name()
             print(first_name)
             print(self.race)
