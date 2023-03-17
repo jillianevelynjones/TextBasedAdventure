@@ -1,244 +1,36 @@
 import random
 
-
 class NPCNames:
+    def __init__(self):
+        self.gender = gender
+        self.names_dict = {
+            'human': {
+                'male': ['John', 'James', 'Robert', 'William', 'Michael'],
+                'female': ['Mary', 'Patricia', 'Jennifer', 'Elizabeth', 'Linda']
+            },
+            'elf': {
+                'male': ['Legolas', 'Elrond', 'Thranduil', 'Glorfindel', 'Celeborn'],
+                'female': ['Galadriel', 'Arwen', 'Tauriel', 'Nimrodel', 'Idril']
+            },
+            'dwarf': {
+                'male': ['Gimli', 'Thorin', 'Balin', 'Dwalin', 'Fili'],
+                'female': ['Dís', 'Kíli', 'Sigrid', 'Tilda', 'Glóin']
+            }
+        }
+        self.exceptions_dict = {
+            'human': ['Peter', 'Paul', 'Simon', 'Andrew', 'Matthew'],
+            'elf': ['Lúthien', 'Melian', 'Aredhel', 'Elwing', 'Nessa'],
+            'dwarf': ['Gudrun', 'Helga', 'Hilda', 'Sigrid', 'Thora']
+        }
 
-    def __init__(self, race, gender, age):
-        if race in ["dragonborn"]:
-            if gender in ["female"]:
-                self.first_names = ["Akra", "Aasathra", "Antrara",
-                                    "Arava", "Biri", "Blendaeth",
-                                    "Burana", "Chassath", "Daar",
-                                    "Dentratha", "Doudra", "Driindar",
-                                    "Eggren", "Farideh", "Findex",
-                                    "Furrele", "Gesrethe", "Gilkass",
-                                    "Harann", "Havilar", "Hethress",
-                                    "Hillanot", "Jaxi", "Jezean",
-                                    "Jheri", "Kadana", "Kava",
-                                    "Korinn", "Megren", "Mijira",
-                                    "Mishann", "Nala", "Nuthra",
-                                    "Perra", "Pogranix", "Pyxrin",
-                                    "Quespa", "Raiann", "Rezena",
-                                    "Ruloth", "Saphara", "Savaran",
-                                    "Sora", "Surina", "Synthrin",
-                                    "Tatyan", "Thava", "Uadjit",
-                                    "Vezera", "Zykroff"]
-            elif gender in ["male"]:
-                self.first_names = ["Adrex", "Arjhan", "Azzakh",
-                                    "Balasar", "Baradad", "Bharash",
-                                    "Bidreked", "Dadalan", "Dazzazn",
-                                    "Direcris", "Donaar", "Fax",
-                                    "Gargax", "Ghesh", "Gorbundus",
-                                    "Greethen", "Heskan", "Hirrathak",
-                                    "Ildrex", "Kaladan", "Kerkad",
-                                    "Kiirith", "Kriv", "Maagog",
-                                    "Medrash", "Mehen", "Mozikth",
-                                    "Mreksh", "Mugrunden", "Nadarr",
-                                    "Nithther", "Norkuuth", "Nykkan",
-                                    "Pandjed", "Patrin", "Pijjirik",
-                                    "Quarethon", "Rathkran", "Rhogar",
-                                    "Rivaan", "Sethrekar", "Shamash",
-                                    "Shedinn", "Srorthen", "Tarhun",
-                                    "Torinn" "Trynnicus", "Valorean",
-                                    "Vrondiss", "Zedaar"]
+    def get_name(self, race):
+        if race in self.names_dict:
+            names = self.names_dict[race][gender]
+            if names:
+                return random.choice(names)
             else:
-                self.first_names = ["Akra", "Aasathra", "Antrara",
-                                    "Arava", "Biri", "Blendaeth",
-                                    "Burana", "Chassath", "Daar",
-                                    "Dentratha", "Doudra", "Driindar",
-                                    "Eggren", "Farideh", "Findex",
-                                    "Furrele", "Gesrethe", "Gilkass",
-                                    "Harann", "Havilar", "Hethress",
-                                    "Hillanot", "Jaxi", "Jezean",
-                                    "Jheri", "Kadana", "Kava",
-                                    "Korinn", "Megren", "Mijira",
-                                    "Mishann", "Nala", "Nuthra",
-                                    "Perra", "Pogranix", "Pyxrin",
-                                    "Quespa", "Raiann", "Rezena",
-                                    "Ruloth", "Saphara", "Savaran",
-                                    "Sora", "Surina", "Synthrin",
-                                    "Tatyan", "Thava", "Uadjit",
-                                    "Vezera", "Zykroff", "Adrex",
-                                    "Arjhan", "Azzakh", "Balasar",
-                                    "Baradad", "Bharash", "Bidreked",
-                                    "Dadalan", "Dazzazn", "Direcris",
-                                    "Donaar", "Fax", "Gargax",
-                                    "Ghesh", "Gorbundus", "Greethen",
-                                    "Heskan", "Hirrathak", "Ildrex",
-                                    "Kaladan", "Kerkad", "Kiirith",
-                                    "Kriv", "Maagog", "Medrash",
-                                    "Mehen", "Mozikth", "Mreksh",
-                                    "Mugrunden", "Nadarr", "Nithther",
-                                    "Norkuuth", "Nykkan", "Pandjed",
-                                    "Patrin", "Pijjirik", "Quarethon",
-                                    "Rathkran", "Rhogar", "Rivaan",
-                                    "Sethrekar", "Shamash", "Shedinn",
-                                    "Srorthen", "Tarhun", "Torinn",
-                                    "Trynnicus", "Valorean", "Vrondiss", "Zedaar"]
-        elif race in ["hill dwarf", "mountain dwarf", "duergar dwarf"]:
-            if gender in ["female"]:
-                self.first_names = ["Anbera", "Artin", "Audhild",
-                                    "Balifra", "Barbena", "Bardryn",
-                                    "Bolhild", "Dagnal", "Dariff",
-                                    "Delre", "Diesa," "Eldeth,"
-                                             "Eridred", "Falkrunn", "Fallthra",
-                                    "Finellen", "Gillydd", "Gunnloda",
-                                    "Gurdis", "Helgret", "Helja",
-                                    "Hlin", "Ilde", "Jarana",
-                                    "Kathra", "Kilia", "Kristryd",
-                                    "Liftrasa", "Marastyr", "Mardred",
-                                    "Morana", "Nalaed", "Nora",
-                                    "Nurkara", "Oriff", "Ovina",
-                                    "Riswynn", "Sannl", "Therlin",
-                                    "Thodris", "Torbera", "Tordrid",
-                                    "Torgga", "Urshar", "Valida",
-                                    "Vistra", "Vonana", "Werydd",
-                                    "Whurdred", "Yurgunn"]
-            elif gender in ["male"]:
-                self.first_names = ["Adrik" "Alberich" "Baern",
-                                    "Barendd", "Beloril", "Brottor",
-                                    "Dain", "Dalgal", "Darrak",
-                                    "Delg", "Duergath", "Dworic",
-                                    "Eberk", "Einkil", "Elaim",
-                                    "Erias", "Fallond", "Fargrim",
-                                    "Gardain", "Gilthur", "Gimgen",
-                                    "Gimurt", "Harbek", "Kildrak",
-                                    "Kilvar", "Morgran", "Morkral",
-                                    "Nalral", "Nordak", "Nuraval",
-                                    "Oloric", "Olunt", "Orsik",
-                                    "Oskar", "Rangrim", "Reirak",
-                                    "Rurik", "Taklinn", "Thoradin",
-                                    "Thorin", "Thradal", "Tordek",
-                                    "Traubon", "Travok", "Ulfgar",
-                                    "Uraim", "Veit", "Vonbin",
-                                    "Vondal", "Whurbin"]
-            else:
-                self.first_name = ["Anbera", "Artin", "Audhild",
-                                   "Balifra", "Barbena", "Bardryn",
-                                   "Bolhild", "Dagnal", "Dariff",
-                                   "Delre", "Diesa," "Eldeth,"
-                                            "Eridred", "Falkrunn", "Fallthra",
-                                   "Finellen", "Gillydd", "Gunnloda",
-                                   "Gurdis", "Helgret", "Helja",
-                                   "Hlin", "Ilde", "Jarana",
-                                   "Kathra", "Kilia", "Kristryd",
-                                   "Liftrasa", "Marastyr", "Mardred",
-                                   "Morana", "Nalaed", "Nora",
-                                   "Nurkara", "Oriff", "Ovina",
-                                   "Riswynn", "Sannl", "Therlin",
-                                   "Thodris", "Torbera", "Tordrid",
-                                   "Torgga", "Urshar", "Valida",
-                                   "Vistra", "Vonana", "Werydd",
-                                   "Whurdred", "Yurgunn", "Adrik"
-                                                          "Alberich" "Baern", "Barendd",
-                                   "Beloril", "Brottor", "Dain",
-                                   "Dalgal", "Darrak", "Delg",
-                                   "Duergath", "Dworic", "Eberk",
-                                   "Einkil", "Elaim", "Erias",
-                                   "Fallond", "Fargrim", "Gardain",
-                                   "Gilthur", "Gimgen", "Gimurt",
-                                   "Harbek", "Kildrak", "Kilvar",
-                                   "Morgran", "Morkral", "Nalral",
-                                   "Nordak", "Nuraval", "Oloric",
-                                   "Olunt", "Orsik", "Oskar",
-                                   "Rangrim", "Reirak", "Rurik",
-                                   "Taklinn", "Thoradin", "Thorin",
-                                   "Thradal", "Tordek", "Traubon",
-                                   "Travok", "Ulfgar", "Uraim",
-                                   "Veit", "Vonbin", "Vondal", "Whurbin"]
-        elif race in ["high elf", "wood elf", "eladrin elf", "drow", "firbolg"]:
-            if age < 18:
-                self.first_names = ["Ael", "Ang", "Ara",
-                                   "Ari", "Arn", "Aym",
-                                   "Broe", "Bryn", "Cael",
-                                   "Cy", "Dae", "Del",
-                                   "Eli", "Eryn", "Faen",
-                                   "Fera", "Gael", "Gar",
-                                   "Innil", "Jar", "Kan",
-                                   "Koeth", "Lael", "Lue",
-                                   "Mai", "Mara", "Mella",
-                                   "Mya", "Naeris", "Naill",
-                                   "Nim", "Phann", "Py",
-                                   "Rael", "Raer", "Ren",
-                                   "Rinn", "Rua", "Sael",
-                                   "Sai", "Sumi", "Syllin",
-                                   "Ta", "Thia", "Tia",
-                                   "Traki", "Vall", "Von",
-                                   "Wil", "Za"]
-            elif gender in ["female"]:
-                self.first_names = ["Adrie", "Ahinar", "Althaea",
-                                   "Anastrianna", "Andraste", "Antinua",
-                                   "Arara", "Baelitae", "Bethrynna",
-                                   "Birel", "Caelynn", "Chaedi",
-                                   "Claira", "Dara", "Drusilia",
-                                   "Elama", "Enna", "Faral",
-                                   "Felosial", "Hatae", "Ielenia",
-                                   "Ilanis", "Irann", "Jarsali",
-                                   "Jelenneth", "Keyleth", "Leshanna",
-                                   "Lia", "Maiathah", "Malquis",
-                                   "Meriele", "Mialee", "Myathethil",
-                                   "Naivara", "Quelenna", "Quillathe",
-                                   "Ridaro", "Sariel", "Shanairla",
-                                   "Shava", "Silaqui", "Sumnes",
-                                   "Theirastra", "Thiala", "Tiaathque",
-                                   "Traulam", "Vadania", "Valanthe",
-                                   "Valna", "Xanaphia"]
-            elif gender in ["male"]:
-                self.first_names = ["Adran", "Aelar", "Aerdeth",
-                                   "Ahvain", "Aramil", "Arannis",
-                                   "Aust", "Azaki", "Beiro",
-                                   "Berrian", "Caeldrim", "Carric",
-                                   "Dayereth", "Dreali", "Efferil",
-                                   "Eiravel", "Enialis", "Erdan",
-                                   "Erevan", "Fivin", "Galinndan",
-                                   "Gennal", "Hadarai", "Halimath",
-                                   "Heian", "Himo", "Immeral",
-                                   "Ivellios", "Korfel", "Lamlis",
-                                   "Laucian", "Lucan", "Mindartis",
-                                   "Naal", "Nutae", "Paelias",
-                                   "Peren", "Quarion", "Riardon",
-                                   "Rolen", "Soveliss", "Suhnae",
-                                   "Thamior", "Tharivol", "Theren",
-                                   "Theriatis", "Thervan", "Uthemar",
-                                   "Vanuath", "Varis"]
-            else:
-                self.first_names = ["Adrie", "Ahinar", "Althaea",
-                                   "Anastrianna", "Andraste", "Antinua",
-                                   "Arara", "Baelitae", "Bethrynna",
-                                   "Birel", "Caelynn", "Chaedi",
-                                   "Claira", "Dara", "Drusilia",
-                                   "Elama", "Enna", "Faral",
-                                   "Felosial", "Hatae", "Ielenia",
-                                   "Ilanis", "Irann", "Jarsali",
-                                   "Jelenneth", "Keyleth", "Leshanna",
-                                   "Lia", "Maiathah", "Malquis",
-                                   "Meriele", "Mialee", "Myathethil",
-                                   "Naivara", "Quelenna", "Quillathe",
-                                   "Ridaro", "Sariel", "Shanairla",
-                                   "Shava", "Silaqui", "Sumnes",
-                                   "Theirastra", "Thiala", "Tiaathque",
-                                   "Traulam", "Vadania", "Valanthe",
-                                   "Valna", "Xanaphia", "Adran",
-                                   "Aelar", "Aerdeth", "Ahvain",
-                                   "Aramil", "Arannis", "Aust",
-                                   "Azaki", "Beiro", "Berrian",
-                                   "Caeldrim", "Carric", "Dayereth",
-                                   "Dreali", "Efferil", "Eiravel",
-                                   "Enialis", "Erdan", "Erevan",
-                                   "Fivin", "Galinndan", "Gennal",
-                                   "Hadarai", "Halimath", "Heian",
-                                   "Himo", "Immeral", "Ivellios",
-                                   "Korfel", "Lamlis", "Laucian",
-                                   "Lucan", "Mindartis", "Naal",
-                                   "Nutae", "Paelias", "Peren",
-                                   "Quarion", "Riardon", "Rolen",
-                                   "Soveliss", "Suhnae", "Thamior",
-                                   "Tharivol", "Theren", "Theriatis",
-                                   "Thervan", "Uthemar", "Vanuath", "Varis"]
+                raise ValueError(f"No {gender} names found for {race}.")
+        elif race in self.exceptions_dict:
+            return random.choice(self.exceptions_dict[race])
         else:
-            self.first_names = ["other"]
-        self.generate_name()
-
-    def generate_name(self):
-        first_name = random.choice(self.first_names)
-        return first_name
+            return random.choice(self.exceptions_dict[random.choice(list(self.exceptions_dict.keys()))])
