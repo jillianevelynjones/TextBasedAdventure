@@ -121,42 +121,37 @@ class NPCGenerator:
             return chair_length
 
         def get_hair_color(race):
-            if race in ["human", "high elf", "wood elf",
-                        "eladrin elf", "hill dwarf", "mountain dwarf",
-                        "stout halfling", "lightfoot halfling", "ghostwise halfling",
-                        "forest gnome", "rock gnome", "deep gnome",
-                        "half elf", "protector aasimar", "scourge aasimar",
-                        "fallen aasimar"]:
-                if hair_length != "no":
-                    chair_color = ["no hair color"]
-                else:
-                    chair_color = random.choice(
-                        ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"])
-            else:
+            if hair_length != "no hair length":
                 chair_color = ["no hair color"]
+            else:
+                chair_color = random.choice(
+                    ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"])
             return chair_color
 
         def get_hair_texture(hair_length):
-            if hair_length != "no":
+            if hair_length != "no hair length":
                 chair_texture = random.choice(["straight", "wavy", "curly", "kinky curly"])
             else:
                 chair_texture = ["no hair texture"]
             return chair_texture
 
         def get_facial_hair(gender, age):
-            if gender in ["male"]:
-                if age > 18:
-                    cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
-                                                  "a mustache", "mutton chops"])
+            if hair_length != "no hair length":
+                if gender in ["male"]:
+                    if age > 18:
+                        cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
+                                                      "a mustache", "mutton chops"])
+                    else:
+                        cfacial_hair = ["no facial hair"]
+                elif gender in ["non-binary"]:
+                    if age > 18:
+                        cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
+                                                      "a mustache", "mutton chops", "no facial hair"])
+                        cfacial_weights = [1, 1, 1, 1, 1, 1, 7]
+                    else:
+                        cfacial_hair = [" "]
                 else:
                     cfacial_hair = ["no facial hair"]
-            elif gender in ["non-binary"]:
-                if age > 18:
-                    cfacial_hair = random.choice(["a clean shaven face", "stubble", "a short beard", "a long beard",
-                                                  "a mustache", "mutton chops", "no facial hair"])
-                    cfacial_weights = [1, 1, 1, 1, 1, 1, 7]
-                else:
-                    cfacial_hair = [" "]
             else:
                 cfacial_hair = ["no facial hair"]
             return cfacial_hair
