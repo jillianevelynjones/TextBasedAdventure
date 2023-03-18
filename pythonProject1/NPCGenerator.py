@@ -1,9 +1,7 @@
 import random
 from NPC import NPC
 from NPCNames import NPCNames
-
-"""Next, we'll create a class called NPCGenerator 
-that will generate a list of random NPCs based on the user input"""
+import re
 
 
 class NPCGenerator:
@@ -42,7 +40,8 @@ class NPCGenerator:
         stdev_age = 10
         self.age = int(random.normalvariate(mean_age, stdev_age))
         self.age = max(0, min(self.age, 90))
-        self.npc_names = NPCNames(race=self.race, gender=self.gender, age=self.age)
+        self.skin_color = None
+        self.npc_names = NPCNames(race=self.race, gender=self.gender, age=self.age, skin_color=self.skin_color)
 
     def generate_npcs(self):
         physical_features1 = ["completely normal", "fat", "skinny",
@@ -125,11 +124,12 @@ class NPCGenerator:
             return chair_length
 
         def get_hair_color(race):
-            if hair_length != "no hair length":
+            if hair_length in ["no hair length"]:
                 chair_color = ["no hair color"]
             else:
-                chair_color = random.choice(
-                    ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple"])
+                chair_color = random.choice(["brown", "black", "blonde",
+                                             "ginger", "red", "orange",
+                                             "green", "blue", "purple"])
             return chair_color
 
         def get_hair_texture(hair_length):
@@ -161,26 +161,30 @@ class NPCGenerator:
             return cfacial_hair
 
         def get_physical_feature2(physical_feature1):
-            if physical_feature1 in ["completely normal", "fat", "tall", "short",
-                                     "skinny", "built", "wears glasses"]:
-                cphysical_feature2 = "no second physical feature"
+            if physical_feature1 in ["completely normal", "fat", "tall",
+                                     "short", "skinny", "built", "wears glasses"]:
+                cphysical_features2 = ["no second physical feature"]
             elif physical_feature1 in ["has a tattoo"]:
-                cphysical_feature2 = random.choice(["butterfly tattoo", "rose tattoo",
-                                                    "dragon tattoo", "flower tattoo", "snake tattoo",
-                                                    "geometric tattoo", "lion tattoo", "heart tattoo",
-                                                    "skull tattoo", "tribal tattoo", "nautical tattoo",
-                                                    "moon tattoo", "pierced ear", "pierced cartilage",
-                                                    "pierced nose", "eyebrow piercing", "lip piercing"])
+                cphysical_features2 = ["butterfly tattoo", "rose tattoo", "dragon tattoo",
+                                       "flower tattoo", "snake tattoo", "geometric tattoo",
+                                       "lion tattoo", "heart tattoo", "skull tattoo",
+                                       "tribal tattoo", "nautical tattoo", "moon tattoo",
+                                       "pierced ear", "pierced cartilage", "pierced nose",
+                                       "eyebrow piercing", "lip piercing"]
             elif physical_feature1 in ["missing"]:
-                cphysical_feature2 = random.choice(["an ear", "an arm", "a hand",
-                                                    "a finger", "both arms", "a leg",
-                                                    "both legs"])
+                cphysical_features2 = ["an ear", "an arm", "a hand",
+                                       "a finger", "both arms", "a leg", "both legs"]
             elif physical_feature1 in ["scarred"]:
-                cphysical_feature2 = random.choice(["above the eye", "across the nose",
-                                                    "on the cheek", "on the shoulder", "on their arm",
-                                                    "on their hand", "on their back", "on their leg"])
+                cphysical_features2 = ["above the eye", "across the nose", "on the cheek",
+                                       "on the shoulder", "on their arm", "on their hand",
+                                       "on their back", "on their leg"]
             else:
-                cphysical_feature2 = ["error - physical feature 2"]
+                cphysical_features2 = []
+
+            if not cphysical_features2:
+                cphysical_features2 = ["error - physical feature 2"]
+
+            cphysical_feature2 = random.choice(cphysical_features2)
             return cphysical_feature2
 
         def get_speech_pattern2(speech_pattern1):
@@ -192,41 +196,62 @@ class NPCGenerator:
                 cspeech_pattern2 = ["no accent"]
             return cspeech_pattern2
 
+        def clean_string(input_string):
+            # Define the regex pattern to remove brackets
+            pattern = r"[\[\]']"
+
+            # Use regex to remove the brackets
+            output_string = re.sub(pattern, "", input_string)
+
+            return output_string
+
         npcs = []
         for i in range(self.num_npcs):
-            self.race = random.choices(self.races, weights=self.race_weights)[0]
+            self.race = "human"
+            # self.race = random.choices(self.races, weights=self.race_weights)[0]
             self.gender = random.choices(self.genders, weights=self.gender_weights)[0]
-            self.npc_names = NPCNames(self.race, self.gender, self.age)
+            self.skin_color = get_skin_color(self.race, self.gender)
+            cleaned_skin_color = clean_string(str(self.skin_color))
+            self.npc_names = NPCNames(self.race, self.gender, self.age, self.skin_color)
             first_name = self.npc_names.generate_name()
             print(first_name)
             print(self.race)
             print(self.age)
             print(self.gender)
-            skin_color = get_skin_color(self.race, self.gender)
-            print(skin_color)
+            print(cleaned_skin_color)
             hair_length = get_hair_length(self.race, self.gender)
-            print(hair_length)
+            cleaned_hair_length = clean_string(str(hair_length))
+            print(cleaned_hair_length)
             hair_color = get_hair_color(self.race)
-            print(hair_color)
+            cleaned_hair_color = clean_string(str(hair_color))
+            print(cleaned_hair_color)
             hair_texture = get_hair_texture(hair_length)
-            print(hair_texture)
+            cleaned_hair_texture = clean_string(str(hair_texture))
+            print(cleaned_hair_texture)
             facial_hair = get_facial_hair(self.gender, self.age)
-            print(facial_hair)
+            cleaned_facial_hair = clean_string(str(facial_hair))
+            print(cleaned_facial_hair)
             physical_feature1 = random.choices(physical_features1)
-            print(physical_feature1)
+            cleaned_physical_feature1 = clean_string(str(physical_feature1))
+            print(cleaned_physical_feature1)
             physical_feature2 = get_physical_feature2(physical_feature1)
-            print(physical_feature2)
+            cleaned_physical_feature2 = clean_string(str(physical_feature2))
+            print(cleaned_physical_feature2)
             speech_pattern1 = random.choices(speech_patterns1)
-            print(speech_pattern1)
+            cleaned_speech_pattern1 = clean_string(str(speech_pattern1))
+            print(cleaned_speech_pattern1)
             speech_pattern2 = get_speech_pattern2(speech_pattern1)
-            print(speech_pattern2)
+            cleaned_speech_pattern2 = clean_string(str(speech_pattern2))
+            print(cleaned_speech_pattern2)
             personality_trait = random.choices(personality_traits)
-            print(personality_trait)
+            cleaned_personality_trait = clean_string(str(personality_trait))
+            print(cleaned_personality_trait)
             mannerism = random.choices(mannerisms)
-            print(mannerism)
+            cleaned_mannerism = clean_string(str(mannerism))
+            print(cleaned_mannerism)
 
             npc = NPC(first_name, self.race, self.age, self.gender,
-                      skin_color, hair_length, hair_color,
+                      self.skin_color, hair_length, hair_color,
                       hair_texture, facial_hair, physical_feature1,
                       physical_feature2, speech_pattern1, speech_pattern2,
                       personality_trait, mannerism)

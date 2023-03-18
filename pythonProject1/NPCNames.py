@@ -1,9 +1,10 @@
 import random
+from HumanNames import HumanNames
 
 
 class NPCNames:
 
-    def __init__(self, race, gender, age):
+    def __init__(self, race, gender, age, skin_color):
         if race in ["dragonborn"]:
             if gender in ["female"]:
                 self.first_names = ["Akra", "Aasathra", "Antrara",
@@ -766,24 +767,26 @@ class NPCNames:
                                     "Karzas", "Civnis", "Marlas", "Davnas"]
         elif race in ["kobold"]:
             self.first_names = ["Gen", "Snax", "Ruks",
-                               "Zis", "Maple",
-                               "Noldi", "Zeplu", "Gabi",
-                               "Ovna", "Rato", "Sud",
-                               "Kus", "Snav", "Doss",
-                               "Vaggi", "Delbi", "Are",
-                               "Mehso", "Nivu", "Okle",
-                               "Men", "Tarn", "Son",
-                               "Rurn", "Nurko", "Kagne",
-                               "Rarte", "Tappi", "Adra",
-                               "Snohle", "Zav", "Snad",
-                               "Zam", "Gess", "Volti",
-                               "Hutro", "Ulte", "Ilgo",
-                               "Iru", "Ikdi", "Kun",
-                               "Nott", "Nor", "Zos",
-                               "Zoku", "Migli", "Zehli",
-                               "Nodre", "Elle", "Dihsi"]
+                                "Zis", "Maple",
+                                "Noldi", "Zeplu", "Gabi",
+                                "Ovna", "Rato", "Sud",
+                                "Kus", "Snav", "Doss",
+                                "Vaggi", "Delbi", "Are",
+                                "Mehso", "Nivu", "Okle",
+                                "Men", "Tarn", "Son",
+                                "Rurn", "Nurko", "Kagne",
+                                "Rarte", "Tappi", "Adra",
+                                "Snohle", "Zav", "Snad",
+                                "Zam", "Gess", "Volti",
+                                "Hutro", "Ulte", "Ilgo",
+                                "Iru", "Ikdi", "Kun",
+                                "Nott", "Nor", "Zos",
+                                "Zoku", "Migli", "Zehli",
+                                "Nodre", "Elle", "Dihsi"]
         else:
-            self.first_names = ["other"]
+            # self.first_names = ["other"]
+            self.human_names = HumanNames(skin_color, gender)
+            self.first_names = self.human_names.generate_name()
         self.generate_name()
 
     def generate_name(self):
