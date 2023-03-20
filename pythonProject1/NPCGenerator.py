@@ -211,6 +211,7 @@ class NPCGenerator:
             # self.race = random.choices(self.races, weights=self.race_weights)[0]
             self.gender = random.choices(self.genders, weights=self.gender_weights)[0]
             self.skin_color = get_skin_color(self.race, self.gender)
+            # self.skin_color = "pale brown ochre skin"
             cleaned_skin_color = clean_string(str(self.skin_color))
             self.npc_names = NPCNames(self.race, self.gender, self.age, self.skin_color)
             first_name = self.npc_names.generate_name()
