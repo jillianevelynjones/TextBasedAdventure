@@ -45,6 +45,7 @@ class NewNPCGenerator:
                             "black fur", "white fur", "calico fur", "brown fur", "cinnamon fur", "gray fur",
                             "orange skin with a blue nose", "brown fur", "error - skin color races"]
         self.skin_color_weights = [self.skin_colors.count(color) for color in self.skin_colors]
+        self.hair_lengths = ["long", "medium length", "short", "buzzed", "no", "error - hair length"]
 
     def generate_npcs(self):
         npcs = []
@@ -54,7 +55,8 @@ class NewNPCGenerator:
             stdev_age = 10
             age = int(random.normalvariate(mean_age, stdev_age))
             gender = random.choice(self.genders)
-            skin_color = random.choice(self.skin_colors) 
+            skin_color = random.choice(self.skin_colors)
+            hair_length = random.choice(self.hair_lengths)
             
             if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
                         "stout halfling",
@@ -105,7 +107,7 @@ class NewNPCGenerator:
             else:
                 self.skin_color = ["error - skin color races"]
             
-            npc = NewNPC(race, age, gender, skin_color)
+            npc = NewNPC(race, age, gender, skin_color, hair_length)
             npcs.append(npc)
         self.npcs = npcs
 
