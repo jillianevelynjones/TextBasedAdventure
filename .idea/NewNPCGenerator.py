@@ -15,9 +15,9 @@ class NewNPCGenerator:
             stdev_age = 10
             age = int(random.normalvariate(mean_age, stdev_age))
             gender = random.choice(self.genders)
-
-        npc = NewNPC(race, age, gender)
-        npcs.append(npc)
+            
+            npc = NewNPC(race, age, gender)
+            npcs.append(npc)
         self.npcs = npcs
 
         return npcs
