@@ -12,4 +12,4 @@ def main():
         print (npc)
 
 if __name__ == "__main__":
-    main()
+    main() 
