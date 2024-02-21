@@ -29,7 +29,8 @@ class NewNPCGenerator:
                              10, 10, 5,
                              5, 3, 3,
                              2, 1]
-        self.genders = ["male", "female"]
+        self.genders = ["male", "female", "non-binary"]
+        self.gender_weights = [50, 45, 5]
 
     def generate_npcs(self):
         npcs = []
