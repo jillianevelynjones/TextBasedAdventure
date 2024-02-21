@@ -31,6 +31,20 @@ class NewNPCGenerator:
                              2, 1]
         self.genders = ["male", "female", "non-binary"]
         self.gender_weights = [50, 45, 5]
+        self.skin_colors = ["yellow-brown umber skin", "reddish brown sepia skin", "pale brown ochre skin",
+                            "reddish brown russet skin", "brownish orange terra cotta skin", "golden skin",
+                            "yellow-brown tawny skin", "gray taupe skin", "khaki colored skin", "light fawn skin",
+                            "brown coloring", "ruddy red coloring", "cool grays coloring", "blue coloring",
+                            "red skin", "purple skin", "blue skin", "red coloring", "blue coloring",
+                            "green coloring", "black coloring", "white coloring", "copper coloring",
+                            "brass coloring", "silver coloring", "gold coloring", "bronze coloring",
+                            "green skin", "grayish blue skin", "red skin", "black feathers", "brown feathers",
+                            "gray feathers", "red feathers", "yellow feathers", "orange feathers",
+                            "error - aarakocra skin", "dark gray skin", "light gray skin", "gray skin",
+                            "black fur with white spots", "yellow fur", "orange fur", "yellow fur with orange stripes",
+                            "black fur", "white fur", "calico fur", "brown fur", "cinnamon fur", "gray fur",
+                            "orange skin with a blue nose", "brown fur", "error - skin color races"]
+        self.skin_color_weights = [self.skin_colors.count(color) for color in self.skin_colors]
 
     def generate_npcs(self):
         npcs = []
@@ -40,8 +54,58 @@ class NewNPCGenerator:
             stdev_age = 10
             age = int(random.normalvariate(mean_age, stdev_age))
             gender = random.choice(self.genders)
+            skin_color = random.choice(self.skin_colors) 
             
-            npc = NewNPC(race, age, gender)
+            if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
+                        "stout halfling",
+                        "lightfoot halfling", "ghostwise halfling", "forest gnome", "rock gnome", "deep gnome",
+                        "half elf",
+                        "protector aasimar", "scourge aasimar", "fallen aasimar"]:
+                self.skin_color = ["yellow-brown umber skin", "reddish brown sepia skin", "pale brown ochre skin",
+                                   "reddish brown russet skin", "brownish orange terra cotta skin", "golden skin",
+                                   "yellow-brown tawny skin", "gray taupe skin", "khaki colored skin",
+                                   "light fawn skin"]
+            elif race in ["firbolg", "earth genasi"]:
+                self.skin_color = \
+                random.choices(["brown coloring", "ruddy red coloring", "cool grays coloring", "blue coloring"],
+                               weights=[3, 3, 1, 1])[0]
+            elif race in ["infernal tiefling", "feral tiefling"]:
+                self.skin_color = random.choices(["red skin", "purple skin", "blue skin"], weights=[4, 4, 2])[0]
+            elif race in ["dragonborn", "lizardfolk", "kobold"]:
+                self.skin_color = ["red coloring", "blue coloring", "green coloring",
+                                   "black coloring", "white coloring", "copper coloring",
+                                   "brass coloring", "silver coloring", "gold coloring",
+                                   "bronze coloring"]
+            elif race in ["half orc", "orc", "goblin"]:
+                self.skin_color = ["green skin"]
+            elif race in ["goliath", "triton"]:
+                self.skin_color = ["grayish blue skin"]
+            elif race in ["fire genasi"]:
+                self.skin_color = ["red skin"]
+            elif race in ["kenku"]:
+                self.skin_color = ["black feathers"]
+            elif race in ["aarakocra"]:
+                if gender in ["female"]:
+                    self.skin_color = ["brown feathers", "gray feathers"]
+                elif gender in ["male"]:
+                    self.skin_color = ["red feathers", "yellow feathers", "orange feathers"]
+                else:
+                    self.skin_color = ["red feathers", "yellow feathers", "orange feathers",
+                                       "brown feathers", "gray feathers"]
+            elif race in ["drow", "duergar"]:
+                self.skin_color = ["dark gray skin", "light gray skin", "gray skin"]
+            elif race in ["tabaxi"]:
+                self.skin_color = ["black fur with white spots", "yellow fur", "orange fur",
+                                   "yellow fur with orange stripes", "black fur", "white fur",
+                                   "calico fur", "brown fur", "cinnamon fur", "gray fur"]
+            elif race in ["hobgoblin"]:
+                self.skin_color = ["orange skin with a blue nose"]
+            elif race in ["bugbear"]:
+                self.skin_color = ["brown fur"]
+            else:
+                self.skin_color = ["error - skin color races"]
+            
+            npc = NewNPC(race, age, gender, skin_color)
             npcs.append(npc)
         self.npcs = npcs
 
