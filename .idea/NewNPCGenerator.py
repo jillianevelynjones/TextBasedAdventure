@@ -46,6 +46,7 @@ class NewNPCGenerator:
                             "orange skin with a blue nose", "brown fur", "error - skin color races"]
         self.skin_color_weights = [self.skin_colors.count(color) for color in self.skin_colors]
         self.hair_lengths = ["long", "medium length", "short", "buzzed", "no", "error - hair length"]
+        self.hair_length_weights = []
 
     def generate_npcs(self):
         npcs = []
@@ -106,6 +107,16 @@ class NewNPCGenerator:
                 self.skin_color = ["brown fur"]
             else:
                 self.skin_color = ["error - skin color races"]
+            if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
+                        "stout halfling", "lightfoot halfling", "ghostwise halfling", "forest gnome", "rock gnome",
+                        "deep gnome", "half elf", "protector aasimar", "scourge aasimar", "fallen aasimar", "half orc",
+                        "goliath", "air genasi", "earth genasi", "fire genasi", "water genasi", "duergar dwarf", "drow",
+                        "hobgoblin", "goblin", "yuan-ti pureblood"]:
+                self.hair_length = ["long", "medium length", "short", "buzzed", "no"]
+                self.hair_length_weights = [4, 3, 2, 1, 1]
+            else:
+                self.hair_length = ["error - hair length"]
+                self.hair_length_weights = [1]
             
             npc = NewNPC(race, age, gender, skin_color, hair_length)
             npcs.append(npc)
