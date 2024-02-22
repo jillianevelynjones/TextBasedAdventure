@@ -66,7 +66,14 @@ class NewNPCGenerator:
                                    "on their hand", "on their back", "on their leg",
                                    "error - physical feature 2"]
         self.physical_feature2_weights = [self.physical_features2.count(feature) for feature in self.physical_features2]
-
+        self.speech_patterns1 = ["in a normal tone", "in a soft spoken voice", "loudly",
+                                 "quickly", "slowly", "with a heavy",
+                                 "in a mumble", "in a stutter", "with foul language"]
+        self.speech_patterns2 = [" ", "midwestern accent", "english accent", "scottish accent",
+                                 "russian accent", "french accent", "southern accent",
+                                 "californian accent"]
+        self.speech_pattern2_weights = [self.speech_patterns2.count(speech) for speech in self.speech_patterns2]
+    
     def generate_npcs(self):
         npcs = []
         for i in range(self.num_npcs):
@@ -386,8 +393,20 @@ class NewNPCGenerator:
                                                   0, 0, 0, 0]
 
             physical_feature2 = random.choices(self.physical_features2, weights=self.physical_feature2_weights, k=1)[0]
+
+            speech_pattern1 = random.choice(self.speech_patterns1)
+
+            if speech_pattern1 == "with a heavy":
+                self.speech_pattern2_weights = [0, 1, 1, 1, 
+                                           1, 1, 1, 1] 
+            else:
+                self.speech_pattern2_weights = [7, 0, 0, 0,
+                                           0, 0, 0, 0]
+                
+            speech_pattern2 = random.choices(self.speech_patterns2, weights=self.speech_pattern2_weights, k=1)[0]
+
             
-            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair, physical_feature1, physical_feature2)
+            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair, physical_feature1, physical_feature2, speech_pattern1, speech_pattern2)
             npcs.append(npc)
             self.npcs = npcs
 
