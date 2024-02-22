@@ -1,5 +1,6 @@
 import random
 from NewNPC import NewNPC
+from NewNPCName import NewNPCName
 
 class NewNPCGenerator:
     def __init__(self, num_npcs):
@@ -412,6 +413,5 @@ class NewNPCGenerator:
             
             npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair, physical_feature1, physical_feature2, speech_pattern1, speech_pattern2, personality_trait, mannerism)
             npcs.append(npc)
-            self.npcs = npcs
 
         return npcs
