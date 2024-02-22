@@ -46,67 +46,234 @@ class NewNPCGenerator:
         self.skin_color_weights = [self.skin_colors.count(color) for color in self.skin_colors]
         self.hair_lengths = ["long", "medium length", "short", "buzzed", "no", " "]
         self.hair_length_weights = [self.hair_lengths.count(length) for length in self.hair_lengths]
+        self.hair_textures = ["straight", "wavy", "curly", "kinky curly", " "]
+        self.hair_texture_weights = [self.hair_textures.count(texture) for texture in self.hair_textures]
 
     def generate_npcs(self):
         npcs = []
         for i in range(self.num_npcs):
-            race = random.choices(self.races, weights=self.race_weights)[0]
+            race = random.choices(self.races, weights=self.race_weights, k=1)[0]
             mean_age = 30
             stdev_age = 10
             age = int(random.normalvariate(mean_age, stdev_age))
             gender = random.choices(self.genders, weights=self.gender_weights, k=1)[0]
-            skin_color = random.choices(self.skin_colors, weights=self.skin_color_weights, k=1)[0]
-            hair_length = random.choices(self.hair_lengths, weights=self.hair_length_weights, k=1)[0]
             
             if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
                         "stout halfling",
                         "lightfoot halfling", "ghostwise halfling", "forest gnome", "rock gnome", "deep gnome",
                         "half elf",
                         "protector aasimar", "scourge aasimar", "fallen aasimar"]:
-                self.skin_color = ["yellow-brown umber skin", "reddish brown sepia skin", "pale brown ochre skin",
-                                   "reddish brown russet skin", "brownish orange terra cotta skin", "golden skin",
-                                   "yellow-brown tawny skin", "gray taupe skin", "khaki colored skin",
-                                   "light fawn skin"]
+                self.skin_color_weights = [1, 1, 1,
+                                           1, 1, 1,
+                                           1, 1, 1, 1,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["firbolg", "earth genasi"]:
-                self.skin_color = \
-                random.choices(["brown coloring", "ruddy red coloring", "cool grays coloring", "blue coloring"],
-                               weights=[3, 3, 1, 1])[0]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           4, 4, 1, 1,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["infernal tiefling", "feral tiefling"]:
-                self.skin_color = random.choices(["red skin", "purple skin", "blue skin"], weights=[4, 4, 2])[0]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           4, 4, 2, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["dragonborn", "lizardfolk", "kobold"]:
-                self.skin_color = ["red coloring", "blue coloring", "green coloring",
-                                   "black coloring", "white coloring", "copper coloring",
-                                   "brass coloring", "silver coloring", "gold coloring",
-                                   "bronze coloring"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 1, 1,
+                                           1, 1, 1, 1,
+                                           1, 1, 1, 1, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["half orc", "orc", "goblin"]:
-                self.skin_color = ["green skin"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           10, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["goliath", "triton"]:
-                self.skin_color = ["grayish blue skin"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 10, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["fire genasi"]:
-                self.skin_color = ["red skin"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 10, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["kenku"]:
-                self.skin_color = ["black feathers"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 10, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["aarakocra"]:
                 if gender in ["female"]:
-                    self.skin_color = ["brown feathers", "gray feathers"]
+                    self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 5, 
+                                           5, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
                 elif gender in ["male"]:
-                    self.skin_color = ["red feathers", "yellow feathers", "orange feathers"]
+                    self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 4, 3, 3, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
                 else:
-                    self.skin_color = ["red feathers", "yellow feathers", "orange feathers",
-                                       "brown feathers", "gray feathers"]
+                    self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 2, 
+                                           3, 2, 2, 1, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["drow", "duergar"]:
-                self.skin_color = ["dark gray skin", "light gray skin", "gray skin"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 3, 3, 4, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0]
             elif race in ["tabaxi"]:
-                self.skin_color = ["black fur with wfhite spots", "yellow fur", "orange fur",
-                                   "yellow fur with orange stripes", "black fur", "white fur",
-                                   "calico fur", "brown fur", "cinnamon fur", "gray fur"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           1, 1, 1, 1, 
+                                           1, 1, 1, 1, 1, 1, 
+                                           0, 0, 0]
             elif race in ["hobgoblin"]:
-                self.skin_color = ["orange skin with a blue nose"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           10, 0, 0]
             elif race in ["bugbear"]:
-                self.skin_color = ["brown fur"]
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 10, 0]
             else:
-                self.skin_color = ["error - skin color races"]
-            
+                self.skin_color_weights = [0, 0, 0,
+                                           0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 0,
+                                           0, 0, 0, 0,
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 0, 
+                                           0, 0, 0, 0, 
+                                           0, 0, 0, 0, 0, 0, 
+                                           0, 0, 10]
+
+            skin_color = random.choices(self.skin_colors, weights=self.skin_color_weights, k=1)[0]
+
             if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
             "stout halfling", "lightfoot halfling", "ghostwise halfling", "forest gnome", "rock gnome",
             "deep gnome", "half elf", "protector aasimar", "scourge aasimar", "fallen aasimar", "half orc",
@@ -125,10 +292,19 @@ class NewNPCGenerator:
                 self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
                 self.hair_length_weights = [0, 0, 0, 0, 0, 10]  # Ensure one weight is non-zero for the default case
 
+            hair_length = random.choices(self.hair_lengths, weights=self.hair_length_weights, k=1)[0]
+            
+            if hair_length in ["no", " "]:
+                self.hair_texture = ["straight", "wavy", "curly", "kinky curly", " "]
+                self.hair_texture_weights = [0, 0, 0, 0, 4]
+            else:
+                self.hair_texture = ["straight", "wavy", "curly", "kinky curly", " "]
+                self.hair_texture_weights = [1, 1, 1, 1, 0]
 
-            npc = NewNPC(race, age, gender, skin_color, hair_length)
+            hair_texture = random.choices(self.hair_textures, weights=self.hair_texture_weights, k=1)[0] 
+            
+            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture)
             npcs.append(npc)
         self.npcs = npcs
 
         return npcs
-    
