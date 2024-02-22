@@ -1,0 +1,30 @@
+import random
+
+class NewNPCName:
+    def __init__(self, race, gender):
+        self.race = race
+        self.gender = gender
+        self.human_female_names = ["human female 1", "human female 2", "human female 3"]
+        self.human_male_names = ["human male 1", "human male 2", "human male 3"]
+        self.human_nonbinary_names = ["human nb 1", "human nb 2", "human nb 3"]
+        self.other_female_names = ["other female 1", "other female 2", "other female 3"]
+        self.other_male_names = ["other male 1", "other male 2", "other male 3"]
+        self.other_nonbinary_names = ["other nb 1", "other nb 2", "other nb 3"]
+
+    def generate_names(self):
+        if self.race == "human":
+            if self.gender == "female":
+                first_names = random.choice(self.human_female_names)
+            elif self.gender == "male":
+                first_names = random.choice(self.human_male_names)
+            else:
+                first_names = random.choice(self.human_nonbinary_names)
+        else:
+            if self.gender == "female":
+                first_names = random.choice(self.other_female_names)
+            elif self.gender == "male":
+                first_names = random.choice(self.other_female_names)
+            else:
+                first_names = random.choice(self.other_nonbinary_names)
+        
+        return first_names
