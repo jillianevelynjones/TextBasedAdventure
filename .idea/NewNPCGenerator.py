@@ -52,7 +52,20 @@ class NewNPCGenerator:
         self.hair_color_weights = [self.hair_colors.count(haircolor) for haircolor in self.hair_colors]
         self.facial_hairs = [" ", "stubble", "short beard", "long beard", "mustache", "mutton chops"]
         self.facial_hair_weights = [self.facial_hairs.count(facial) for facial in self.facial_hairs]
-        self.physical_feature1 = ["completely normal", "with", "fat", "skinny", "short", "tall", "built", "wearing glasses", "missing", "scarred"]
+        self.physical_features1 = ["completely normal", "with", "fat", "skinny", "short", "tall", "built", "wearing glasses", "missing", "scarred"]
+        self.physical_features2 = [" ", "butterfly tattoo", "rose tattoo",
+                                   "dragon tattoo", "flower tattoo", "snake tattoo",
+                                   "geometric tattoo", "lion tattoo", "heart tattoo",
+                                   "skull tattoo", "tribal tattoo", "nautical tattoo",
+                                   "moon tattoo", "pierced ear", "pierced cartilage",
+                                   "pierced nose", "eyebrow piercing", "lip piercing",
+                                   "an ear", "an arm", "a hand",
+                                   "a finger", "both arms", "a leg",
+                                   "both legs", "above the eye", "across the nose",
+                                   "on the cheek", "on the shoulder", "on their arm",
+                                   "on their hand", "on their back", "on their leg",
+                                   "error - physical feature 2"]
+        self.physical_feature2_weights = [self.physical_features2.count(feature) for feature in self.physical_features2]
 
     def generate_npcs(self):
         npcs = []
@@ -321,10 +334,61 @@ class NewNPCGenerator:
 
             facial_hair = random.choices(self.facial_hairs, weights=self.facial_hair_weights, k=1)[0]
 
-            physical_feature1 = random.choice(self.physical_feature1)
+            physical_feature1 = random.choice(self.physical_features1)
+
+            if physical_feature1 in ["with"]:
+                self.physical_feature2_weights = [0, 1, 1,
+                                                  1, 1, 1,
+                                                  1, 1, 1,
+                                                  1, 1, 1,
+                                                  1, 1, 1,
+                                                  1, 1, 1,
+                                                  0, 0, 0,
+                                                  0, 0, 0, 
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0, 0]
+            elif physical_feature1 in ["missing"]:
+                self.physical_feature2_weights = [0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  4, 2, 3,
+                                                  4, 1, 2, 
+                                                  1, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0, 0]
+            elif physical_feature1 in ["scarred"]:
+                self.physical_feature2_weights = [0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0, 
+                                                  0, 2, 2,
+                                                  2, 2, 2,
+                                                  2, 1, 2, 0]
+            else: 
+                self.physical_feature2_weights = [17, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0, 
+                                                  0, 0, 0,
+                                                  0, 0, 0,
+                                                  0, 0, 0, 0]
+
+            physical_feature2 = random.choices(self.physical_features2, weights=self.physical_feature2_weights, k=1)[0]
             
-            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair, physical_feature1)
+            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair, physical_feature1, physical_feature2)
             npcs.append(npc)
-        self.npcs = npcs
+            self.npcs = npcs
 
         return npcs
