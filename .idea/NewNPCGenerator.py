@@ -43,11 +43,13 @@ class NewNPCGenerator:
                             "black fur with white spots", "yellow fur", "orange fur", "yellow fur with orange stripes",
                             "black fur", "white fur", "calico fur", "brown fur", "cinnamon fur", "gray fur",
                             "orange skin with a blue nose", "brown fur", "error - skin color races"]
-        self.skin_color_weights = [self.skin_colors.count(color) for color in self.skin_colors]
+        self.skin_color_weights = [self.skin_colors.count(skincolor) for skincolor in self.skin_colors]
         self.hair_lengths = ["long", "medium length", "short", "buzzed", "no", " "]
         self.hair_length_weights = [self.hair_lengths.count(length) for length in self.hair_lengths]
         self.hair_textures = ["straight", "wavy", "curly", "kinky curly", " "]
         self.hair_texture_weights = [self.hair_textures.count(texture) for texture in self.hair_textures]
+        self.hair_colors = ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple", " "]
+        self.hair_color_weights = [self.hair_colors.count(haircolor) for haircolor in self.hair_colors]
 
     def generate_npcs(self):
         npcs = []
@@ -280,30 +282,31 @@ class NewNPCGenerator:
             "goliath", "air genasi", "earth genasi", "fire genasi", "water genasi", "duergar dwarf", "drow",
             "hobgoblin", "goblin", "yuan-ti pureblood"]:
                 if gender == "female":
-                    self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
-                    self.hair_length_weights = [4, 3, 2, 1, 0, 0]  # Sum equals 6
+                    self.hair_length_weights = [4, 3, 2, 1, 0, 0]  
                 elif gender == "male":
-                    self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
                     self.hair_length_weights = [1, 2, 3, 2, 2, 0]    
                 else:
-                    self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
-                    self.hair_length_weights = [3, 3, 3, 1, 0, 0]  # Sum equals 6
+                    self.hair_length_weights = [3, 3, 3, 1, 0, 0]  
             else:
-                self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
-                self.hair_length_weights = [0, 0, 0, 0, 0, 10]  # Ensure one weight is non-zero for the default case
+                self.hair_length_weights = [0, 0, 0, 0, 0, 10]  
 
             hair_length = random.choices(self.hair_lengths, weights=self.hair_length_weights, k=1)[0]
             
             if hair_length in ["no", " "]:
-                self.hair_texture = ["straight", "wavy", "curly", "kinky curly", " "]
                 self.hair_texture_weights = [0, 0, 0, 0, 4]
             else:
-                self.hair_texture = ["straight", "wavy", "curly", "kinky curly", " "]
                 self.hair_texture_weights = [1, 1, 1, 1, 0]
 
             hair_texture = random.choices(self.hair_textures, weights=self.hair_texture_weights, k=1)[0] 
+
+            if hair_length in ["no", " "]:
+                self.hair_color_weights = [0, 0, 0, 0, 0, 0, 0, 0, 0, 75]
+            else:
+                self.hair_color_weights = [25, 25, 10, 10, 1, 1, 1, 1, 1, 0]
+
+            hair_color = random.choices(self.hair_colors, weights=self.hair_color_weights, k=1)[0]
             
-            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture)
+            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color)
             npcs.append(npc)
         self.npcs = npcs
 
