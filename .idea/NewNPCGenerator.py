@@ -12,7 +12,7 @@ class NewNPCGenerator:
                       "firbolg", "triton", "kenku",
                       "scourge aasimar", "fallen aasimar", "goliath",
                       "water genasi", "air genasi", "earth genasi",
-                      "fire genasi", "feral tiefling", "eladrin elf",
+                       "fire genasi", "feral tiefling", "eladrin elf",
                       "ghostwise halfling", "deep gnome", "lizardfolk",
                       "duergar dwarf", "drow", "kobold", "orc",
                       "hobgoblin", "goblin", "bugbear", "yaun-ti pureblood"]
@@ -45,7 +45,7 @@ class NewNPCGenerator:
                             "black fur", "white fur", "calico fur", "brown fur", "cinnamon fur", "gray fur",
                             "orange skin with a blue nose", "brown fur", "error - skin color races"]
         self.skin_color_weights = [self.skin_colors.count(color) for color in self.skin_colors]
-        self.hair_lengths = ["long", "medium length", "short", "buzzed", "no", "error - hair length"]
+        self.hair_lengths = ["long", "medium length", "short", "buzzed", "no"]
         self.hair_length_weights = []
 
     def generate_npcs(self):
@@ -98,7 +98,7 @@ class NewNPCGenerator:
             elif race in ["drow", "duergar"]:
                 self.skin_color = ["dark gray skin", "light gray skin", "gray skin"]
             elif race in ["tabaxi"]:
-                self.skin_color = ["black fur with white spots", "yellow fur", "orange fur",
+                self.skin_color = ["black fur with wfhite spots", "yellow fur", "orange fur",
                                    "yellow fur with orange stripes", "black fur", "white fur",
                                    "calico fur", "brown fur", "cinnamon fur", "gray fur"]
             elif race in ["hobgoblin"]:
@@ -112,10 +112,17 @@ class NewNPCGenerator:
                         "deep gnome", "half elf", "protector aasimar", "scourge aasimar", "fallen aasimar", "half orc",
                         "goliath", "air genasi", "earth genasi", "fire genasi", "water genasi", "duergar dwarf", "drow",
                         "hobgoblin", "goblin", "yuan-ti pureblood"]:
-                self.hair_length = ["long", "medium length", "short", "buzzed", "no"]
-                self.hair_length_weights = [4, 3, 2, 1, 1]
+                if gender in ["female"]:
+                    self.hair_length = ["long", "medium length", "short", "buzzed"]
+                    self.hair_length_weights = [4, 3, 2, 1]
+                elif gender in ["male"]:
+                    self.hair_length = ["long", "medium length", "short", "no"]
+                    self.hair_length_weights = [2, 3, 4, 1]
+                else: 
+                    self.hair_length = ["long", "medium length", "short", "buzzed", "no"]
+                    self.hair_length_weights = [1, 1, 1, 1, 1]
             else:
-                self.hair_length = ["error - hair length"]
+                self.hair_length = [" "]
                 self.hair_length_weights = [1]
             
             npc = NewNPC(race, age, gender, skin_color, hair_length)
