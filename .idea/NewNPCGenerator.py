@@ -114,13 +114,16 @@ class NewNPCGenerator:
             "hobgoblin", "goblin", "yuan-ti pureblood"]:
                 if gender == "female":
                     self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
-                    self.hair_length_weights = [4, 1, 1, 0, 0, 0]  # Sum equals 6
+                    self.hair_length_weights = [4, 3, 2, 1, 0, 0]  # Sum equals 6
+                elif gender == "male":
+                    self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
+                    self.hair_length_weights = [1, 2, 3, 2, 2, 0]    
                 else:
                     self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
-                    self.hair_length_weights = [0, 1, 1, 3, 1, 0]  # Sum equals 6
+                    self.hair_length_weights = [3, 3, 3, 1, 0, 0]  # Sum equals 6
             else:
                 self.hair_length = ["long", "medium length", "short", "buzzed", "no", " "]
-                self.hair_length_weights = [0, 0, 0, 0, 0, 6]  # Ensure one weight is non-zero for the default case
+                self.hair_length_weights = [0, 0, 0, 0, 0, 10]  # Ensure one weight is non-zero for the default case
 
 
             npc = NewNPC(race, age, gender, skin_color, hair_length)
