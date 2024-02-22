@@ -73,6 +73,8 @@ class NewNPCGenerator:
                                  "russian accent", "french accent", "southern accent",
                                  "californian accent"]
         self.speech_pattern2_weights = [self.speech_patterns2.count(speech) for speech in self.speech_patterns2]
+        self.personality_traits = ["arrogant", "brave", "cowardly", "deceitful", "honest", "loyal"]
+        self.mannerisms = ["nervous", "confident", "cocky", "polite", "rude"]
     
     def generate_npcs(self):
         npcs = []
@@ -405,8 +407,10 @@ class NewNPCGenerator:
                 
             speech_pattern2 = random.choices(self.speech_patterns2, weights=self.speech_pattern2_weights, k=1)[0]
 
+            personality_trait = random.choice(self.personality_traits)
+            mannerism = random.choice(self.mannerisms)
             
-            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair, physical_feature1, physical_feature2, speech_pattern1, speech_pattern2)
+            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair, physical_feature1, physical_feature2, speech_pattern1, speech_pattern2, personality_trait, mannerism)
             npcs.append(npc)
             self.npcs = npcs
 
