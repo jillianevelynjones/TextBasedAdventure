@@ -39,25 +39,24 @@ class NewNPCGenerator:
                             "green coloring", "black coloring", "white coloring", "copper coloring",
                             "brass coloring", "silver coloring", "gold coloring", "bronze coloring",
                             "green skin", "grayish blue skin", "red skin", "black feathers", "brown feathers",
-                            "gray feathers", "red feathers", "yellow feathers", "orange feathers",
-                            "error - aarakocra skin", "dark gray skin", "light gray skin", "gray skin",
+                            "gray feathers", "red feathers", "yellow feathers", "orange feathers", "dark gray skin", "light gray skin", "gray skin",
                             "black fur with white spots", "yellow fur", "orange fur", "yellow fur with orange stripes",
                             "black fur", "white fur", "calico fur", "brown fur", "cinnamon fur", "gray fur",
                             "orange skin with a blue nose", "brown fur", "error - skin color races"]
         self.skin_color_weights = [self.skin_colors.count(color) for color in self.skin_colors]
         self.hair_lengths = ["long", "medium length", "short", "buzzed", "no"]
-        self.hair_length_weights = []
+        self.hair_length_weights = [self.hair_lengths.count(length) for length in self.hair_lengths]
 
     def generate_npcs(self):
         npcs = []
         for i in range(self.num_npcs):
-            race = random.choice(self.races)
+            race = random.choices(self.races, weights=self.race_weights)[0]
             mean_age = 30
             stdev_age = 10
             age = int(random.normalvariate(mean_age, stdev_age))
-            gender = random.choice(self.genders)
-            skin_color = random.choice(self.skin_colors)
-            hair_length = random.choice(self.hair_lengths)
+            gender = random.choices(self.genders, weights=self.gender_weights)[0]
+            skin_color = random.choices(self.skin_colors, weights=self.skin_color_weights)[0]
+            hair_length = random.choices(self.hair_lengths, weights=self.hair_length_weights)[0]
             
             if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
                         "stout halfling",
@@ -107,20 +106,14 @@ class NewNPCGenerator:
                 self.skin_color = ["brown fur"]
             else:
                 self.skin_color = ["error - skin color races"]
+            
             if race in ["human", "high elf", "wood elf", "eladrin elf", "hill dwarf", "mountain dwarf",
-                        "stout halfling", "lightfoot halfling", "ghostwise halfling", "forest gnome", "rock gnome",
-                        "deep gnome", "half elf", "protector aasimar", "scourge aasimar", "fallen aasimar", "half orc",
-                        "goliath", "air genasi", "earth genasi", "fire genasi", "water genasi", "duergar dwarf", "drow",
-                        "hobgoblin", "goblin", "yuan-ti pureblood"]:
-                if gender in ["female"]:
-                    self.hair_length = ["long", "medium length", "short", "buzzed"]
-                    self.hair_length_weights = [4, 3, 2, 1]
-                elif gender in ["male"]:
-                    self.hair_length = ["long", "medium length", "short", "no"]
-                    self.hair_length_weights = [2, 3, 4, 1]
-                else: 
-                    self.hair_length = ["long", "medium length", "short", "buzzed", "no"]
-                    self.hair_length_weights = [1, 1, 1, 1, 1]
+            "stout halfling", "lightfoot halfling", "ghostwise halfling", "forest gnome", "rock gnome",
+            "deep gnome", "half elf", "protector aasimar", "scourge aasimar", "fallen aasimar", "half orc",
+            "goliath", "air genasi", "earth genasi", "fire genasi", "water genasi", "duergar dwarf", "drow",
+            "hobgoblin", "goblin", "yuan-ti pureblood"]:
+                self.hair_length = ["long", "medium length", "short", "buzzed", "no"]
+                self.hair_length_weights = [4, 3, 2, 1, 1]
             else:
                 self.hair_length = [" "]
                 self.hair_length_weights = [1]
