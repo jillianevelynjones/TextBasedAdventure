@@ -50,6 +50,8 @@ class NewNPCGenerator:
         self.hair_texture_weights = [self.hair_textures.count(texture) for texture in self.hair_textures]
         self.hair_colors = ["brown", "black", "blonde", "ginger", "red", "orange", "green", "blue", "purple", " "]
         self.hair_color_weights = [self.hair_colors.count(haircolor) for haircolor in self.hair_colors]
+        self.facial_hairs = [" ", "stubble", "short beard", "long beard", "mustache", "mutton chops"]
+        self.facial_hair_weights = [self.facial_hairs.count(facial) for facial in self.facial_hairs]
 
     def generate_npcs(self):
         npcs = []
@@ -305,8 +307,20 @@ class NewNPCGenerator:
                 self.hair_color_weights = [25, 25, 10, 10, 1, 1, 1, 1, 1, 0]
 
             hair_color = random.choices(self.hair_colors, weights=self.hair_color_weights, k=1)[0]
+
+            if age > 16:
+                if gender in ["male"]:
+                    self.facial_hair_weights = [2, 2, 2, 2, 2, 2]
+                elif gender in ["female"]:
+                    self.facial_hair_weights = [14, 0, 0, 0, 0, 0]
+                else:
+                    self.facial_hair_weights = [8, 1, 1, 1, 1, 1]
+            else:
+                self.facial_hair_weights = [14, 0, 0, 0, 0, 0]
+
+            facial_hair = random.choices(self.facial_hairs, weights=self.facial_hair_weights, k=1)[0]
             
-            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color)
+            npc = NewNPC(race, age, gender, skin_color, hair_length, hair_texture, hair_color, facial_hair)
             npcs.append(npc)
         self.npcs = npcs
 
