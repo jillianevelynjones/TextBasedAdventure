@@ -4,6 +4,7 @@ class NewNPCName:
     def __init__(self, race, gender, age):
         self.race = race
         self.gender = gender
+        self.age = age
         self.dragonborn_female_names = ["Akra", "Aasathra", "Antrara",
                                         "Arava", "Biri", "Blendaeth",
                                         "Burana", "Chassath", "Daar",
@@ -222,6 +223,140 @@ class NewNPCName:
                                        "Soveliss", "Suhnae", "Thamior",
                                        "Tharivol", "Theren", "Theriatis",
                                        "Thervan", "Uthemar", "Vanuath", "Varis"]
+        self.gnome_female_names = ["Abalaba", "Bimpnottin", "Breena",
+                                       "Buvvie", "Callybon", "Caramip",
+                                       "Carlin", "Cumpen", "Dalaba",
+                                       "Donella", "Duvamil", "Ella",
+                                       "Ellyjoybell", "Ellywick", "Enidda",
+                                       "Lilli", "Loopmottin", "Lorilla",
+                                       "Luthra", "Mardnab", "Meena",
+                                       "Menny", "Mumpena", "Nissa",
+                                       "Numba", "Nyx", "Oda",
+                                       "Oppah", "Orla", "Panana",
+                                       "Pyntle", "Quilla", "Ranala",
+                                       "Reddlepop", "Roywyn", "Salanop",
+                                       "Shamil", "Siffress", "Symma",
+                                       "Tana", "Tenena", "Tervaround",
+                                       "Tippletoe", "Ulla", "Unvera",
+                                       "Veloptima", "Virra", "Waywocket",
+                                       "Yebe", "Zanna"]
+        self.gnome_male_names = ["Alston", "Alvyn", "Anverth",
+                                       "Arumawann", "Bilbron", "Boddynock",
+                                       "Brocc", "Burgell", "Cockaby",
+                                       "Crampernap", "Dabbledob", "Delebean",
+                                       "Dimble", "Eberdeb", "Eldon",
+                                       "Erky", "Fablen", "Fibblestib",
+                                       "Fonkin", "Frouse", "Frug",
+                                       "Gerbo", "Gimble", "Glim",
+                                       "Igden", "Jabble", "Jebeddo",
+                                       "Kellen", "Kipper", "Namfoodle",
+                                       "Oppleby", "Orryn", "Paggen",
+                                       "Pallabar", "Pog", "Qualen",
+                                       "Ribbles", "Rimple", "Roondar",
+                                       "Sapply", "Seebo", "Senteq",
+                                       "Sindri", "Umpen", "Warryn",
+                                       "Wiggens", "Wobbles", "Wrenn",
+                                       "Zaffrab", "Zook"]
+        self.gnome_nonbinary_names = ["Abalaba", "Bimpnottin", "Breena",
+                                       "Buvvie", "Callybon", "Caramip",
+                                       "Carlin", "Cumpen", "Dalaba",
+                                       "Donella", "Duvamil", "Ella",
+                                       "Ellyjoybell", "Ellywick", "Enidda",
+                                       "Lilli", "Loopmottin", "Lorilla",
+                                       "Luthra", "Mardnab", "Meena",
+                                       "Menny", "Mumpena", "Nissa",
+                                       "Numba", "Nyx", "Oda",
+                                       "Oppah", "Orla", "Panana",
+                                       "Pyntle", "Quilla", "Ranala",
+                                       "Reddlepop", "Roywyn", "Salanop",
+                                       "Shamil", "Siffress", "Symma",
+                                       "Tana", "Tenena", "Tervaround",
+                                       "Tippletoe", "Ulla", "Unvera",
+                                       "Veloptima", "Virra", "Waywocket",
+                                       "Yebe", "Zanna", "Alston",
+                                       "Alvyn", "Anverth", "Arumawann",
+                                       "Bilbron", "Boddynock", "Brocc",
+                                       "Burgell", "Cockaby", "Crampernap",
+                                       "Dabbledob", "Delebean", "Dimble",
+                                       "Eberdeb", "Eldon", "Erky",
+                                       "Fablen", "Fibblestib", "Fonkin",
+                                       "Frouse", "Frug", "Gerbo",
+                                       "Gimble", "Glim", "Igden",
+                                       "Jabble", "Jebeddo", "Kellen",
+                                       "Kipper", "Namfoodle", "Oppleby",
+                                       "Orryn", "Paggen", "Pallabar",
+                                       "Pog", "Qualen", "Ribbles",
+                                       "Rimple", "Roondar", "Sapply",
+                                       "Seebo", "Senteq", "Sindri",
+                                       "Umpen", "Warryn", "Wiggens",
+                                       "Wobbles", "Wrenn", "Zaffrab", "Zook"]
+        self.halfling_female_names = ["Alain", "Andry", "Anne",
+                                       "Bella", "Blossom", "Bree",
+                                       "Callie", "Chenna", "Cora",
+                                       "Dee", "Dell", "Eida",
+                                       "Eran", "Euphemia", "Georgina",
+                                       "Gynnie", "Harriet", "Jasmine",
+                                       "Jillian", "Jo", "Kithri",
+                                       "Lavinia", "Lidda", "Maegan",
+                                       "Marigold", "Merla", "Myria",
+                                       "Nedda", "Nikki", "Nora",
+                                       "Olivia", "Paela", "Pearl",
+                                       "Pennie", "Philomena", "Portia",
+                                       "Robbie", "Rose", "Saral",
+                                       "Seraphina", "Shaena", "Stacee",
+                                       "Tawna", "Thea", "Trym",
+                                       "Tyna", "Vani", "Verna",
+                                       "Wella", "Willow"]
+        self.halfling_male_names = ["Alton", "Ander", "Bernie",
+                                       "Bobbin", "Cade", "Callus",
+                                       "Corrin", "Dannad", "Danniel",
+                                       "Eddie", "Egart", "Eldon",
+                                       "Errich", "Fildo", "Finnan",
+                                       "Franklin", "Garret", "Garth",
+                                       "Gilbert", "Gob", "Harol",
+                                       "Igor", "Jasper", "Keith",
+                                       "Kevin", "Lazam", "Lerry",
+                                       "Lindal", "Lyle", "Merric",
+                                       "Mican", "Milo", "Morrin",
+                                       "Nebin", "Nevil", "Osborn",
+                                       "Ostran", "Oswalt", "Perrin",
+                                       "Poppy", "Reed", "Roscoe",
+                                       "Sam", "Shardon", "Tye",
+                                       "Ulmo", "Wellby", "Wendel",
+                                       "Wenner", "Wes"]
+        self.halfling_nonbinary_names = ["Alain", "Andry", "Anne",
+                                       "Bella", "Blossom", "Bree",
+                                       "Callie", "Chenna", "Cora",
+                                       "Dee", "Dell", "Eida",
+                                       "Eran", "Euphemia", "Georgina",
+                                       "Gynnie", "Harriet", "Jasmine",
+                                       "Jillian", "Jo", "Kithri", "Lavinia",
+                                       "Lidda", "Maegan", "Marigold",
+                                       "Merla", "Myria", "Nedda",
+                                       "Nikki", "Nora", "Olivia",
+                                       "Paela", "Pearl", "Pennie",
+                                       "Philomena", "Portia", "Robbie",
+                                       "Rose", "Saral", "Seraphina",
+                                       "Shaena", "Stacee", "Tawna",
+                                       "Thea", "Trym", "Tyna",
+                                       "Vani", "Verna", "Wella",
+                                       "Willow", "Alton", "Ander",
+                                       "Bernie", "Bobbin", "Cade",
+                                       "Callus", "Corrin", "Dannad",
+                                       "Danniel", "Eddie", "Egart",
+                                       "Eldon", "Errich", "Fildo",
+                                       "Finnan", "Franklin", "Garret",
+                                       "Garth", "Gilbert", "Gob",
+                                       "Harol", "Igor", "Jasper",
+                                       "Keith", "Kevin", "Lazam",
+                                       "Lerry", "Lindal", "Lyle",
+                                       "Merric", "Mican", "Milo",
+                                       "Morrin", "Nebin", "Nevil",
+                                       "Osborn", "Ostran", "Oswalt",
+                                       "Perrin", "Poppy", "Reed",
+                                       "Roscoe", "Sam", "Shardon",
+                                       "Tye", "Ulmo", "Wellby",
+                                       "Wendel", "Wenner", "Wes"]
         
         self.other_female_names = ["other female 1", "other female 2", "other female 3"]
         self.other_male_names = ["other male 1", "other male 2", "other male 3"]
@@ -252,6 +387,20 @@ class NewNPCName:
                     first_names = random.choice(self.elf_male_names)
                 else:
                     first_names = random.choice(self.elf_nonbinary_names)
+        elif self.race in ["forest gnome", "rock gnome", "deep gnome"]:
+            if self.gender == "female":
+                first_names = random.choice(self.gnome_female_names)
+            elif self.gender == "male":
+                first_names = random.choice(self.gnome_male_names)
+            else:
+                first_names = random.choice(self.gnome_nonbinary_names)
+        elif self.race in ["lightfoot halfling", "stout halfling"]:
+            if self.gender == "female":
+                first_names = random.choice(self.halfling_female_names)
+            elif self.gender == "male":
+                first_names = random.choice(self.halfling_male_names)
+            else:
+                first_names = random.choice(self.halfling_nonbinary_names)
         else:
             if self.gender == "female":
                 first_names = random.choice(self.other_female_names)
