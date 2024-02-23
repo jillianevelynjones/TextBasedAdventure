@@ -1,6 +1,3 @@
-import random
-
-
 def character_generator():
     print('  \n   There are two possible characters: 1 & 2')
     character_choice = input ('\n > ')
@@ -13,3 +10,5 @@ def character_generator():
 
     else:
         print("  \n   Oops!")
+
+    return character_choice
