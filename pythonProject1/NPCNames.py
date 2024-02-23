@@ -81,7 +81,7 @@ class NPCNames:
                                     "Balifra", "Barbena", "Bardryn",
                                     "Bolhild", "Dagnal", "Dariff",
                                     "Delre", "Diesa," "Eldeth,"
-                                             "Eridred", "Falkrunn", "Fallthra",
+                                    "Eridred", "Falkrunn", "Fallthra",
                                     "Finellen", "Gillydd", "Gunnloda",
                                     "Gurdis", "Helgret", "Helja",
                                     "Hlin", "Ilde", "Jarana",
@@ -117,7 +117,7 @@ class NPCNames:
                                     "Balifra", "Barbena", "Bardryn",
                                     "Bolhild", "Dagnal", "Dariff",
                                     "Delre", "Diesa," "Eldeth,"
-                                             "Eridred", "Falkrunn", "Fallthra",
+                                    "Eridred", "Falkrunn", "Fallthra",
                                     "Finellen", "Gillydd", "Gunnloda",
                                     "Gurdis", "Helgret", "Helja",
                                     "Hlin", "Ilde", "Jarana",
@@ -130,7 +130,7 @@ class NPCNames:
                                     "Torgga", "Urshar", "Valida",
                                     "Vistra", "Vonana", "Werydd",
                                     "Whurdred", "Yurgunn", "Adrik"
-                                                           "Alberich" "Baern", "Barendd",
+                                    "Alberich" "Baern", "Barendd",
                                     "Beloril", "Brottor", "Dain",
                                     "Dalgal", "Darrak", "Delg",
                                     "Duergath", "Dworic", "Eberk",
@@ -443,7 +443,7 @@ class NPCNames:
                                     "Kali", "Kallista", "Kasdeya",
                                     "Lerissa", "Lilith", "Makaria",
                                     "Manea", "Markosian", "Mastema"
-                                                          "Naamah", "Nemeia", "Nija",
+                                    "Naamah", "Nemeia", "Nija",
                                     "Orianna", "Osah", "Phelaia",
                                     "Prosperine", "Purah", "Pyra",
                                     "Rieta", "Ronobe", "Ronwe",
@@ -479,7 +479,7 @@ class NPCNames:
                                     "Kali", "Kallista", "Kasdeya",
                                     "Lerissa", "Lilith", "Makaria",
                                     "Manea", "Markosian", "Mastema"
-                                                          "Naamah", "Nemeia", "Nija",
+                                    "Naamah", "Nemeia", "Nija",
                                     "Orianna", "Osah", "Phelaia",
                                     "Prosperine", "Purah", "Pyra",
                                     "Rieta", "Ronobe", "Ronwe",
@@ -565,7 +565,7 @@ class NPCNames:
                                 "Art of Shadows (Art)", "Solstice of Summer (Solstice)",
                                 "Quick Wing (Quick)", "Icy Cable (Icy)",
                                 "Angelic Boot (Boot)", "Stout Flower (Flower)"
-                                                       "Bright Chains (Chains)", "Dew on the Grass (Dew)",
+                                "Bright Chains (Chains)", "Dew on the Grass (Dew)",
                                 "Veil of a Mask (Veil)", "Ink on Skin (Ink)",
                                 "Daydream at Night (Dream)", "Blazing Fire (Blaze)",
                                 "Dynamic Link (Dynamic)", "Flawless Wave (Wave)",
