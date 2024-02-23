@@ -50,12 +50,20 @@ def character_generator():
                                             print("   Intelligence Score: ", INTscore)
                                             print("   Wisdom Score: ", WISscore)
                                             print("   Charisma Score: ", CHAscore)
-
-
-
+                                            break
+                                        elif WISscore == "8":
+                                            print("  \n   Remaining score options: 8")
+                                            CHAscore = 10
+                                            print("  \n   Strength Score: ", STRscore)
+                                            print("   Dexterity Score: ", DEXscore)
+                                            print("   Constitution Score: ", CONscore)
+                                            print("   Intelligence Score: ", INTscore)
+                                            print("   Wisdom Score: ", WISscore)
+                                            print("   Charisma Score: ", CHAscore)
                                             break
                                         else:
-                                            print("  \n   Wisdom NOT 10")
+                                            print("  \n   Invalid Wisdom choice. Try again.")
+                                            continue
 
 
 
@@ -63,7 +71,7 @@ def character_generator():
 
 
 
-
+                                    break
                                 else:
                                     print("  \n   Intelligence NOT 12")
                                     continue
