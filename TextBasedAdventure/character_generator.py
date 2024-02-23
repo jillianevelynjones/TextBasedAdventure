@@ -64,8 +64,72 @@ def character_generator():
                                         else:
                                             print("  \n   Invalid Wisdom choice. Try again.")
                                             continue
-
-
+                                if INTscore == "10":
+                                    print("  \n   Remaining score options: 12, 8")
+                                    while True:
+                                        WISscore = input("  \n   Enter Wisdom score: ")
+                                        print("  \n   Strength Score: ", STRscore)
+                                        print("   Dexterity Score: ", DEXscore)
+                                        print("   Constitution Score: ", CONscore)
+                                        print("   Intelligence Score: ", INTscore)
+                                        print("   Wisdom Score: ", WISscore)
+                                        if WISscore == "12":
+                                            print("  \n   Remaining score options: 8")
+                                            CHAscore = 8
+                                            print("  \n   Strength Score: ", STRscore)
+                                            print("   Dexterity Score: ", DEXscore)
+                                            print("   Constitution Score: ", CONscore)
+                                            print("   Intelligence Score: ", INTscore)
+                                            print("   Wisdom Score: ", WISscore)
+                                            print("   Charisma Score: ", CHAscore)
+                                            break
+                                        elif WISscore == "8":
+                                            print("  \n   Remaining score options: 8")
+                                            CHAscore = 12
+                                            print("  \n   Strength Score: ", STRscore)
+                                            print("   Dexterity Score: ", DEXscore)
+                                            print("   Constitution Score: ", CONscore)
+                                            print("   Intelligence Score: ", INTscore)
+                                            print("   Wisdom Score: ", WISscore)
+                                            print("   Charisma Score: ", CHAscore)
+                                            break
+                                        else:
+                                            print("  \n   Invalid Wisdom choice. Try again.")
+                                            continue
+                                if INTscore == "8":
+                                    print("  \n   Remaining score options: 12, 10")
+                                    while True:
+                                        WISscore = input("  \n   Enter Wisdom score: ")
+                                        print("  \n   Strength Score: ", STRscore)
+                                        print("   Dexterity Score: ", DEXscore)
+                                        print("   Constitution Score: ", CONscore)
+                                        print("   Intelligence Score: ", INTscore)
+                                        print("   Wisdom Score: ", WISscore)
+                                        if WISscore == "12":
+                                            print("  \n   Remaining score options: 10")
+                                            CHAscore = 10
+                                            print("  \n   Strength Score: ", STRscore)
+                                            print("   Dexterity Score: ", DEXscore)
+                                            print("   Constitution Score: ", CONscore)
+                                            print("   Intelligence Score: ", INTscore)
+                                            print("   Wisdom Score: ", WISscore)
+                                            print("   Charisma Score: ", CHAscore)
+                                            break
+                                        elif WISscore == "10":
+                                            print("  \n   Remaining score options: 10")
+                                            CHAscore = 12
+                                            print("  \n   Strength Score: ", STRscore)
+                                            print("   Dexterity Score: ", DEXscore)
+                                            print("   Constitution Score: ", CONscore)
+                                            print("   Intelligence Score: ", INTscore)
+                                            print("   Wisdom Score: ", WISscore)
+                                            print("   Charisma Score: ", CHAscore)
+                                            break
+                                        else:
+                                            print("  \n   Invalid Wisdom choice. Try again.")
+                                            continue
+                                else:
+                                    print("  \n   Invalid Intelligence choice. Try again.")
 
 
 
