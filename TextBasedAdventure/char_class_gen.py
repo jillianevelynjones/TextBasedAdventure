@@ -1,21 +1,24 @@
 import random
-def charClass_gen(skills_proficiency):
+
+
+def char_class_gen(skills_proficiency):
     print("  \n   ......................")
     print("  \n   Now it's time to choose your class")
     print("   Options are: ")
     print("      Fighter")
     while True:
-        CharClass = input(f"   Enter class: ")
-        if CharClass in ("fighter", "Fighter"):
+        char_class = input(f"   Enter class: ")
+        if char_class in ("fighter", "Fighter"):
             class1 = "Fighter"
-            CharClass = Fighter(skills_proficiency)
+            char_class = fighter(skills_proficiency)
             break
         else:
             print("Sorry! Only fighter is available")
             continue
-    return CharClass
+    return char_class
 
-def Fighter(skills_proficiency):
+
+def fighter(skills_proficiency):
 
     print("  \n   As a fighter your hit dice are 1d10")
     print("  \n   ......................")
@@ -75,9 +78,9 @@ def Fighter(skills_proficiency):
     print("   Options are: ")
     print("      Defense")
     while True:
-        CharClass = input(f"   Enter fighting style: ")
-        if CharClass in ("defense", "Defense"):
-            #AC SHIT
+        char_class = input(f"   Enter fighting style: ")
+        if char_class in ("defense", "Defense"):
+            # AC SHIT
             break
         else:
             print("Sorry! Only defense is available")

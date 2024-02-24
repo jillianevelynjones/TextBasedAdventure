@@ -85,15 +85,16 @@ print("The last day of the month of Leaffall, today is the celebration of the Fo
 print("Tonight when the world goes dark, an iridescent light in the shape of a fox will fill the sky. ")
 print("Everyone gathered in the city will watch in wonder and awe at the unexplained magic that fills the realm of Kysmanthia. ")
 
-while True:
-    explore = input("Would you like to explore the festival?")
-    if explore in ("Yes", "yes"):
-        user.movement()
-        break
-    elif explore in ("No", "no"):
-        break
-    else:
-        print("Error: Please type yes or no.")
-        continue
+def FoxlightFestival():
+    while True:
+        explore = input("Would you like to explore the festival?")
+        if explore in ("Yes", "yes"):
+            user.movement()
+            break
+        elif explore in ("No", "no"):
+            break
+        else:
+            print("Error: Please type yes or no.")
+            continue
 
-print("You wait until it is time for the Foxlights to appear.")
+    print("You wait until it is time for the Foxlights to appear.")

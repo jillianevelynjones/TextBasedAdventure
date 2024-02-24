@@ -1,4 +1,5 @@
-from character_generator import character_generator
+# from CharacterGenerator import CharacterGenerator
+from FoxlightFestival import FoxlightFestival
 from os import system
 import time
 import datetime
@@ -6,54 +7,10 @@ import pickle
 import sys
 
 
-#miscellaneous functions + procedures
-
-def w(t):
-    time.sleep(t)
-
-def version_counter(filename="adventure_colussus_version_counter.dat"):
-    with open(filename, "a+") as f:
-        f.seek(0)
-        val = int(f.read() or 0) + 1
-        f.seek(0)
-        f.truncate()
-        f.write(str(val))
-        return val
-counter = version_counter()
-
-def t(text):
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.021)
-
-def save_character(save_name, character):
-    save_name_pickle = save_name + '.pickle'
-    t('> saving character')
-    w(1)
-    with open(save_name_pickle, 'wb') as f:
-        pickle.dump(character, f)
-        t('\n > character saved successfully')
-
-def load_character(load_name):
-    load_name_pickle = load_name + '.pickle'
-    t(' > loading character...')
-    w(1)
-    pickle_in = open(load_name_pickle,"rb")
-    character = pickle.load(pickle_in)
-    t(' > character loaded successfully\n')
-    t('\n> welcome back ')
-    w(0.5)
-    t('\n> heres what character you chose last time \n')
-    print(' >',character)
-
-
 # main game
-def intro():
-    w(0.5)
-    e = datetime.datetime.now()
+def main():
     while True:
-        print('\n  <Saga of the Infected>         version: v', counter, '| current date: ', e)
+        print('\n  <Saga of the Infected>')
         w(0.5)
         print('\n > [1] create new game')
         print(' > [2] load existing game')
@@ -62,10 +19,12 @@ def intro():
 
         if choice == '1':
             t("\n > you have chosen to create a new game: ")
-            print("   \n   ......................")
+            print("    ......................")
             print('  \n   we will begin with creating your character: ')
 
-            character = character_generator()
+            # character = CharacterGenerator()
+
+            character = 0
 
             print("  \n   pick a file name to save under")
             character_file_name = input('> ')
@@ -82,7 +41,6 @@ def intro():
             break
 
 
-
         elif choice == '3':
             t(' > Goodbye!')
             sys.exit()
@@ -92,5 +50,54 @@ def intro():
             t('incorrect response. please try again')
             continue
 
+# miscellaneous functions + procedures
+
+
+def w(t):
+    time.sleep(t)
+
+
+def version_counter(filename="adventure_colussus_version_counter.dat"):
+    with open(filename, "a+") as f:
+        f.seek(0)
+        val = int(f.read() or 0) + 1
+        f.seek(0)
+        f.truncate()
+        f.write(str(val))
+        return val
+
+
+counter = version_counter()
+
+
+def t(text):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.021)
+
+
+def save_character(save_name, character):
+    save_name_pickle = save_name + '.pickle'
+    t('> saving character')
+    w(1)
+    with open(save_name_pickle, 'wb') as f:
+        pickle.dump(character, f)
+        t('\n > character saved successfully')
+
+
+def load_character(load_name):
+    load_name_pickle = load_name + '.pickle'
+    t(' > loading character...')
+    w(1)
+    pickle_in = open(load_name_pickle,"rb")
+    character = pickle.load(pickle_in)
+    t(' > character loaded successfully\n')
+    t('\n> welcome back ')
+    w(0.5)
+    t('\n> heres what character you chose last time \n')
+    print(' >',character)
+
+
 if __name__ == "__main__":
-    intro()
+    main()
