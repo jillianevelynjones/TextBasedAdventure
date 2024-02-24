@@ -58,35 +58,25 @@ def intro():
         print('\n > [1] create new game')
         print(' > [2] load existing game')
         print(' > [3] end game')
-        print(' > [4] credits')
         choice = input("\n > ")
 
         if choice == '1':
-            t("\n > you have chosen to create a new game: redirecting...")
-            w(0.75)
-            system('cls')
+            t("\n > you have chosen to create a new game: ")
             print("   \n   ......................")
             print('  \n   we will begin with creating your character: ')
-            w(0.5)
-            w(0.3)
 
             character = character_generator()
 
-            print("  \n   THE END")
-            '''print("  \n   pick a file name to save under")
+            print("  \n   pick a file name to save under")
             character_file_name = input('> ')
             save_character(character_file_name, character)
-            print("  \n   game saved as: ", character_file_name)'''
-            break
+            print("  \n   game saved as: ", character_file_name)
+
+            FoxlightFestival()
 
         elif choice == '2':
-            t("\n > you have chosen to load an existing game: redirecting...")
-            w(0.75)
-            system('cls')
-            w(0.5)
+            t("\n > you have chosen to load an existing game: ")
             print('  \n  we will begin with choosing an existing character:')
-            w(0.5)
-
             character_file_name = input('\n > character file name: ')
             load_character(character_file_name)
             break
@@ -94,15 +84,8 @@ def intro():
 
 
         elif choice == '3':
-            t(' > ending session...')
-            w(0.5)
-            t(' > session ended successfully')
-            w(1)
+            t(' > Goodbye!')
             sys.exit()
-            break
-
-        elif choice == '4':
-            pass
             break
 
         else:
