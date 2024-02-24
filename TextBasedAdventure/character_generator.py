@@ -1,3 +1,4 @@
+from charClass_gen import charClass_gen
 def character_generator():
     ability_scores = {
         "Strength": 0,
@@ -10,11 +11,75 @@ def character_generator():
 
     score_options = ["15", "14", "13", "12", "10", "8"]
 
+    light_armor = False,
+    medium_armor = False
+    heavy_armor = False
+    shields = False
+    simple_weapon = False
+    martial_weapon = False
+    STRsaveprof = False
+    DEXsaveprof = False
+    CONsaveprof = False
+    INTsaveprof = False
+    WISsaveprof = False
+    CHAsaveprof = False
+    athletics = False
+    acrobatics = False
+    sleight_of_hand = False
+    stealth = False
+    arcana = False
+    history = False
+    investigation = False
+    nature = False
+    religion = False
+    animal_handling = False
+    insight = False
+    medicine = False
+    perception = False
+    survival = False
+    deception = False
+    intimidation = False
+    performance = False
+    persuasion = False
+
+    skills_proficiency = {
+        "light armor": light_armor,
+        "medium armor": medium_armor,
+        "heavy armor": heavy_armor,
+        "shields": shields,
+        "simple weapons": simple_weapon,
+        "martial weapons": martial_weapon,
+        "strength save": STRsaveprof,
+        "dexterity save": DEXsaveprof,
+        "constitution save": CONsaveprof,
+        "intelligence save": INTsaveprof,
+        "wisdom save": WISsaveprof,
+        "charisma save": CHAsaveprof,
+        "athletics": athletics,
+        "acrobatics": acrobatics,
+        "sleight of hand": sleight_of_hand,
+        "stealth": stealth,
+        "arcana": arcana,
+        "history": history,
+        "investigation": investigation,
+        "nature": nature,
+        "religion": religion,
+        "animal handling": animal_handling,
+        "insight": insight,
+        "medicine": medicine,
+        "perception": perception,
+        "survival": survival,
+        "deception": deception,
+        "intimidation": intimidation,
+        "performance": performance,
+        "persuasion": persuasion
+    }
 
     print("  \n   ......................")
     print("You start at level 1")
     level = 1
 
+    prof = calculate_proficiency_bonus(level)
 
     print("  \n   ......................")
     print("  \n   First choose a race.")
@@ -25,9 +90,9 @@ def character_generator():
         if race in ("human", "Human"):
             print("  \n   As a human all your ability scores increase by 1")
             print("   Your size is medium")
-            size = 5
+            size = "5"
             print("   Your speed is 30")
-            speed = 30
+            speed = "30"
             print("   You can speak, read and write in Common and one extra language of your choice")
             language1 = ("common")
             print("  \n   Your choices are: ")
@@ -43,19 +108,7 @@ def character_generator():
             print("Sorry! Only human is available")
             continue
 
-    print("  \n   ......................")
-    print("  \n   Now it's time to choose your class")
-    print("   Options are: ")
-    print("      Fighter")
-    while True:
-        charClass = input(f"   Enter class: ")
-        if charClass in ("fighter", "Fighter"):
-            print("stuff")
-            break
-        else:
-            print("Sorry! Only fighter is available")
-            continue
-
+    CharClass = charClass_gen(skills_proficiency)
 
     print("   \n   ......................")
     print("  \n  Now we'll choose Ability Scores.")
@@ -88,6 +141,25 @@ def character_generator():
     for ability, score in ability_scores.items():
         print(f"{ability}: {score} ({ability_bonuses[ability]})")
 
+    print("Let's name your character!")
+    name = input("Name: > ")
+
+    print_character(name, size, race, level, CharClass, speed, ability_scores, language1, language2, prof, skills_proficiency)
+
+def calculate_proficiency_bonus(level):
+    def calculate_proficiency_bonus(level):
+        if 1 <= level <= 4:
+            prof = 2
+        elif 5 <= level <= 8:
+            prof = 3
+        elif 9 <= level <= 12:
+            prof = 4
+        elif 13 <= level <= 16:
+            prof = 5
+        elif 17 <= level <= 20:
+            prof = 6
+        else:
+            return prof
 def calculate_ability_bonus(score):
     if score == "20":
         return 5
@@ -116,43 +188,38 @@ def calculate_ability_bonus(score):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-def print_character(size, race, level, charClass, speed, ability_scores, language1, language2, prof):
+def print_character(name, size, race, level, CharClass, speed, ability_scores, language1, language2, prof, skills_proficiency):
     #Name
+    print("  \n   ......................")
+    print("  \n   ", name)
 
     if size == "5":
-        print("Medium ", race)
+        print("  \n   Medium ", race)
     else:
-        print("Error", race)
+        print("  \n   Error", race)
 
-    print("Level ", level, charClass)
+    print("   Level ", level, CharClass)
 
     print("  \n   ......................")
 
     #AC
     #HP
-    print("Speed ", speed, " ft.")
+    print("   Speed ", speed, " ft.")
 
     print("  \n   ......................")
 
-    print("\nAbility Scores:")
+    print("  \n   Ability Scores:")
     for ability, score in ability_scores.items():
-        print(f"{ability}: {score}")
+        print(f"   {ability}: {score}")
 
     print("  \n   ......................")
 
-    print("Languages", language1, language2)
+    print("   Proficiencies: ")
+    for skill, proficiency in skills_proficiency.items():
+        if proficiency:
+            print(f"{skill}: Proficient")
 
-    print("Proficiency Bonus +", prof)
+    print("   Languages", language1, language2)
+
+    print("   Proficiency Bonus +", prof)
 

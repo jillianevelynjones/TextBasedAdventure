@@ -71,6 +71,7 @@ def intro():
             w(0.3)
 
             character = character_generator()
+
             print("  \n   THE END")
             '''print("  \n   pick a file name to save under")
             character_file_name = input('> ')
