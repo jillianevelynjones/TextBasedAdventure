@@ -11,68 +11,37 @@ def character_generator():
 
     score_options = ["15", "14", "13", "12", "10", "8"]
 
-    light_armor = False,
-    medium_armor = False
-    heavy_armor = False
-    shields = False
-    simple_weapon = False
-    martial_weapon = False
-    STRsaveprof = False
-    DEXsaveprof = False
-    CONsaveprof = False
-    INTsaveprof = False
-    WISsaveprof = False
-    CHAsaveprof = False
-    athletics = False
-    acrobatics = False
-    sleight_of_hand = False
-    stealth = False
-    arcana = False
-    history = False
-    investigation = False
-    nature = False
-    religion = False
-    animal_handling = False
-    insight = False
-    medicine = False
-    perception = False
-    survival = False
-    deception = False
-    intimidation = False
-    performance = False
-    persuasion = False
-
     skills_proficiency = {
-        "light armor": light_armor,
-        "medium armor": medium_armor,
-        "heavy armor": heavy_armor,
-        "shields": shields,
-        "simple weapons": simple_weapon,
-        "martial weapons": martial_weapon,
-        "strength save": STRsaveprof,
-        "dexterity save": DEXsaveprof,
-        "constitution save": CONsaveprof,
-        "intelligence save": INTsaveprof,
-        "wisdom save": WISsaveprof,
-        "charisma save": CHAsaveprof,
-        "athletics": athletics,
-        "acrobatics": acrobatics,
-        "sleight of hand": sleight_of_hand,
-        "stealth": stealth,
-        "arcana": arcana,
-        "history": history,
-        "investigation": investigation,
-        "nature": nature,
-        "religion": religion,
-        "animal handling": animal_handling,
-        "insight": insight,
-        "medicine": medicine,
-        "perception": perception,
-        "survival": survival,
-        "deception": deception,
-        "intimidation": intimidation,
-        "performance": performance,
-        "persuasion": persuasion
+        "light armor": False,
+        "medium armor": False,
+        "heavy armor": False,
+        "shields": False,
+        "simple weapons": False,
+        "martial weapons": False,
+        "strength save": False,
+        "dexterity save": False,
+        "constitution save": False,
+        "intelligence save": False,
+        "wisdom save": False,
+        "charisma save": False,
+        "athletics": False,
+        "acrobatics": False,
+        "sleight of hand": False,
+        "stealth": False,
+        "arcana": False,
+        "history": False,
+        "investigation": False,
+        "nature": False,
+        "religion": False,
+        "animal handling": False,
+        "insight": False,
+        "medicine": False,
+        "perception": False,
+        "survival": False,
+        "deception": False,
+        "intimidation": False,
+        "performance": False,
+        "persuasion": False
     }
 
     print("  \n   ......................")
@@ -204,7 +173,7 @@ def print_character(name, size, race, level, CharClass, speed, ability_scores, l
 
     #AC
     #HP
-    print("   Speed ", speed, " ft.")
+    print("  \n   Speed ", speed, " ft.")
 
     print("  \n   ......................")
 
@@ -214,12 +183,11 @@ def print_character(name, size, race, level, CharClass, speed, ability_scores, l
 
     print("  \n   ......................")
 
-    print("   Proficiencies: ")
+    print("  \n   Proficiencies: ")
     for skill, proficiency in skills_proficiency.items():
         if proficiency:
-            print(f"{skill}: Proficient")
+            print("      ", skill)
 
     print("   Languages", language1, language2)
 
     print("   Proficiency Bonus +", prof)
-
