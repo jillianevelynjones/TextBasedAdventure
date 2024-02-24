@@ -10,27 +10,52 @@ def character_generator():
 
     score_options = ["15", "14", "13", "12", "10", "8"]
 
+
+    print("  \n   ......................")
+    print("You start at level 1")
+    level = 1
+
+
     print("  \n   ......................")
     print("  \n   First choose a race.")
     print("   Options are: ")
     print("      Human")
-    race = input(f"   Enter race: ").lower()
-    if race in ("human", "Human"):
-        print("  \n   As a human all your ability scores increase by 1")
-        print("   Your size is medium")
-        size = 5
-        print("   Your speed is 30")
-        speed = 30
-        print("   You can speak, read and write in Common and one extra language of your choice")
-        language1 = ("common")
-        print("  \n   Your choices are: ")
-        print("      Elvish")
-        language2 = input(f"   Enter language: ")
-        if language2 in ("elvish", "Elvish"):
-            language2 = ("elvish")
+    while True:
+        race = input(f"   Enter race: ").lower()
+        if race in ("human", "Human"):
+            print("  \n   As a human all your ability scores increase by 1")
+            print("   Your size is medium")
+            size = 5
+            print("   Your speed is 30")
+            speed = 30
+            print("   You can speak, read and write in Common and one extra language of your choice")
+            language1 = ("common")
+            print("  \n   Your choices are: ")
+            print("      Elvish")
+            language2 = input(f"   Enter language: ")
+            if language2 in ("elvish", "Elvish"):
+                language2 = ("elvish")
+            else:
+                print("Sorry! Only language available at the time is Elvish")
+                language2 = ("evlish")
+            break
         else:
-            print("Sorry! Only language available at the time is Elvish")
-            language2 = ("evlish")
+            print("Sorry! Only human is available")
+            continue
+
+    print("  \n   ......................")
+    print("  \n   Now it's time to choose your class")
+    print("   Options are: ")
+    print("      Fighter")
+    while True:
+        charClass = input(f"   Enter class: ")
+        if charClass in ("fighter", "Fighter"):
+            print("stuff")
+            break
+        else:
+            print("Sorry! Only fighter is available")
+            continue
+
 
     print("   \n   ......................")
     print("  \n  Now we'll choose Ability Scores.")
@@ -57,9 +82,37 @@ def character_generator():
     else:
         print("Error add +1 to ability scores for being human")
 
+    ability_bonuses = {ability: calculate_ability_bonus(score) for ability, score in ability_scores.items()}
+
     print("\nFinal Ability Scores:")
     for ability, score in ability_scores.items():
-        print(f"{ability}: {score}")
+        print(f"{ability}: {score} ({ability_bonuses[ability]})")
+
+def calculate_ability_bonus(score):
+    if score == "20":
+        return 5
+    elif score in ["18", "19"]:
+        return 4
+    elif score in ["16", "17"]:
+        return 3
+    elif score in ["14", "15"]:
+        return 2
+    elif score in ["12", "13"]:
+        return 1
+    elif score in ["10", "11"]:
+        return 0
+    elif score in ["8", "9"]:
+        return -1
+    elif score in ["6", "7"]:
+        return -2
+    elif score in ["4", "5"]:
+        return -3
+    elif score in ["2", "3"]:
+        return -4
+    elif score == "1":
+        return -5
+    else:
+        return None
 
 
 
