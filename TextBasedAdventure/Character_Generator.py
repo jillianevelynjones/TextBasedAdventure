@@ -44,22 +44,6 @@ skills_proficiency = {
     "persuasion": False
 }
 
-
-def calculate_proficiency_bonus(level):
-    if 1 <= level <= 4:
-        prof = 2
-    elif 5 <= level <= 8:
-        prof = 3
-    elif 9 <= level <= 12:
-        prof = 4
-    elif 13 <= level <= 16:
-        prof = 5
-    elif 17 <= level <= 20:
-        prof = 6
-    else:
-        return prof
-
-
 def calculate_ability_bonus(score):
     if score == "20":
         return 5
@@ -87,23 +71,25 @@ def calculate_ability_bonus(score):
         return None
 
 
-def print_character(AC, hitdice, hitpoint_max, name, size, race, level, char_class, speed, ability_scores, language1, language2, prof, skills_proficiency):
+def print_character(attributes_dict):
+    attributes = attributes_dict
+
     # Name
     print("  \n   ......................")
-    print("  \n   ", name)
+    print("  \n   ", attributes["name"])
 
-    if size == "5":
-        print("  \n   Medium ", race)
+    if attributes["size"] == "5":
+        print("  \n   Medium ", attributes["race"])
     else:
-        print("  \n   Error", race)
+        print("  \n   Error", attributes["race"])
 
-    print("   Level ", level, char_class)
+    print("   Level ", attributes["level"], attributes["class"])
 
     print("  \n   ......................")
 
-    print("  \n   Armor Class ", AC)
-    print("  \n   Hit Points ", hitpoint_max, "(", level, "d", hitdice, ")")
-    print("  \n   Speed ", speed, " ft.")
+    print("  \n   Armor Class ", attributes["AC"])
+    print("  \n   Hit Points ", attributes["hit point max"], "(", attributes["level"], "d", attributes["hit dice"], ")")
+    print("  \n   Speed ", attributes["speed"], " ft.")
 
     print("  \n   ......................")
 
@@ -118,46 +104,81 @@ def print_character(AC, hitdice, hitpoint_max, name, size, race, level, char_cla
         if proficiency:
             print("      ", skill)
 
-    print("   Languages", language1, language2)
+    print("   Languages", attributes["language 1"], attributes["language 2"])
 
-    print("   Proficiency Bonus +", prof)
-
+    print("   Proficiency Bonus +", attributes["proficiency bonus"])
 
 class CharacterGenerator:
     def __init__(self):
+        self.AC = False
+        self.hitdice = False
+        self.hitpoint = False
+        self.hitpoint_max = False
+        self.name = False
+        self.size = False
+        self.race = False
+        self.level = False
+        self.char_class = False
+        self.speed = False
+        self.ability_scores = False
+        self.language1 = False
+        self.language2 = False
+        self.prof = False
+        self.skills_proficiency = False
+        self.attributes_dict = {}
 
+    def initialize_attributes(self):
+        self.AC = None
+        self.hitdice = None
+        self.hitpoint = None
+        self.hitpoint_max = None
+        self.name = None
+        self.size = None
+        self.race = None
+        self.level = None
+        self.char_class = None
+        self.speed = None
+        self.ability_scores = None
+        self.language1 = None
+        self.language2 = None
+        self.prof = None
+        self.skills_proficiency = None
+
+    def get_attributes(self, attributes_dict):
+
+        attributes = attributes_dict
         print("\n   ......................")
         print("You start at level 1")
-        self.level = 1
-        self.prof = calculate_proficiency_bonus(self.level)
+        attributes["level"] = 1
+        attributes["proficiency bonus"] = self.calculate_proficiency_bonus(attributes_dict)
 
         print("\n   ......................")
         print("\n   First choose a race.")
         print("   Options are: ")
         print("      Human")
         while True:
-            self.race = input(f"   Enter race: ").lower()
-            if self.race in ("human", "Human"):
+            attributes["race"] = input(f"   Enter race: ").lower()
+            if attributes["race"] in ("human", "Human"):
                 print("\n   As a human all your ability scores increase by 1")
                 print("   Your size is medium")
-                self.size = "5"
+                attributes["size"] = "5"
                 print("   Your speed is 30")
-                self.speed = "30"
+                attributes["speed"] = "30"
                 print("   You can speak, read and write in Common and one extra language of your choice")
-                self.language1 = "common"
+                attributes["language 1"] = "common"
                 print("\n   Your choices are: ")
                 print("      Elvish")
-                self.language2 = input(f"   Enter language: ")
-                if self.language2 in ("elvish", "Elvish"):
-                    self.language2 = "elvish"
+                attributes["language 2"] = input(f"   Enter language: ")
+                if attributes["language 2"] in ("elvish", "Elvish"):
+                    attributes["language 2"] = "elvish"
                 else:
                     print("Sorry! Only language available at the time is Elvish")
-                    self.language2 = "evlish"
+                    attributes["language 2"] = "elvish"
                 break
             else:
                 print("Sorry! Only human is available")
                 continue
-        self.char_class = char_class_gen (skills_proficiency)
+        attributes["class"] = char_class_gen (skills_proficiency)
         print("    ......................")
         print("\n  Now we'll choose Ability Scores.")
         print("  Ability score options are 15, 14, 13, 12, 10, 8.")
@@ -175,38 +196,54 @@ class CharacterGenerator:
                     break
                 else:
                     print(f"\n   Invalid {ability} score. Please choose from {', '.join(score_options)}.")
-        if self.race in ("human", "Human"):
+        if attributes["race"] in ("human", "Human"):
             for ability in ability_scores:
                 ability_scores[ability] = str(int(ability_scores[ability]) + 1)
         else:
             print("Error add +1 to ability scores for being human")
-        self.ability_bonuses = {ability: calculate_ability_bonus(score) for ability, score in ability_scores.items()}
+        attributes["ability_bonuses"] = {ability: calculate_ability_bonus(score) for ability, score in ability_scores.items()}
         print("\nFinal Ability Scores:")
         for ability, score in ability_scores.items():
-            print(f"{ability}: {score} ({self.ability_bonuses[ability]})")
-        self.AC = 10 + self.ability_bonuses["Dexterity"]
-        self.hitdice = 10
-        self.hitpoint1 = 10 + self.ability_bonuses["Constitution"]
-        self.hitpoint_max = self.hitpoint1
-        print("Let's name your character!")
-        self.name = input("Name: > ")
-        print_character(self.AC, self.hitdice, self.hitpoint_max, self.name, self.size, self.race, self.level, self.char_class, self.speed, ability_scores, self.language1, self.language2, self.prof, skills_proficiency)
-        pass
+            print(f"{ability}: {score} ({attributes['ability_bonuses'][ability]})")  # Corrected syntax
 
-    def get_attributes(self):
+        attributes['AC'] = 10 + attributes['ability_bonuses']['Dexterity']  # Corrected syntax
+        attributes['hit dice'] = 10  # Corrected syntax
+        attributes['hit point'] = 10 + attributes['ability_bonuses']['Constitution']  # Corrected syntax
+        attributes['hit point max'] = attributes['hit point']  # Corrected syntax
+
+        print("Let's name your character!")
+        attributes['name'] = input("Name: > ")  # Corrected syntax
+        print_character(attributes)
+
         return {
             "AC": self.AC,
-            "Hit Dice": self.hitdice,
-            "Hit Point Max": self.hitpoint_max,
-            "Name": self.name,
-            "Size": self.size,
-            "Race": self.race,
-            "Level": self.level,
-            "Class": self.char_class,
-            "Speed": self.speed,
-            "Ability Scoes": ability_scores,
-            "Language 1": self.language1,
-            "Language 2": self.language2,
-            "Proficiency Bonus": self.prof,
-            "Skill Proficiency": skills_proficiency
+            "hit dice": self.hitdice,
+            "hit point": self.hitpoint,
+            "hit point max": self.hitpoint_max,
+            "name": self.name,
+            "size": self.size,
+            "race": self.race,
+            "level": self.level,
+            "class": self.char_class,
+            "speed": self.speed,
+            "ability scores": ability_scores,
+            "language 1": self.language1,
+            "language 2": self.language2,
+            "proficiency bonus": self.prof,
+            "skill proficiency": skills_proficiency
         }
+
+    def calculate_proficiency_bonus(self, attributes_dict):
+        attributes = attributes_dict
+        if 1 <= attributes["level"] <= 4:
+            self.prof = 2
+        elif 5 <= attributes["level"] <= 8:
+            self.prof = 3
+        elif 9 <= attributes["level"] <= 12:
+            self.prof = 4
+        elif 13 <= attributes["level"] <= 16:
+            self.prof = 5
+        elif 17 <= attributes["level"] <= 20:
+            self.prof = 6
+        else:
+            return self.prof
