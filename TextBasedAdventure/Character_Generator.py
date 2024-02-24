@@ -1,6 +1,6 @@
 from char_class_gen  import char_class_gen
 
-ability_scores = {
+'''ability_scores = {
     "Strength": 0,
     "Dexterity": 0,
     "Constitution": 0,
@@ -68,7 +68,7 @@ def calculate_ability_bonus(score):
     elif score == "1":
         return -5
     else:
-        return None
+        return None'''
 
 
 def print_character(attributes_dict):
@@ -83,7 +83,8 @@ def print_character(attributes_dict):
     else:
         print("  \n   Error", attributes["race"])
 
-    print("   Level ", attributes["level"], attributes["class"])
+    print("  \n   ......................")
+    '''print("   Level ", attributes["level"], attributes["class"])
 
     print("  \n   ......................")
 
@@ -106,18 +107,18 @@ def print_character(attributes_dict):
 
     print("   Languages", attributes["language 1"], attributes["language 2"])
 
-    print("   Proficiency Bonus +", attributes["proficiency bonus"])
+    print("   Proficiency Bonus +", attributes["proficiency bonus"])'''
 
 class CharacterGenerator:
     def __init__(self):
-        self.AC = False
-        self.hitdice = False
-        self.hitpoint = False
-        self.hitpoint_max = False
         self.name = False
         self.size = False
         self.race = False
         self.level = False
+        self.AC = False
+        self.hitdice = False
+        self.hitpoint = False
+        self.hitpoint_max = False
         self.char_class = False
         self.speed = False
         self.ability_scores = False
@@ -128,14 +129,14 @@ class CharacterGenerator:
         self.attributes_dict = {}
 
     def initialize_attributes(self):
-        self.AC = None
-        self.hitdice = None
-        self.hitpoint = None
-        self.hitpoint_max = None
         self.name = None
         self.size = None
         self.race = None
         self.level = None
+        self.AC = None
+        self.hitdice = None
+        self.hitpoint = None
+        self.hitpoint_max = None
         self.char_class = None
         self.speed = None
         self.ability_scores = None
@@ -150,7 +151,7 @@ class CharacterGenerator:
         print("\n   ......................")
         print("You start at level 1")
         attributes["level"] = 1
-        attributes["proficiency bonus"] = self.calculate_proficiency_bonus(attributes_dict)
+        # attributes["proficiency bonus"] = self.calculate_proficiency_bonus(attributes_dict)
 
         print("\n   ......................")
         print("\n   First choose a race.")
@@ -159,25 +160,30 @@ class CharacterGenerator:
         while True:
             attributes["race"] = input(f"   Enter race: ").lower()
             if attributes["race"] in ("human", "Human"):
-                print("\n   As a human all your ability scores increase by 1")
+                # print("\n   As a human all your ability scores increase by 1")
                 print("   Your size is medium")
                 attributes["size"] = "5"
-                print("   Your speed is 30")
-                attributes["speed"] = "30"
-                print("   You can speak, read and write in Common and one extra language of your choice")
-                attributes["language 1"] = "common"
-                print("\n   Your choices are: ")
-                print("      Elvish")
-                attributes["language 2"] = input(f"   Enter language: ")
-                if attributes["language 2"] in ("elvish", "Elvish"):
-                    attributes["language 2"] = "elvish"
-                else:
-                    print("Sorry! Only language available at the time is Elvish")
-                    attributes["language 2"] = "elvish"
                 break
-            else:
-                print("Sorry! Only human is available")
-                continue
+
+        self.name = attributes["name"]
+        self.size = attributes["size"]
+
+        '''print("   Your speed is 30")
+        attributes["speed"] = "30"
+        print("   You can speak, read and write in Common and one extra language of your choice")
+        attributes["language 1"] = "common"
+        print("\n   Your choices are: ")
+        print("      Elvish")
+        attributes["language 2"] = input(f"   Enter language: ")
+        if attributes["language 2"] in ("elvish", "Elvish"):
+            attributes["language 2"] = "elvish"
+        else:
+            print("Sorry! Only language available at the time is Elvish")
+            attributes["language 2"] = "elvish"
+        break
+    else:
+        print("Sorry! Only human is available")
+        continue
         attributes["class"] = char_class_gen (skills_proficiency)
         print("    ......................")
         print("\n  Now we'll choose Ability Scores.")
@@ -209,29 +215,33 @@ class CharacterGenerator:
         attributes['AC'] = 10 + attributes['ability_bonuses']['Dexterity']  # Corrected syntax
         attributes['hit dice'] = 10  # Corrected syntax
         attributes['hit point'] = 10 + attributes['ability_bonuses']['Constitution']  # Corrected syntax
-        attributes['hit point max'] = attributes['hit point']  # Corrected syntax
+        attributes['hit point max'] = attributes['hit point']  # Corrected syntax'''
 
         print("Let's name your character!")
         attributes['name'] = input("Name: > ")  # Corrected syntax
         print_character(attributes)
 
         return {
-            "AC": self.AC,
-            "hit dice": self.hitdice,
-            "hit point": self.hitpoint,
-            "hit point max": self.hitpoint_max,
             "name": self.name,
             "size": self.size,
             "race": self.race,
-            "level": self.level,
-            "class": self.char_class,
-            "speed": self.speed,
-            "ability scores": ability_scores,
-            "language 1": self.language1,
-            "language 2": self.language2,
-            "proficiency bonus": self.prof,
-            "skill proficiency": skills_proficiency
+            "level": self.level
         }
+
+    ''''"AC": self.AC,
+        "hit dice": self.hitdice,
+        "hit point": self.hitpoint,
+        "hit point max": self.hitpoint_max,
+        
+        
+        "class": self.char_class,
+        "speed": self.speed,
+        "ability scores": ability_scores,
+        "language 1": self.language1,
+        "language 2": self.language2,
+        "proficiency bonus": self.prof,
+        "skill proficiency": skills_proficiency
+    }
 
     def calculate_proficiency_bonus(self, attributes_dict):
         attributes = attributes_dict
@@ -246,4 +256,4 @@ class CharacterGenerator:
         elif 17 <= attributes["level"] <= 20:
             self.prof = 6
         else:
-            return self.prof
+            return self.prof'''
