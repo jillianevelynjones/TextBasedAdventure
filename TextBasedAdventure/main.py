@@ -1,8 +1,6 @@
-# from CharacterGenerator import CharacterGenerator
+from CharacterGenerator import CharacterGenerator
 from FoxlightFestival import FoxlightFestival
-from os import system
 import time
-import datetime
 import pickle
 import sys
 
@@ -19,19 +17,17 @@ def main():
 
         if choice == '1':
             t("\n > you have chosen to create a new game: ")
-            print("    ......................")
-            print('  \n   we will begin with creating your character: ')
+            print("\n   ......................")
+            print('\n   we will begin with creating your character: ')
 
             # character = CharacterGenerator()
 
-            character = 0
-
-            print("  \n   pick a file name to save under")
+            print("\n   pick a file name to save under")
             character_file_name = input('> ')
             save_character(character_file_name, character)
-            print("  \n   game saved as: ", character_file_name)
+            print("\n   game saved as: ", character_file_name)
 
-            FoxlightFestival()
+            FoxlightFestival()  # Move inside the if block
 
         elif choice == '2':
             t("\n > you have chosen to load an existing game: ")
@@ -39,7 +35,6 @@ def main():
             character_file_name = input('\n > character file name: ')
             load_character(character_file_name)
             break
-
 
         elif choice == '3':
             t(' > Goodbye!')
@@ -49,6 +44,7 @@ def main():
         else:
             t('incorrect response. please try again')
             continue
+
 
 # miscellaneous functions + procedures
 

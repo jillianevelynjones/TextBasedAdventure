@@ -123,7 +123,10 @@ def print_character(AC, hitdice, hitpoint_max, name, size, race, level, char_cla
     print("   Proficiency Bonus +", prof)
 
 
-'''class CharacterGenerator:
+class CharacterGenerator:
+    print("Character Generator")
+
+    '''
     print("  \n   ......................")
     print("You start at level 1")
     level = 1
@@ -188,3 +191,5 @@ def print_character(AC, hitdice, hitpoint_max, name, size, race, level, char_cla
     print("Let's name your character!")
     name = input("Name: > ") 
     print_character(AC, hitdice, hitpoint_max, name, size, race, level, char_class, speed, ability_scores, language1, language2, prof, skills_proficiency)'''
+
+
