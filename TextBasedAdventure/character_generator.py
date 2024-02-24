@@ -110,10 +110,16 @@ def character_generator():
     for ability, score in ability_scores.items():
         print(f"{ability}: {score} ({ability_bonuses[ability]})")
 
+    AC = 10 + ability_bonuses["Dexterity"]
+
+    hitdice = 10
+    hitpoint1 = 10 + ability_bonuses["Constitution"]
+    hitpoint_max = hitpoint1
+
     print("Let's name your character!")
     name = input("Name: > ")
 
-    print_character(name, size, race, level, CharClass, speed, ability_scores, language1, language2, prof, skills_proficiency)
+    print_character(AC, hitdice, hitpoint_max, name, size, race, level, CharClass, speed, ability_scores, language1, language2, prof, skills_proficiency)
 
 def calculate_proficiency_bonus(level):
     def calculate_proficiency_bonus(level):
@@ -157,7 +163,7 @@ def calculate_ability_bonus(score):
 
 
 
-def print_character(name, size, race, level, CharClass, speed, ability_scores, language1, language2, prof, skills_proficiency):
+def print_character(AC, hitdice, hitpoint_max, name, size, race, level, CharClass, speed, ability_scores, language1, language2, prof, skills_proficiency):
     #Name
     print("  \n   ......................")
     print("  \n   ", name)
@@ -171,8 +177,8 @@ def print_character(name, size, race, level, CharClass, speed, ability_scores, l
 
     print("  \n   ......................")
 
-    #AC
-    #HP
+    print("  \n   Armor Class ", AC)
+    print("  \n   Hit Points ", hitpoint_max, "(", level, "d", hitdice, ")")
     print("  \n   Speed ", speed, " ft.")
 
     print("  \n   ......................")

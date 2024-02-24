@@ -1,3 +1,4 @@
+import random
 def charClass_gen(skills_proficiency):
     print("  \n   ......................")
     print("  \n   Now it's time to choose your class")
@@ -15,11 +16,6 @@ def charClass_gen(skills_proficiency):
     return CharClass
 
 def Fighter(skills_proficiency):
-
-    '''hitdice = 10
-    hitpoint1 = 10 + ability_bonuses["Constitution"]
-    hitpoint_max = hitpoint1
-    hitpoint_increase = hitpoint_max + random.randint(1,10) + ability_bonuses["Constitution"]'''
 
     print("  \n   As a fighter your hit dice are 1d10")
     print("  \n   ......................")
@@ -73,3 +69,18 @@ def Fighter(skills_proficiency):
                 print("Invalid choice. Please enter a number between 1 and 7.")
         else:
             print("Invalid input. Please enter a number.")
+
+    print("  \n   ......................")
+    print("  \n   Now it's time to choose your fighting style")
+    print("   Options are: ")
+    print("      Defense")
+    while True:
+        CharClass = input(f"   Enter fighting style: ")
+        if CharClass in ("defense", "Defense"):
+            #AC SHIT
+            break
+        else:
+            print("Sorry! Only defense is available")
+            continue
+
+    return "Fighter"
