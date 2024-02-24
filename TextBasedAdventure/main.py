@@ -1,4 +1,4 @@
-from CharacterGenerator import CharacterGenerator
+import Character_Generator
 from FoxlightFestival import FoxlightFestival
 import time
 import pickle
@@ -20,14 +20,17 @@ def main():
             print("\n   ......................")
             print('\n   we will begin with creating your character: ')
 
-            # character = CharacterGenerator()
+            character = Character_Generator.CharacterGenerator()
 
             print("\n   pick a file name to save under")
             character_file_name = input('> ')
-            save_character(character_file_name, character)
+
+            attributes = character.get_attributes()
+            save_character(character_file_name, attributes)
             print("\n   game saved as: ", character_file_name)
 
             FoxlightFestival()  # Move inside the if block
+            break
 
         elif choice == '2':
             t("\n > you have chosen to load an existing game: ")
@@ -73,12 +76,11 @@ def t(text):
         time.sleep(0.021)
 
 
-def save_character(save_name, character):
+def save_character(save_name, attributes):
     save_name_pickle = save_name + '.pickle'
     t('> saving character')
-    w(1)
     with open(save_name_pickle, 'wb') as f:
-        pickle.dump(character, f)
+        pickle.dump(attributes, f)
         t('\n > character saved successfully')
 
 
