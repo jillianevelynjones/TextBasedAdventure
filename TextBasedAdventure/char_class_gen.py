@@ -1,6 +1,3 @@
-import random
-
-
 def char_class_gen(skills_proficiency):
   print("  \n   ......................")
   print("  \n   Now it's time to choose your class")

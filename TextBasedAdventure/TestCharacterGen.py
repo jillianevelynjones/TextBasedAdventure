@@ -72,43 +72,47 @@ def calculate_ability_bonus(score):
 
 
 def print_character(attributes_dict, skill_bonuses):
-    attributes = attributes_dict
+  attributes = attributes_dict
 
-    print("  \n  ......................")
-    print("  \n  ", attributes["name"])
+  print("  \n  ......................")
+  print("  \n  ", attributes["name"])
 
-    if attributes["size"] == "5":
-        print("  \n  Medium ", attributes["race"])
-    else:
-        print("  \n  Error", attributes["race"])
+  if attributes["size"] == "5":
+      print("  \n  Medium ", attributes["race"])
+  else:
+      print("  \n  Error", attributes["race"])
 
-    print("  \n  ......................")
+  print("  \n  ......................")
 
-    print("   Level ", attributes["level"], attributes["class"])
+  print("   Level ", attributes["level"], attributes["class"])
 
-    print("  \n  ......................")
+  print("  \n  ......................")
 
-    print("  \n  Armor Class ", attributes["AC"])
-    print("  \n  Hit Points ", attributes["hit point max"], "(", attributes["level"], "d", attributes["hit dice"], ")")
-    print("  \n  Speed ", attributes["speed"], " ft.")
+  print("  \n  Armor Class ", attributes["AC"])
+  print("  \n  Hit Points ", attributes["hit point max"], "(", attributes["level"], "d", attributes["hit dice"], ")")
+  print("  \n  Speed ", attributes["speed"], " ft.")
 
-    print("  \n  ......................")
+  print("  \n  ......................")
 
-    print("  \n  Ability Scores:")
-    for ability, score in attributes["ability_scores"].items():
-        print(f"   {ability}: {score}")
+  print("  \n  Ability Scores:")
+  for ability, score in attributes["ability_scores"].items():
+      print(f"   {ability}: {score}")
 
-    print("  \n  ......................")
+  print("  \n  ......................")
 
-    print("  \n  Proficiencies: ")
-    for skill, proficiency in attributes["skills_proficiency"].items():
-        if proficiency:
-            print("   ", skill)
-            print_skill_bonuses(skill_bonuses)
+  print("  \n  Proficiencies: ")
+  for skill, proficiency in attributes["skills_proficiency"].items():
+      if proficiency:
+          print("   ", skill)
+          character_generator = CharacterGenerator()  # Create an instance of the CharacterGenerator class
+          skill_bonuses = character_generator.calculate_skill_bonuses(attributes["ability_scores"], attributes["proficiency bonus"], attributes["skills_proficiency"])
+          print_skill_bonuses(skill_bonuses)
 
-    print("   Languages", attributes["language 1"], attributes["language 2"])
+  print("   Languages", attributes["language 1"], attributes["language 2"])
 
-    print("   Proficiency Bonus +", attributes["proficiency bonus"])
+  print("   Proficiency Bonus +", attributes["proficiency bonus"])
+
+
 
 def save_character(save_name, character_sheet):
   save_name_pickle = save_name + '.pickle'
@@ -169,7 +173,7 @@ class CharacterGenerator:
       return 6
     else:
       return None
-      
+
   def calculate_skill_bonuses(self, ability_scores, proficiency_bonus, skills_proficiency):
     skill_ability_map = assign_skills_to_ability(skills_proficiency)
     skill_bonuses = {}
@@ -197,8 +201,6 @@ class CharacterGenerator:
         print("\n   As a human all your ability scores increase by 1")
         print("\n Your size is medium")
         attributes["size"] = "5"
-        print
-        
         print("   Your speed is 30")
         attributes["speed"] = "30"
         print("   You can speak, read and write in Common and one extra language of your choice")
@@ -274,11 +276,11 @@ class CharacterGenerator:
     self.hitpoint_max = attributes["hit point max"]
     self.char_class = attributes["class"]
     self.speed = attributes["speed"]
-    ability_scores = attributes["ability scores"]
+    self.ability_scores = attributes["ability scores"]
     self.language1 = attributes["language 1"]
     self.language2 = attributes["language 2"]
     self.prof = attributes["proficiency bonus"]
-    skills_proficiency = attributes["skill proficiency"]
+    self.skills_proficiency = attributes["skill proficiency"]
 
     print_character(attributes)
 
