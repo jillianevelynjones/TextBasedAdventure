@@ -96,9 +96,6 @@ def main():
       attributes_dict = character_generator.get_attributes(attributes_dict)
       
       character_sheet = attributes_dict
-      
-      print("Testing contents of character sheet")
-      print(character_sheet)
 
       print("\n   pick a file name to save under")
       character_file_name = input('> ')
@@ -132,5 +129,3 @@ def main():
 
 if __name__ == "__main__":
   main()
-
-
