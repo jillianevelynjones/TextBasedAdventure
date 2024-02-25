@@ -59,11 +59,17 @@ def load_character(load_name):
         return False
     
 def check_pickle_file(file_path):
-  print("\n Attempting to open file:", file_path)
-  with open(file_path, 'rb') as f:
-    character_sheet = pickle.load(f)
-    print("\n Contents:")
-    print_character(character_sheet)
+    print("\n Attempting to open file:", file_path)
+    try:
+        with open(file_path, 'rb') as f:
+            character_sheet = pickle.load(f)
+            if character_sheet is not None:
+                print("\n Contents:")
+                print_character(character_sheet)
+            else:
+                print("\n Error: Loaded character sheet is None")
+    except Exception as e:
+        print("Error loading pickle file:", e)
 
 
 # main game
@@ -88,14 +94,17 @@ def main():
       print('\n   we will begin with creating your character: ')
 
       attributes_dict = character_generator.get_attributes(attributes_dict)
-      print(attributes_dict)
+      
+      character_sheet = attributes_dict
+      
+      print("Testing contents of character sheet")
+      print(character_sheet)
 
       print("\n   pick a file name to save under")
       character_file_name = input('> ')
       pickle_file_path = character_file_name + ".pickle"
       check_pickle_file(pickle_file_path)
-
-      character_sheet = TestCharacterGen.print_character(attributes_dict)
+      
       save_character(character_file_name, character_sheet)
       print("\n   game saved as: ", character_file_name)
 
