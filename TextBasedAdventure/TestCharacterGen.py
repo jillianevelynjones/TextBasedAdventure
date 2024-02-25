@@ -72,44 +72,43 @@ def calculate_ability_bonus(score):
 
 
 def print_character(attributes_dict, skill_bonuses):
-  attributes = attributes_dict
+    attributes = attributes_dict
 
-  print("  \n  ......................")
-  print("  \n  ", attributes["name"])
+    print("  \n  ......................")
+    print("  \n  ", attributes["name"])
 
-  if attributes["size"] == "5":
-      print("  \n  Medium ", attributes["race"])
-  else:
-      print("  \n  Error", attributes["race"])
+    if attributes["size"] == "5":
+        print("  \n  Medium ", attributes["race"])
+    else:
+        print("  \n  Error", attributes["race"])
 
-  print("  \n  ......................")
+    print("  \n  ......................")
 
-  print("   Level ", attributes["level"], attributes["class"])
+    print("   Level ", attributes["level"], attributes["class"])
 
-  print("  \n  ......................")
+    print("  \n  ......................")
 
-  print("  \n  Armor Class ", attributes["AC"])
-  print("  \n  Hit Points ", attributes["hit point max"], "(", attributes["level"], "d", attributes["hit dice"], ")")
-  print("  \n  Speed ", attributes["speed"], " ft.")
+    print("  \n  Armor Class ", attributes["AC"])
+    print("  \n  Hit Points ", attributes["hit point max"], "(", attributes["level"], "d", attributes["hit dice"], ")")
+    print("  \n  Speed ", attributes["speed"], " ft.")
 
-  print("  \n  ......................")
+    print("  \n  ......................")
 
-  print("  \n  Ability Scores:")
-  for ability, score in attributes["ability_scores"].items():
-    print(f"   {ability}: {score}")
+    print("  \n  Ability Scores:")
+    for ability, score in attributes["ability_scores"].items():
+        print(f"   {ability}: {score}")
 
-  print("  \n  ......................")
+    print("  \n  ......................")
 
-  print("  \n  Proficiencies: ")
-  for skill, proficiency in attributes["skills_proficiency"].items():
-    if proficiency:
-      print(skill)
-      print_skill_bonuses(skill_bonuses)
+    print("  \n  Proficiencies: ")
+    for skill, proficiency in attributes["skills_proficiency"].items():
+        if proficiency:
+            print("   ", skill)
+            print_skill_bonuses(skill_bonuses)
 
-  print("   Languages", attributes["language 1"], attributes["language 2"])
+    print("   Languages", attributes["language 1"], attributes["language 2"])
 
-  print("   Proficiency Bonus +", attributes["proficiency bonus"])
-
+    print("   Proficiency Bonus +", attributes["proficiency bonus"])
 
 def save_character(save_name, character_sheet):
   save_name_pickle = save_name + '.pickle'
@@ -152,7 +151,8 @@ def print_skill_bonuses(skill_bonuses):
       print("  ", skill, " ", bonus)
     else:
       print("  ", skill, " -", abs(bonus))
-
+      
+      
 class CharacterGenerator:
   
   def calculate_proficiency_bonus(self, attributes_dict):
@@ -181,7 +181,8 @@ class CharacterGenerator:
 
     return skill_bonuses
 
-  def get_attributes(self, attributes_dict):
+  def get_attributes(self, attributes_dict, skills_proficiency):
+   
     attributes = attributes_dict
     print("\n ......................")
     print("\n You start at level 1")
