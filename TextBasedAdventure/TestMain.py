@@ -1,4 +1,5 @@
 import TestCharacterGen
+from TestCharacterGen import CharacterGenerator
 from TestCharacterGen import print_character
 import time
 import pickle
@@ -89,24 +90,27 @@ def main():
     choice = input("\n > ")
 
     if choice == '1':
-      t("\n > you have chosen to create a new game: ")
+      print("\n > You have chosen to create a new game:")
       print("\n   ......................")
-      print('\n   we will begin with creating your character: ')
+      print('\n   We will begin with creating your character: ')
 
-      attributes_dict = character_generator.get_attributes(attributes_dict)
-      
+      character_generator = CharacterGenerator()
+      skills_proficiency = {}
+      attributes_dict = {}
+      attributes_dict = character_generator.get_attributes(attributes_dict, skills_proficiency)
+
       character_sheet = attributes_dict
 
-      print("\n   pick a file name to save under")
+      print("\n   Pick a file name to save under:")
       character_file_name = input('> ')
       pickle_file_path = character_file_name + ".pickle"
       check_pickle_file(pickle_file_path)
       
       save_character(character_file_name, character_sheet)
-      print("\n   game saved as: ", character_file_name)
+      print("\n   Game saved as:", character_file_name)
 
       break
-
+    
     elif choice == '2':
       t("\n > you have chosen to load an existing game: ")
       print('  \n  we will begin with choosing an existing character:')
