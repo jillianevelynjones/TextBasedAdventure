@@ -9,37 +9,37 @@ import sys
 # miscellaneous functions + procedures
 
 def w(t):
-  time.sleep(t)
+    time.sleep(t)
 
 def version_counter(filename="adventure_colussus_version_counter.dat"):
-  with open(filename, "a+") as f:
-    f.seek(0)
-    val = int(f.read() or 0) + 1
-    f.seek(0)
-    f.truncate()
-    f.write(str(val))
-    return val
+    with open(filename, "a+") as f:
+        f.seek(0)
+        val = int(f.read() or 0) + 1
+        f.seek(0)
+        f.truncate()
+        f.write(str(val))
+        return val
 
 
 counter = version_counter()
 
 
 def t(text):
-  for char in text:
-    sys.stdout.write(char)
-    sys.stdout.flush()
-    time.sleep(0.021)
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.021)
 
 
 def save_character(save_name, character_sheet):
-  save_name_pickle = save_name + '.pickle'
-  print('> saving character')
-  try:
-    with open(save_name_pickle, 'wb') as f:
-      pickle.dump(character_sheet, f)
-    print('> character saved successfully')
-  except Exception as e:
-    print('> error saving character:', e)
+    save_name_pickle = save_name + '.pickle'
+    print('> saving character')
+    try:
+        with open(save_name_pickle, 'wb') as f:
+            pickle.dump(character_sheet, f)
+        print('> character saved successfully')
+    except Exception as e:
+        print('> error saving character:', e)
 
 
 def load_character(load_name):
@@ -77,61 +77,61 @@ def check_pickle_file(file_path):
 # main game
 def main():
 
-  character_generator = TestCharacterGen.CharacterGenerator()
-  print(character_generator)
-  character_generator.initialize_attributes()
+    character_generator = TestCharacterGen.CharacterGenerator()
+    print(character_generator)
+    character_generator.initialize_attributes()
 
-  #Opening Menu
-  while True:
-    print('\n  <Saga of the Infected>')
-    w(0.5)
-    print('\n > [1] create new game')
-    print(' > [2] load existing game')
-    print(' > [3] end game')
-    choice = input("\n > ")
+    #Opening Menu
+    while True:
+        print('\n  <Saga of the Infected>')
+        w(0.5)
+        print('\n > [1] create new game')
+        print(' > [2] load existing game')
+        print(' > [3] end game')
+        choice = input("\n > ")
 
-    if choice == '1':
-      print("\n > You have chosen to create a new game:")
-      print("\n   ......................")
-      print('\n   We will begin with creating your character: ')
+        if choice == '1':
+            print("\n > You have chosen to create a new game:")
+            print("\n   ......................")
+            print('\n   We will begin with creating your character: ')
 
-      character_generator = CharacterGenerator()
-      skills_proficiency_dict = {}
+            character_generator = CharacterGenerator()
+            skills_proficiency_dict = {}
 
-      attributes_dict = {}
-      attributes_dict = character_generator.get_attributes(attributes_dict, skills_proficiency_dict)
+            attributes_dict = {}
+            attributes_dict = character_generator.get_attributes(attributes_dict, skills_proficiency_dict)
 
-      character_sheet = attributes_dict
+            character_sheet = attributes_dict
 
-      print("\n   Pick a file name to save under:")
-      character_file_name = input('> ')
-      pickle_file_path = character_file_name + ".pickle"
-      check_pickle_file(pickle_file_path)
-      
-      save_character(character_file_name, character_sheet)
-      print("\n   Game saved as:", character_file_name)
+            print("\n   Pick a file name to save under:")
+            character_file_name = input('> ')
+            pickle_file_path = character_file_name + ".pickle"
+            check_pickle_file(pickle_file_path)
 
-      break
-    
-    elif choice == '2':
-      t("\n > you have chosen to load an existing game: ")
-      print('  \n  we will begin with choosing an existing character:')
-      character_file_name = input('\n > character file name: ')
+            save_character(character_file_name, character_sheet)
+            print("\n   Game saved as:", character_file_name)
 
-      pickle_file_path = character_file_name + ".pickle"
+            break
 
-      check_pickle_file(pickle_file_path)
+        elif choice == '2':
+            t("\n > you have chosen to load an existing game: ")
+            print('  \n  we will begin with choosing an existing character:')
+            character_file_name = input('\n > character file name: ')
 
-      break
+            pickle_file_path = character_file_name + ".pickle"
 
-    elif choice == '3':
-      t(' > Goodbye!')
-      sys.exit()
-      break
+            check_pickle_file(pickle_file_path)
 
-    else:
-      t('incorrect response. please try again')
-      continue
+            break
+
+        elif choice == '3':
+            t(' > Goodbye!')
+            sys.exit()
+            break
+
+        else:
+            t('incorrect response. please try again')
+            continue
 
 if __name__ == "__main__":
-  main()
+    main()
