@@ -51,24 +51,21 @@ def print_character(attributes_dict):
     print("  \n  ", attributes["name"])
 
     if attributes["size"] == "5":
-        print("  \n  Medium ", attributes["race"])
+        print("  \n   Medium ", attributes["race"])
     else:
         print("  \n  Error", attributes["race"])
-
-    print("  \n  ......................")
 
     print("   Level ", attributes["level"], attributes["class"])
 
     print("  \n  ......................")
 
     print("  \n  Armor Class ", attributes["AC"])
-    print("  \n  Hit Point Max ", attributes["hit point max"])
-    print("(", attributes["level"], "d", attributes["hit dice"], ")")
+    print("  \n  Hit Point Max ", attributes["hit point max"], " (", attributes["level"], "d", attributes["hit dice"], ")")
     print("  \n  Speed ", attributes["speed"], " ft.")
 
     print("  \n  ......................")
 
-    print("  \n  Ability Scores:")
+    print("\n  Ability Scores: ")
     for ability, score in attributes["ability scores"].items():
         print(f"   {ability}: {score}")
 
