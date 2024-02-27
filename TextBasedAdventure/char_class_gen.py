@@ -116,9 +116,6 @@ def fighter(skills_proficiency_dict, attributes_dict):
         else:
             print("   Invalid input. Please enter a number.")
 
-    print("\n TESTING")
-    print(skills_proficiency_dict)
-
     print("\n   ......................")
     print("\n   Now it's time to choose your fighting style")
     print("   Options are: ")
@@ -132,4 +129,7 @@ def fighter(skills_proficiency_dict, attributes_dict):
             print("Sorry! Only defense is available")
             continue
 
-    return "Fighter"
+    print("\n TESTING END OF FIGHTER FUNCTION")
+    print(skills_proficiency_dict)
+
+    return "Fighter", skills_proficiency_dict
