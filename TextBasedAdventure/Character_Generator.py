@@ -1,4 +1,4 @@
-from char_class_gen  import char_class_gen
+from CharClassGen  import char_class_gen
 
 '''ability_scores = {
     "Strength": 0,

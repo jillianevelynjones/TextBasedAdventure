@@ -1,5 +1,5 @@
 import TestCharacterGen
-from TestCharacterGen import CharacterGenerator 
+from TestCharacterGen import CharacterGenerator
 from TestCharacterGen import print_character
 import time
 import pickle
@@ -11,18 +11,6 @@ import sys
 def w(t):
     time.sleep(t)
 
-def version_counter(filename="adventure_colussus_version_counter.dat"):
-    with open(filename, "a+") as f:
-        f.seek(0)
-        val = int(f.read() or 0) + 1
-        f.seek(0)
-        f.truncate()
-        f.write(str(val))
-        return val
-
-
-counter = version_counter()
-
 
 def t(text):
     for char in text:
@@ -31,12 +19,12 @@ def t(text):
         time.sleep(0.021)
 
 
-def save_character(save_name, character_sheet):
+def save_character(save_name, attributes_dict):
     save_name_pickle = save_name + '.pickle'
     print('> saving character')
     try:
         with open(save_name_pickle, 'wb') as f:
-            pickle.dump(character_sheet, f)
+            pickle.dump(attributes_dict, f)
         print('> character saved successfully')
     except Exception as e:
         print('> error saving character:', e)
@@ -64,10 +52,11 @@ def check_pickle_file(file_path):
     print("\n Attempting to open file:", file_path)
     try:
         with open(file_path, 'rb') as f:
-            character_sheet = pickle.load(f)
-            if character_sheet is not None:
+            attributes_dict = pickle.load(f)
+            if attributes_dict is not None:
                 print("\n Contents:")
-                print_character(character_sheet)
+                print(attributes_dict)
+                # print_character(attributes_dict)
             else:
                 print("\n Error: Loaded character sheet is None")
     except Exception as e:
@@ -81,7 +70,7 @@ def main():
     print(character_generator)
     character_generator.initialize_attributes()
 
-    #Opening Menu
+    # Opening Menu
     while True:
         print('\n  <Saga of the Infected>')
         w(0.5)
@@ -101,14 +90,12 @@ def main():
             attributes_dict = {}
             attributes_dict = character_generator.get_attributes(attributes_dict, skills_proficiency_dict)
 
-            character_sheet = attributes_dict
-
             print("\n   Pick a file name to save under:")
             character_file_name = input('> ')
             pickle_file_path = character_file_name + ".pickle"
             check_pickle_file(pickle_file_path)
 
-            save_character(character_file_name, character_sheet)
+            save_character(character_file_name, attributes_dict)
             print("\n   Game saved as:", character_file_name)
 
             break
@@ -132,6 +119,7 @@ def main():
         else:
             t('incorrect response. please try again')
             continue
+
 
 if __name__ == "__main__":
     main()

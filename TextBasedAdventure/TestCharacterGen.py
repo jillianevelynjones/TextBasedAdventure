@@ -1,4 +1,3 @@
-import CharClassGen
 from CharClassGen import char_class_gen
 
 ability_scores = {
@@ -14,7 +13,7 @@ score_options = ["15", "14", "13", "12", "10", "8"]
 
 
 def initialize_char_skills_prof():
-    skills_proficiency_dict = {
+    char_initial_skills_proficiency_dict = {
         "light armor": False,
         "medium armor": False,
         "heavy armor": False,
@@ -47,9 +46,10 @@ def initialize_char_skills_prof():
         "persuasion": False,
         "": False
     }
-    return skills_proficiency_dict
+    return char_initial_skills_proficiency_dict
 
-skills_proficiency_dict = initialize_char_skills_prof()
+
+char_skills_proficiency_dict = initialize_char_skills_prof()
     
 
 def calculate_ability_bonus(score):
@@ -120,7 +120,6 @@ def print_character(attributes_dict):
     print("   Proficiency Bonus +", attributes["proficiency bonus"])
 
 
-
 def save_character(save_name, character_sheet):
     save_name_pickle = save_name + '.pickle'
     print('> saving character')
@@ -131,7 +130,8 @@ def save_character(save_name, character_sheet):
     except Exception as e:
         print('> error saving character:', e)
 
-def assign_skills_to_ability(skills_proficiency_dict):
+
+def assign_skills_to_ability(char_skills_proficiency_dict):
     skill_ability_map = {
       "athletics": "Strength",
       "acrobatics": "Dexterity",
@@ -152,7 +152,8 @@ def assign_skills_to_ability(skills_proficiency_dict):
       "performance": "Charisma",
       "persuasion": "Charisma"
     }
-    return {skill: skill_ability_map[skill] for skill in skills_proficiency_dict}
+    return {skill: skill_ability_map[skill] for skill in char_skills_proficiency_dict}
+
 
 def print_skill_bonuses(skill_bonuses):
     for skill, bonus in skill_bonuses.items():
@@ -167,24 +168,24 @@ def print_skill_bonuses(skill_bonuses):
 class CharacterGenerator():
 
     skills_proficiency = initialize_char_skills_prof()
-    
+
     def calculate_proficiency_bonus(self, attributes_dict):
-        attributes = attributes_dict
-        if 1 <= attributes["level"] <= 4:
+        self.attributes = attributes_dict
+        if 1 <= self.attributes["level"] <= 4:
             return 2
-        elif 5 <= attributes["level"] <= 8:
+        elif 5 <= self.attributes["level"] <= 8:
             return 3
-        elif 9 <= attributes["level"] <= 12:
+        elif 9 <= self.attributes["level"] <= 12:
             return 4
-        elif 13 <= attributes["level"] <= 16:
+        elif 13 <= self.attributes["level"] <= 16:
             return 5
-        elif 17 <= attributes["level"] <= 20:
+        elif 17 <= self.attributes["level"] <= 20:
             return 6
         else:
             return None
 
-    def calculate_skill_bonuses(self, ability_scores, proficiency_bonus, skills_proficiency_dict):
-        skill_ability_map = assign_skills_to_ability(skills_proficiency_dict)
+    def calculate_skill_bonuses(self, ability_scores, proficiency_bonus, chargen_skills_proficiency_dict):
+        skill_ability_map = assign_skills_to_ability(chargen_skills_proficiency_dict)
         skill_bonuses = {}
 
         for skill, ability in skill_ability_map.items():
@@ -194,7 +195,7 @@ class CharacterGenerator():
 
         return skill_bonuses
 
-    def get_attributes(self, attributes_dict, skills_proficiency_dict):
+    def get_attributes(self, attributes_dict, chargen_skills_proficiency_dict):
 
         attributes = attributes_dict
         print("\n ......................")
@@ -230,14 +231,14 @@ class CharacterGenerator():
 
         attributes["proficiency bonus"] = self.calculate_proficiency_bonus(attributes)
 
-        attributes["class"], self.skills_proficiency_dict = char_class_gen(attributes_dict)
+        attributes["class"], self.chargen_skills_proficiency_dict = char_class_gen(attributes_dict)
         print("    ......................")
-        print("\n  TESTING AFTER FIGHTER FUNCTION ", self.skills_proficiency_dict)
+        print("\n  TESTING AFTER FIGHTER FUNCTION ", self.chargen_skills_proficiency_dict)
 
-        attributes["skills proficiency"] = skills_proficiency_dict
+        attributes["skills proficiency"] = chargen_skills_proficiency_dict
 
         print("    ......................")
-        print("\n  TESTING PASSING TO ATTRIBUTES ", attributes["skills of proficiency"])  
+        print("\n  TESTING PASSING TO ATTRIBUTES ", attributes["skills proficiency"])
 
         print("    ......................")
         print("\n  Now we'll choose Ability Scores.")
@@ -259,7 +260,6 @@ class CharacterGenerator():
                 else:
                     print("\n   Invalid " + ability + " score. Please choose from " + ', '.join(score_options))
 
-        
         attributes["ability bonuses"] = {ability: calculate_ability_bonus(score) for ability, score in attributes["ability scores"].items()}
         
         if attributes["race"] in ("human", "Human"):
@@ -280,7 +280,6 @@ class CharacterGenerator():
         else:
             print("hit point max / level one error")
 
-
         print("\n Let's name your character!")
         attributes['name'] = input("   Name: > ")
 
@@ -297,10 +296,9 @@ class CharacterGenerator():
         self.language1 = attributes["language 1"]
         self.language2 = attributes["language 2"]
         self.prof = attributes["proficiency bonus"]
-        self.skills_proficiency_dict = attributes["skills proficiency"]
+        self.chargen_skills_proficiency_dict = attributes["skills proficiency"]
         self.ability_bonuses = attributes["ability bonuses"]
         self.level1HP = attributes["hit point lvl 1"]
-        
 
         print_character(attributes)
 
@@ -339,11 +337,10 @@ class CharacterGenerator():
         self.language1 = False
         self.language2 = False
         self.prof = False
-        self.skills_proficiency_dict = False
+        self.chargen_skills_proficiency_dict = False
         self.ability_bonuses = False
         self.level1HP = False
         self.attributes_dict = False
-
 
     def initialize_attributes(self):
         self.name = None
@@ -360,6 +357,6 @@ class CharacterGenerator():
         self.language1 = None
         self.language2 = None
         self.prof = None
-        self.skills_proficiency_dict = None
+        self.chargen_skills_proficiency_dict = None
         self.ability_bonuses = None
         self.level1HP = None
