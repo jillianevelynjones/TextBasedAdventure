@@ -231,6 +231,13 @@ class CharacterGenerator():
         attributes["proficiency bonus"] = self.calculate_proficiency_bonus(attributes)
 
         attributes["class"], self.skills_proficiency_dict = char_class_gen(attributes_dict)
+        print("    ......................")
+        print("\n  TESTING AFTER FIGHTER FUNCTION ", self.skills_proficiency_dict)
+
+        attributes["skills proficiency"] = skills_proficiency_dict
+
+        print("    ......................")
+        print("\n  TESTING PASSING TO ATTRIBUTES ", attributes["skills of proficiency"])  
 
         print("    ......................")
         print("\n  Now we'll choose Ability Scores.")
@@ -272,7 +279,7 @@ class CharacterGenerator():
             attributes["hit point max"] = attributes["hit point lvl 1"]
         else:
             print("hit point max / level one error")
-        attributes["skills proficiency"] = skills_proficiency_dict
+
 
         print("\n Let's name your character!")
         attributes['name'] = input("   Name: > ")
