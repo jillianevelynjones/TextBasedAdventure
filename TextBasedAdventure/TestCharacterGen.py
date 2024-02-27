@@ -1,6 +1,5 @@
-import char_class_gen
-from char_class_gen import char_class_gen
-from char_class_gen import initialize_skills_prof
+import CharClassGen
+from CharClassGen import char_class_gen
 
 ability_scores = {
   "Strength": 0,
@@ -12,8 +11,46 @@ ability_scores = {
 }
 
 score_options = ["15", "14", "13", "12", "10", "8"]
-	
-initialize_skills_prof()
+
+
+def initialize_char_skills_prof():
+    skills_proficiency_dict = {
+        "light armor": False,
+        "medium armor": False,
+        "heavy armor": False,
+        "shields": False,
+        "simple weapons": False,
+        "martial weapons": False,
+        "strength save": False,
+        "dexterity save": False,
+        "constitution save": False,
+        "intelligence save": False,
+        "wisdom save": False,
+        "charisma save": False,
+        "athletics": False,
+        "acrobatics": False,
+        "sleight of hand": False,
+        "stealth": False,
+        "arcana": False,
+        "history": False,
+        "investigation": False,
+        "nature": False,
+        "religion": False,
+        "animal handling": False,
+        "insight": False,
+        "medicine": False,
+        "perception": False,
+        "survival": False,
+        "deception": False,
+        "intimidation": False,
+        "performance": False,
+        "persuasion": False,
+        "": False
+    }
+    return skills_proficiency_dict
+
+skills_proficiency_dict = initialize_char_skills_prof()
+    
 
 def calculate_ability_bonus(score):
     if score == "20":
@@ -129,7 +166,7 @@ def print_skill_bonuses(skill_bonuses):
 
 class CharacterGenerator():
 
-    skills_proficiency = initialize_skills_prof()
+    skills_proficiency = initialize_char_skills_prof()
     
     def calculate_proficiency_bonus(self, attributes_dict):
         attributes = attributes_dict
@@ -193,7 +230,16 @@ class CharacterGenerator():
 
         attributes["proficiency bonus"] = self.calculate_proficiency_bonus(attributes)
 
-        attributes["class"] = char_class_gen(skills_proficiency_dict, attributes_dict)
+        attributes["class"] = char_class_gen(attributes_dict)
+
+
+
+
+
+
+
+        print(" \n   TESTING")
+        print(skills_proficiency_dict)
 
         print("    ......................")
         print("\n  Now we'll choose Ability Scores.")
