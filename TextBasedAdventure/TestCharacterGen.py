@@ -230,16 +230,7 @@ class CharacterGenerator():
 
         attributes["proficiency bonus"] = self.calculate_proficiency_bonus(attributes)
 
-        attributes["class"] = char_class_gen(attributes_dict)
-
-
-
-
-
-
-
-        print(" \n   TESTING")
-        print(skills_proficiency_dict)
+        attributes["class"], self.skills_proficiency_dict = char_class_gen(attributes_dict)
 
         print("    ......................")
         print("\n  Now we'll choose Ability Scores.")
@@ -265,16 +256,15 @@ class CharacterGenerator():
         attributes["ability bonuses"] = {ability: calculate_ability_bonus(score) for ability, score in attributes["ability scores"].items()}
         
         if attributes["race"] in ("human", "Human"):
-            print('\n Humans get a +1 to all ability scores')
+            print('\n   Humans get a +1 to all ability scores')
             for ability in attributes["ability scores"]:
                 attributes["ability scores"][ability] = str(int(attributes["ability scores"][ability]) + 1)
         else:
             print("Error: add +1 to ability scores for being human")
         
-        print("\n Final Ability Scores:")
+        print("\n   Final Ability Scores:")
         for ability, score in attributes["ability scores"].items():
-            print(ability + ": " + str(score) + " (" + str(attributes['ability bonuses'][ability]) + ")")
-
+            print("   ", ability + ": " + str(score) + " (" + str(attributes['ability bonuses'][ability]) + ")")
 
         attributes['AC'] = str(10 + int(attributes['ability bonuses']['Dexterity']))
         attributes['hit point lvl 1'] = str(10 + int(attributes['ability bonuses']['Constitution']))
