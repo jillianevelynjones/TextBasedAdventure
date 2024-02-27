@@ -1,5 +1,5 @@
 import TestCharacterGen
-from TestCharacterGen import CharacterGenerator
+from TestCharacterGen import CharacterGenerator 
 from TestCharacterGen import print_character
 import time
 import pickle
