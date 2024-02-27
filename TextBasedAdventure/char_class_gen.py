@@ -1,42 +1,42 @@
-def initialize_skills_prof():
-	skills_proficiency_dict = {
-	  "light armor": False,
-	  "medium armor": False,
-	  "heavy armor": False,
-	  "shields": False,
-	  "simple weapons": False,
-	  "martial weapons": False,
-	  "strength save": False,
-	  "dexterity save": False,
-	  "constitution save": False,
-	  "intelligence save": False,
-	  "wisdom save": False,
-	  "charisma save": False,
-	  "athletics": False,
-	  "acrobatics": False,
-	  "sleight of hand": False,
-	  "stealth": False,
-	  "arcana": False,
-	  "history": False,
-	  "investigation": False,
-	  "nature": False,
-	  "religion": False,
-	  "animal handling": False,
-	  "insight": False,
-	  "medicine": False,
-	  "perception": False,
-	  "survival": False,
-	  "deception": False,
-	  "intimidation": False,
-	  "performance": False,
-	  "persuasion": False,
-	  "": False
-	  }
-	return skills_proficiency_dict
+def char_class_gen(attributes_dict): 
 
-def char_class_gen(skills_proficiency_dict, attributes_dict): 
+    def initialize_class_skills_prof():
+    	skills_proficiency_dict = {
+    	  "light armor": False,
+    	  "medium armor": False,
+    	  "heavy armor": False,
+    	  "shields": False,
+    	  "simple weapons": False,
+    	  "martial weapons": False,
+    	  "strength save": False,
+    	  "dexterity save": False,
+    	  "constitution save": False,
+    	  "intelligence save": False,
+    	  "wisdom save": False,
+    	  "charisma save": False,
+    	  "athletics": False,
+    	  "acrobatics": False,
+    	  "sleight of hand": False,
+    	  "stealth": False,
+    	  "arcana": False,
+    	  "history": False,
+    	  "investigation": False,
+    	  "nature": False,
+    	  "religion": False,
+    	  "animal handling": False,
+    	  "insight": False,
+    	  "medicine": False,
+    	  "perception": False,
+    	  "survival": False,
+    	  "deception": False,
+    	  "intimidation": False,
+    	  "performance": False,
+    	  "persuasion": False,
+    	  "": False
+    	  }
+    	return skills_proficiency_dict
     
-    skills_proficiency_dict = initialize_skills_prof()
+    skills_proficiency_dict = initialize_class_skills_prof()
     
     print("\n   ......................")
     print("\n   Now it's time to choose your class")
@@ -62,8 +62,6 @@ def fighter(skills_proficiency_dict, attributes_dict):
     print("\n   You are also now proficienct in all armor, shields and weapons.")
     print("   You can now add your proficiency bonus to Strength and Constitution Saving Throws.")
 
-    print("\n   Before")
-    print(skills_proficiency_dict)
     
     skills_proficiency_dict["light armor"] = True
     skills_proficiency_dict["medium armor"] = True
@@ -73,9 +71,6 @@ def fighter(skills_proficiency_dict, attributes_dict):
     skills_proficiency_dict["martial weapons"] = True
     skills_proficiency_dict["strength save"] = True
     skills_proficiency_dict["constitution save"] = True
-
-    print("\n   After")
-    print(skills_proficiency_dict)
     
     print("\n   ......................")
     
@@ -115,11 +110,14 @@ def fighter(skills_proficiency_dict, attributes_dict):
                     chosen_skills.append(temp_skill)
                     print(f"You are now proficient in {temp_skill}.")
                 else:
-                    print("You have already chosen proficiency in that skill.")
+                    print("  You have already chosen proficiency in that skill.")
             else:
-                print("Invalid choice. Please enter a number between 1 and 7.")
+                print("   Invalid choice. Please enter a number between 1 and 7.")
         else:
-            print("Invalid input. Please enter a number.")
+            print("   Invalid input. Please enter a number.")
+
+    print("\n TESTING")
+    print(skills_proficiency_dict)
 
     print("\n   ......................")
     print("\n   Now it's time to choose your fighting style")
