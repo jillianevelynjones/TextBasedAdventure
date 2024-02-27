@@ -34,7 +34,7 @@ def initialize_skills_prof():
 	  }
 	return skills_proficiency_dict
 
-def char_class_gen(skills_proficiency_dict): 
+def char_class_gen(skills_proficiency_dict, attributes_dict): 
     
     skills_proficiency_dict = initialize_skills_prof()
     
@@ -46,17 +46,18 @@ def char_class_gen(skills_proficiency_dict):
         char_class = input(f"   Enter class: ")
         if char_class in ("fighter", "Fighter"):
             class1 = "Fighter"
-            char_class = fighter(skills_proficiency_dict)
+            char_class = fighter(skills_proficiency_dict, attributes_dict)
             break
         else:
             print("Sorry! Only fighter is available")
             continue
     return char_class
 
-def fighter(skills_proficiency_dict):
+def fighter(skills_proficiency_dict, attributes_dict):
     
     print("\n   As a fighter your hit dice are 1d10")
     print("\n   ......................")
+    attributes_dict["hit dice"] = 10
     
     print("\n   You are also now proficienct in all armor, shields and weapons.")
     print("   You can now add your proficiency bonus to Strength and Constitution Saving Throws.")
