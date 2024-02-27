@@ -31,16 +31,16 @@ def t(text):
     time.sleep(0.021)
 
 
-# Define the save_character function
 def save_character(save_name, character_sheet):
   save_name_pickle = save_name + '.pickle'
   print('> saving character')
   try:
-    with open(save_name_pickle, 'wb') as f:  # Open in binary mode ('wb') for pickle
-      pickle.dump(character_sheet, f)  # Serialize and write the character sheet object
+    with open(save_name_pickle, 'wb') as f:
+      pickle.dump(character_sheet, f)
     print('> character saved successfully')
   except Exception as e:
     print('> error saving character:', e)
+
 
 def load_character(load_name):
     load_name_pickle = load_name + '.pickle'
@@ -58,7 +58,8 @@ def load_character(load_name):
     except Exception as e:
         print('\n > Error loading character:', e)  # Debug statement
         return False
-    
+
+
 def check_pickle_file(file_path):
     print("\n Attempting to open file:", file_path)
     try:
@@ -78,9 +79,9 @@ def main():
 
   character_generator = TestCharacterGen.CharacterGenerator()
   print(character_generator)
-  attributes_dict = {}
   character_generator.initialize_attributes()
 
+  #Opening Menu
   while True:
     print('\n  <Saga of the Infected>')
     w(0.5)
@@ -95,9 +96,10 @@ def main():
       print('\n   We will begin with creating your character: ')
 
       character_generator = CharacterGenerator()
-      skills_proficiency = {}
+      skills_proficiency_dict = {}
+
       attributes_dict = {}
-      attributes_dict = character_generator.get_attributes(attributes_dict, skills_proficiency)
+      attributes_dict = character_generator.get_attributes(attributes_dict, skills_proficiency_dict)
 
       character_sheet = attributes_dict
 

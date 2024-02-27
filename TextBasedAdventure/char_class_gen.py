@@ -1,4 +1,5 @@
-def char_class_gen(skills_proficiency):
+
+def char_class_gen(skills_proficiency_dict):
   print("  \n   ......................")
   print("  \n   Now it's time to choose your class")
   print("   Options are: ")
@@ -7,26 +8,25 @@ def char_class_gen(skills_proficiency):
     char_class = input(f"   Enter class: ")
     if char_class in ("fighter", "Fighter"):
       class1 = "Fighter"
-      char_class = fighter(skills_proficiency)
+      char_class = fighter(skills_proficiency_dict)
       break
     else:
       print("Sorry! Only fighter is available")
       continue
   return char_class
 
-
-def fighter(skills_proficiency):
+def fighter(skills_proficiency_dict):
   print("  \n   As a fighter your hit dice are 1d10")
   print("  \n   ......................")
 
-  skills_proficiency["light armor"] = True
-  skills_proficiency["medium armor"] = True
-  skills_proficiency["heavy armor"] = True
-  skills_proficiency["shields"] = True
-  skills_proficiency["simple weapons"] = True
-  skills_proficiency["martial weapons"] = True
-  skills_proficiency["strength save"] = True
-  skills_proficiency["constitution save"] = True
+  skills_proficiency_dict["light armor"] = True
+  skills_proficiency_dict["medium armor"] = True
+  skills_proficiency_dict["heavy armor"] = True
+  skills_proficiency_dict["shields"] = True
+  skills_proficiency_dict["simple weapons"] = True
+  skills_proficiency_dict["martial weapons"] = True
+  skills_proficiency_dict["strength save"] = True
+  skills_proficiency_dict["constitution save"] = True
 
   print("  \n   You're also proficient in your choice of two of the following: ")
   print("      1. Acrobatics")
@@ -36,32 +36,33 @@ def fighter(skills_proficiency):
   print("      5. Insight")
   print("      6. Intimidation")
   print("      7. Perception")
+
   chosen_skills = []
+  temp_skill = ""
   while len(chosen_skills) < 2:
     choice = input("Skill: > ")
     if choice.isdigit():
       choice = int(choice)
       if 1 <= choice <= 7:
-        skill_name = ""
         if choice == 1:
-          skill_name = "acrobatics"
+          temp_skill = "acrobatics"
         elif choice == 2:
-          skill_name = "animal handling"
+          temp_skill = "animal handling"
         elif choice == 3:
-          skill_name = "athletics"
+          temp_skill = "athletics"
         elif choice == 4:
-          skill_name = "history"
+          temp_skill = "history"
         elif choice == 5:
-          skill_name = "insight"
+          temp_skill = "insight"
         elif choice == 6:
-          skill_name = "intimidation"
+          temp_skill = "intimidation"
         elif choice == 7:
-          skill_name = "perception"
+          temp_skill = "perception"
 
-        if not skills_proficiency[skill_name]:
-          skills_proficiency[skill_name] = True
-          chosen_skills.append(skill_name)
-          print(f"You are now proficient in {skill_name}.")
+        if not skills_proficiency_dict[temp_skill]:
+          skills_proficiency_dict[temp_skill] = True
+          chosen_skills.append[temp_skill]
+          print(f"You are now proficient in {temp_skill}.")
         else:
           print("You have already chosen proficiency in that skill.")
       else:
