@@ -7,7 +7,7 @@ def initialize_attributes():
         "Wisdom": 0,
         "Charisma": 0
     }
-    initial_skills_prof = initialize_char_skills_prof()
+    initial_skills_prof = initialize_skills_prof()
     initial_attributes = {
         "name": False,
         "race": False,
@@ -28,7 +28,7 @@ def initialize_ability_scores():
     }
     return ability_scores
 
-def initialize_char_skills_prof():
+def initialize_skills_prof():
     char_initial_skills_proficiency_dict = {
         "light armor": False,
         "medium armor": False,
@@ -67,5 +67,5 @@ def initialize_char_skills_prof():
 
 attributes_dict = initialize_attributes()
 
-print(attributes_dict["ability scores"])
+print("INITIALIZING SKILL PROF", attributes_dict["skills proficiency"])
 
