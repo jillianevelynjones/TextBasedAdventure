@@ -11,9 +11,17 @@ def initialize_attributes():
     initial_attributes = {
         "name": False,
         "race": False,
+        "size": False,
+        "speed": False,
+        "language 1": False,
+        "language 2": False,
         "class": False,
+        "hit dice": False,
+        "skills proficiency": initial_skills_prof,
+        "sub class": False,
         "ability scores": ability_scores,
-        "skills proficiency": initial_skills_prof
+        "proficiency bonus": False,
+        "ability bonus": False
     }
     return initial_attributes
 
@@ -66,6 +74,4 @@ def initialize_skills_prof():
 
 
 attributes_dict = initialize_attributes()
-
-print("INITIALIZING SKILL PROF", attributes_dict["skills proficiency"])
 
