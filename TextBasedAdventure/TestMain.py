@@ -1,11 +1,10 @@
 import TestCharacterGen
 import CharInitialization
+import PrintCharacter
 from TestCharacterGen import CharacterGenerator
 import time
 import sys
 
-
-# miscellaneous functions + procedures
 
 def w(t):
     time.sleep(t)
@@ -89,7 +88,8 @@ def main():
             print('  \n  we will begin with choosing an existing character:')
             character_file_name = input('\n > character file name: ')
 
-            print(load_character(character_file_name))
+            attributes_loaded = load_character(character_file_name)
+            PrintCharacter.print_character(attributes_loaded)
 
             break
 
