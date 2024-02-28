@@ -6,7 +6,7 @@ import sys
 
 
 # miscellaneous functions + procedures
-
+  
 def w(t):
     time.sleep(t)
 
