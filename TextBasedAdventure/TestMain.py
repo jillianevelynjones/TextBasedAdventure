@@ -74,6 +74,7 @@ def main():
             attributes_dict = CharInitialization.attributes_dict
             character_generator = CharacterGenerator()
             character_generator.character_input(attributes_dict)
+            character_generator.attribute_calc(attributes_dict)
 
             print("\n   Pick a file name to save under:")
             character_file_name = input('> ')
