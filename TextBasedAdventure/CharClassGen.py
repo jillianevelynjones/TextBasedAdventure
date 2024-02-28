@@ -128,7 +128,4 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
             print("Sorry! Only defense is available")
             continue
 
-    print("\n TESTING END OF FIGHTER FUNCTION")
-    print(class_skills_proficiency_dict)
-
-    return "Fighter", class_skills_proficiency_dict
+    return "Fighter", class_skills_proficiency_dict, attributes_dict

@@ -31,4 +31,4 @@ def human (attributes_dict):
         print("Sorry! Only language available at the time is Elvish")
         attributes_dict["language 2"] = "elvish"
 
-    return "Human"
+    return "Human", attributes_dict

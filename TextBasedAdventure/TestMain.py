@@ -73,10 +73,7 @@ def main():
 
             attributes_dict = {}
             character_generator = CharacterGenerator()
-            attributes = character_generator.character_input(attributes_dict)
-
-            print("\n THIS IS WHAT WILL BE SAVED")
-            print(attributes_dict)
+            character_generator.character_input(attributes_dict)
 
             print("\n   Pick a file name to save under:")
             character_file_name = input('> ')

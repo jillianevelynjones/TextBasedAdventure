@@ -161,9 +161,9 @@ class CharacterGenerator():
         print("\n First choose a race.")
         print("\n   Options are: ")
         print("     Human")
-        attributes_dict["race"] = char_race_gen(attributes_dict)
+        attributes_dict["race"], self.attributes_dict = char_race_gen(attributes_dict)
 
-        attributes_dict["class"], self.chargen_skills_proficiency_dict = char_class_gen(attributes_dict)
+        attributes_dict["class"], self.chargen_skills_proficiency_dict, self.attributes_dict = char_class_gen(attributes_dict)
 
         print("    ......................")
         print("\n  Now we'll choose Ability Scores.")
@@ -186,10 +186,6 @@ class CharacterGenerator():
                     print("\n   Invalid " + ability + " score. Please choose from " + ', '.join(score_options))
 
         print("    ......................")
-        print("\n    TESTING TESTING TESTING")
-        print(attributes_dict)
-
-        print("    ......................")
         print("\n Let's name your character!")
         attributes_dict['name'] = input("   Name: > ")
 
@@ -198,11 +194,13 @@ class CharacterGenerator():
         self.char_class = attributes_dict["class"]
         self.ability_scores = attributes_dict["ability scores"]
 
+
         return {
             "name": self.name,
             "race": self.race,
             "class": self.char_class,
-            "ability scores": ability_scores
+            "ability scores": self.ability_scores,
+            "skills proficiency": self.chargen_skills_proficiency_dict
         }
 
     def __init__(self):
@@ -210,10 +208,12 @@ class CharacterGenerator():
         self.race = False
         self.char_class = False
         self.ability_scores = False
+        self.chargen_skills_proficiency_dict = False
 
     def initialize_attributes(self):
         self.name = None
         self.race = None
         self.char_class = None
         self.ability_scores = None
+        self.chargen_skills_proficiency_dict = None
 
