@@ -91,6 +91,7 @@ class CharacterGenerator():
         attributes_dict["proficiency bonus"] = calculate_proficiency_bonus()
         print("   That makes your proficiency bonus ", attributes_dict["proficiency bonus"])
 
+        print("    ......................")
                         
         def calculate_ability_bonus(score):
             if score == "20":
@@ -129,51 +130,52 @@ class CharacterGenerator():
             else:
                 print("   ", ability + ": " + str(score) + " (" + str(bonus) + ")")
 
-        
+        print("    ......................")
 
-
-        def assign_skills_to_ability(char_skills_proficiency_dict):
+        def calculate_skill_bonuses(attributes_dict):
             skill_ability_map = {
-              "athletics": "Strength",
-              "acrobatics": "Dexterity",
-              "sleight of hand": "Dexterity",
-              "stealth": "Dexterity",
-              "arcana": "Intelligence",
-              "history": "Intelligence",
-              "investigation": "Intelligence",
-              "nature": "Intelligence",
-              "religion": "Intelligence",
-              "animal handling": "Wisdom",
-              "insight": "Wisdom",
-              "medicine": "Wisdom",
-              "perception": "Wisdom",
-              "survival": "Wisdom",
-              "deception": "Charisma",
-              "intimidation": "Charisma",
-              "performance": "Charisma",
-              "persuasion": "Charisma"
+                "athletics": "Strength",
+                "acrobatics": "Dexterity",
+                "sleight of hand": "Dexterity",
+                "stealth": "Dexterity",
+                "arcana": "Intelligence",
+                "history": "Intelligence",
+                "investigation": "Intelligence",
+                "nature": "Intelligence",
+                "religion": "Intelligence",
+                "animal handling": "Wisdom",
+                "insight": "Wisdom",
+                "medicine": "Wisdom",
+                "perception": "Wisdom",
+                "survival": "Wisdom",
+                "deception": "Charisma",
+                "intimidation": "Charisma",
+                "performance": "Charisma",
+                "persuasion": "Charisma"
             }
-            return {skill: skill_ability_map[skill] for skill in char_skills_proficiency_dict}
         
-        
-        def print_skill_bonuses(skill_bonuses):
-            for skill, bonus in skill_bonuses.items():
-                if bonus > 0:
-                    print("  ", skill, " +", bonus)
-                elif bonus == 0:
-                    print("  ", skill, " ", bonus)
-                else:
-                    print("  ", skill, " -", abs(bonus))
-
-
-
-        def calculate_skill_bonuses(self, ability_scores, proficiency_bonus, chargen_skills_proficiency_dict):
-            skill_ability_map = assign_skills_to_ability(chargen_skills_proficiency_dict)
             skill_bonuses = {}
-    
-            for skill, ability in skill_ability_map.items():
-                ability_bonus = calculate_ability_bonus(ability_scores[ability])
-                proficiency_bonus_with_ability = proficiency_bonus + ability_bonus
-                skill_bonuses[skill] = proficiency_bonus_with_ability
-    
+        
+            for skill, proficiency in attributes_dict["skills proficiency"].items():
+                if proficiency:
+                    ability = skill_ability_map.get(skill)
+                    if ability:
+                        ability_bonus = attributes_dict["ability bonuses"].get(ability, 0)
+                        proficiency_bonus = attributes_dict["proficiency bonus"]
+                        skill_bonuses[skill] = ability_bonus + proficiency_bonus
+                else:
+                    ability = skill_ability_map.get(skill)
+                    if ability:
+                        ability_bonus = attributes_dict["ability bonuses"].get(ability, 0)
+                        skill_bonuses[skill] = ability_bonus
+        
             return skill_bonuses
+        
+        
+        attributes_dict["skill bonus"] = calculate_skill_bonuses(attributes_dict)
+        print("\n   Skill Bonuses:")
+        for skill, bonus in attributes_dict["skill bonus"].items():
+            print(f"      {skill}: {bonus}")
+        
+        print("    ......................")
+        
