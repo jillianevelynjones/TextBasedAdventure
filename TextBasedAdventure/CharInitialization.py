@@ -22,7 +22,9 @@ def initialize_attributes():
         "ability scores": ability_scores,
         "proficiency bonus": False,
         "ability bonus": False,
-        "skill bonus": False
+        "skill bonus": False,
+        "AC": False,
+        "hit point lvl 1": False
     }
     return initial_attributes
 
