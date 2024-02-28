@@ -18,12 +18,12 @@ def t(text):
         time.sleep(0.021)
 
 
-def save_character(save_name, attributes):
+def save_character(save_name, attributes_dict):
     save_name_txt = save_name + '.txt'
     print('> saving character')
     try:
         with open(save_name_txt, 'w') as f:
-            for key, value in attributes.items():
+            for key, value in attributes_dict.items():
                 f.write(f"{key}:{value}\n")
         print('> character saved successfully')
     except Exception as e:
@@ -37,12 +37,12 @@ def load_character(load_name):
     w(1)
     try:
         with open(load_name_txt, "r") as f:
-            attributes = {}
+            attributes_dict = {}
             for line in f:
                 key, value = line.strip().split(':', 1)
-                attributes[key.strip()] = value.strip()
+                attributes_dict[key.strip()] = value.strip()
             print("\n > Character loaded successfully.")
-            return attributes
+            return attributes_dict
     except FileNotFoundError:
         t('\n > character file not found\n')
         return False
@@ -81,7 +81,7 @@ def main():
             print("\n   Pick a file name to save under:")
             character_file_name = input('> ')
 
-            save_character(character_file_name, attributes)
+            save_character(character_file_name, attributes_dict)
             print("\n   Game saved as:", character_file_name)
 
             break

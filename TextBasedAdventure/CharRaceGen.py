@@ -6,7 +6,6 @@ def char_race_gen(attributes_dict):
     while True:
         char_class = input(f"   Enter race: ")
         if char_class in ("human", "Human"):
-            race1 = "Fighter"
             char_race = human(attributes_dict)
             break
         else:
@@ -25,11 +24,11 @@ def human (attributes_dict):
     attributes_dict["language 1"] = "common"
     print("\n   Your choices are: ")
     print("      Elvish")
-        attributes_dict["language 2"] = input(f"   Enter language: ")
-        if attributes_dict["language 2"] in ("elvish", "Elvish"):
-            attributes_dict["language 2"] = "elvish"
-        else:
-            print("Sorry! Only language available at the time is Elvish")
-            attributes_dict["language 2"] = "elvish"
+    attributes_dict["language 2"] = input(f"   Enter language: ")
+    if attributes_dict["language 2"] in ("elvish", "Elvish"):
+        attributes_dict["language 2"] = "elvish"
+    else:
+        print("Sorry! Only language available at the time is Elvish")
+        attributes_dict["language 2"] = "elvish"
 
     return "Human"

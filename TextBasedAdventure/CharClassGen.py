@@ -45,7 +45,6 @@ def char_class_gen(attributes_dict):
     while True:
         char_class = input(f"   Enter class: ")
         if char_class in ("fighter", "Fighter"):
-            class1 = "Fighter"
             char_class = fighter(class_skills_proficiency_dict, attributes_dict)
             break
         else:
