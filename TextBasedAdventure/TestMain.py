@@ -6,7 +6,7 @@ import sys
 
 
 # miscellaneous functions + procedures
-  
+
 def w(t):
     time.sleep(t)
 
@@ -53,9 +53,9 @@ def load_character(load_name):
 
 def main():
 
-    character_generator = TestCharacterGen.CharacterGenerator()
+    '''character_generator = TestCharacterGen.CharacterGenerator()
     print(character_generator)
-    CharacterInitialization.initialize_attributes()
+    CharInitialization.initialize_attributes()'''
 
     # Opening Menu
     while True:
@@ -71,7 +71,7 @@ def main():
             print("\n   ......................")
             print('\n   We will begin with creating your character: ')
 
-            attributes_dict = CharacterInitialization.attributes_dict
+            attributes_dict = CharInitialization.attributes_dict
             character_generator = CharacterGenerator()
             character_generator.character_input(attributes_dict)
 
