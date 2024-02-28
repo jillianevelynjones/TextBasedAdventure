@@ -1,4 +1,5 @@
 import CharInitialization 
+import PrintCharacter
 from CharClassGen import char_class_gen
 from CharRaceGen import char_race_gen
 
@@ -91,7 +92,7 @@ class CharacterGenerator():
         attributes_dict["proficiency bonus"] = calculate_proficiency_bonus()
         print("   That makes your proficiency bonus ", attributes_dict["proficiency bonus"])
 
-        print("    ......................")
+        print("\n    ......................")
                         
         def calculate_ability_bonus(score):
             if score == "20":
@@ -130,7 +131,12 @@ class CharacterGenerator():
             else:
                 print("   ", ability + ": " + str(score) + " (" + str(bonus) + ")")
 
-        print("    ......................")
+        print("\n \n \n \n    ......................")
+        
+        print(type(attributes_dict["ability scores"]))
+        print(type(attributes_dict["ability bonus"]))
+
+        print("\n \n \n \n    ......................")
 
         def calculate_skill_bonuses(attributes_dict):
             skill_ability_map = {
@@ -181,6 +187,11 @@ class CharacterGenerator():
 
         attributes_dict['AC'] = str(10 + int(attributes_dict['ability bonuses']['Dexterity']))
         attributes_dict['hit point lvl 1'] = str(10 + int(attributes_dict['ability bonuses']['Constitution']))
+        attributes_dict["hit point max"] = attributes_dict["hit point lvl 1"]
 
         print("   Armor Class: ", attributes_dict["AC"])
         print("   Hit Points: ", attributes_dict["hit point lvl 1"])
+
+        print(" \n \n \n \n ")
+
+        PrintCharacter.print_character(attributes_dict)
