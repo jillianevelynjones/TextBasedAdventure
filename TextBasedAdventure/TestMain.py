@@ -1,6 +1,6 @@
 import TestCharacterGen
+import CharInitialization
 from TestCharacterGen import CharacterGenerator
-# from TestCharacterGen import print_character
 import time
 import sys
 
@@ -55,7 +55,7 @@ def main():
 
     character_generator = TestCharacterGen.CharacterGenerator()
     print(character_generator)
-    character_generator.initialize_attributes()
+    CharacterInitialization.initialize_attributes()
 
     # Opening Menu
     while True:
@@ -71,7 +71,7 @@ def main():
             print("\n   ......................")
             print('\n   We will begin with creating your character: ')
 
-            attributes_dict = {}
+            attributes_dict = CharacterInitialization.attributes_dict
             character_generator = CharacterGenerator()
             character_generator.character_input(attributes_dict)
 
