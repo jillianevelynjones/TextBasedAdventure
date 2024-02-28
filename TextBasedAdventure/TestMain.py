@@ -1,8 +1,7 @@
 import TestCharacterGen
 from TestCharacterGen import CharacterGenerator
-from TestCharacterGen import print_character
+# from TestCharacterGen import print_character
 import time
-import pickle
 import sys
 
 
@@ -19,51 +18,39 @@ def t(text):
         time.sleep(0.021)
 
 
-def save_character(save_name, attributes_dict):
-    save_name_pickle = save_name + '.pickle'
+def save_character(save_name, attributes):
+    save_name_txt = save_name + '.txt'
     print('> saving character')
     try:
-        with open(save_name_pickle, 'wb') as f:
-            pickle.dump(attributes_dict, f)
+        with open(save_name_txt, 'w') as f:
+            for key, value in attributes.items():
+                f.write(f"{key}:{value}\n")
         print('> character saved successfully')
     except Exception as e:
         print('> error saving character:', e)
 
 
 def load_character(load_name):
-    load_name_pickle = load_name + '.pickle'
-    print('\n > Loading character from:', load_name_pickle)  # Debug statement
+    load_name_txt = load_name + '.txt'
+    print('\n > Loading character from:', load_name_txt)
     t(' > loading character...')
     w(1)
     try:
-        with open(load_name_pickle, "rb") as pickle_in:
-            character = pickle.load(pickle_in)
+        with open(load_name_txt, "r") as f:
+            attributes = {}
+            for line in f:
+                key, value = line.strip().split(':', 1)
+                attributes[key.strip()] = value.strip()
             print("\n > Character loaded successfully.")
-            return character
+            return attributes
     except FileNotFoundError:
         t('\n > character file not found\n')
         return False
     except Exception as e:
-        print('\n > Error loading character:', e)  # Debug statement
+        print('\n > Error loading character:', e)
         return False
 
 
-def check_pickle_file(file_path):
-    print("\n Attempting to open file:", file_path)
-    try:
-        with open(file_path, 'rb') as f:
-            attributes_dict = pickle.load(f)
-            if attributes_dict is not None:
-                print("\n Contents:")
-                print(attributes_dict)
-                # print_character(attributes_dict)
-            else:
-                print("\n Error: Loaded character sheet is None")
-    except Exception as e:
-        print("Error loading pickle file:", e)
-
-
-# main game
 def main():
 
     character_generator = TestCharacterGen.CharacterGenerator()
@@ -84,18 +71,17 @@ def main():
             print("\n   ......................")
             print('\n   We will begin with creating your character: ')
 
-            character_generator = CharacterGenerator()
-            skills_proficiency_dict = {}
-
             attributes_dict = {}
-            attributes_dict = character_generator.get_attributes(attributes_dict, skills_proficiency_dict)
+            character_generator = CharacterGenerator()
+            attributes = character_generator.character_input(attributes_dict)
+
+            print("\n THIS IS WHAT WILL BE SAVED")
+            print(attributes_dict)
 
             print("\n   Pick a file name to save under:")
             character_file_name = input('> ')
-            pickle_file_path = character_file_name + ".pickle"
-            check_pickle_file(pickle_file_path)
 
-            save_character(character_file_name, attributes_dict)
+            save_character(character_file_name, attributes)
             print("\n   Game saved as:", character_file_name)
 
             break
@@ -105,16 +91,14 @@ def main():
             print('  \n  we will begin with choosing an existing character:')
             character_file_name = input('\n > character file name: ')
 
-            pickle_file_path = character_file_name + ".pickle"
-
-            check_pickle_file(pickle_file_path)
+            print(load_character(character_file_name))
 
             break
 
         elif choice == '3':
             t(' > Goodbye!')
             sys.exit()
-            break
+            # break
 
         else:
             t('incorrect response. please try again')
