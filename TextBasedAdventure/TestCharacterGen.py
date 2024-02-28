@@ -178,4 +178,9 @@ class CharacterGenerator():
             print(f"      {skill}: {bonus}")
         
         print("    ......................")
-        
+
+        attributes_dict['AC'] = str(10 + int(attributes_dict['ability bonuses']['Dexterity']))
+        attributes_dict['hit point lvl 1'] = str(10 + int(attributes_dict['ability bonuses']['Constitution']))
+
+        print("   Armor Class: ", attributes_dict["AC"])
+        print("   Hit Points: ", attributes_dict["hit point lvl 1"])
