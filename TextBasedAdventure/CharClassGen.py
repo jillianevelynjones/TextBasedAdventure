@@ -1,42 +1,11 @@
-def char_class_gen(attributes_dict): 
+import CharInitialization
 
-    def initialize_class_skills_prof():
-        class_initial_skills_proficiency_dict = {
-            "light armor": False,
-            "medium armor": False,
-            "heavy armor": False,
-            "shields": False,
-            "simple weapons": False,
-            "martial weapons": False,
-            "strength save": False,
-            "dexterity save": False,
-            "constitution save": False,
-            "intelligence save": False,
-            "wisdom save": False,
-            "charisma save": False,
-            "athletics": False,
-            "acrobatics": False,
-            "sleight of hand": False,
-            "stealth": False,
-            "arcana": False,
-            "history": False,
-            "investigation": False,
-            "nature": False,
-            "religion": False,
-            "animal handling": False,
-            "insight": False,
-            "medicine": False,
-            "perception": False,
-            "survival": False,
-            "deception": False,
-            "intimidation": False,
-            "performance": False,
-            "persuasion": False,
-            "": False
-            }
-        return class_initial_skills_proficiency_dict
+
+def char_class_gen(attributes_dict): 
     
-    class_skills_proficiency_dict = initialize_class_skills_prof()
+    class_skills_proficiency_dict = CharInitialization.initialize_skills_prof()
+
+    print("\n \n SKILL PROF DURING CLASS BEFORE FIGHTER CHOSEN", attributes_dict["skills proficiency"])
     
     print("\n   ......................")
     print("\n   Now it's time to choose your class")
@@ -115,6 +84,8 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
         else:
             print("   Invalid input. Please enter a number.")
 
+    print("\n \n SKILL PROF DURING CLASS AFTER FIGHTER CHOSEN", attributes_dict["skills proficiency"])
+    
     print("\n   ......................")
     print("\n   Now it's time to choose your fighting style")
     print("   Options are: ")
