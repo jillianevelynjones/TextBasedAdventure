@@ -66,13 +66,32 @@ class CharacterGenerator():
             "ability scores": self.ability_scores,
             "skills proficiency": self.chargen_skills_proficiency_dict
         }
+        
 
     def attribute_calc(self, attributes_dict):
 
+        def calculate_proficiency_bonus():
+            if 1 <= attributes_dict["level"] <= 4:
+                return 2
+            elif 5 <= attributes_dict["level"] <= 8:
+                return 3
+            elif 9 <= attributes_dict["level"] <= 12:
+                return 4
+            elif 13 <= attributes_dict["level"] <= 16:
+                return 5
+            elif 17 <= attributes_dict["level"] <= 20:
+                return 6
+            else:
+                return None
+
         print("\n ......................")
-        print("\n You start at level 1")
+        print("\n   You start at level 1")
         attributes_dict["level"] = 1
 
+        attributes_dict["proficiency bonus"] = calculate_proficiency_bonus()
+        print("   That makes your proficiency bonus ", attributes_dict["proficiency bonus"])
+
+                        
         def calculate_ability_bonus(score):
             if score == "20":
                 return 5
@@ -98,6 +117,20 @@ class CharacterGenerator():
                 return -5
             else:
                 return None
+        
+        attributes_dict["ability bonuses"] = {ability: calculate_ability_bonus(score) for ability, score in attributes_dict["ability scores"].items()}
+        print("\n   With the ability scores you chose, your ability bonuses are: ")
+
+        print("\n   Final Ability Scores:")
+        for ability, score in attributes_dict["ability scores"].items():
+            bonus = attributes_dict["ability bonuses"][ability]
+            if bonus >= 0:
+                print("   ", ability + ": " + str(score) + " (+" + str(bonus) + ")")
+            else:
+                print("   ", ability + ": " + str(score) + " (" + str(bonus) + ")")
+
+        
+
 
         def assign_skills_to_ability(char_skills_proficiency_dict):
             skill_ability_map = {
@@ -132,20 +165,7 @@ class CharacterGenerator():
                 else:
                     print("  ", skill, " -", abs(bonus))
 
-        def calculate_proficiency_bonus(self, attributes_dict):
-            self.attributes = attributes_dict
-            if 1 <= self.attributes_dict["level"] <= 4:
-                return 2
-            elif 5 <= self.attributes_dict["level"] <= 8:
-                return 3
-            elif 9 <= self.attributes_dict["level"] <= 12:
-                return 4
-            elif 13 <= self.attributes_dict["level"] <= 16:
-                return 5
-            elif 17 <= self.attributes_dict["level"] <= 20:
-                return 6
-            else:
-                return None
+
 
         def calculate_skill_bonuses(self, ability_scores, proficiency_bonus, chargen_skills_proficiency_dict):
             skill_ability_map = assign_skills_to_ability(chargen_skills_proficiency_dict)
