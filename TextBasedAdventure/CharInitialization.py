@@ -21,7 +21,8 @@ def initialize_attributes():
         "sub class": False,
         "ability scores": ability_scores,
         "proficiency bonus": False,
-        "ability bonus": False
+        "ability bonus": False,
+        "skill bonus": False
     }
     return initial_attributes
 
