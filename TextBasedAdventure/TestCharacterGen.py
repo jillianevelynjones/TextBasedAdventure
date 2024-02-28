@@ -1,4 +1,5 @@
 from CharClassGen import char_class_gen
+from CharRaceGen import char_race_gen
 
 ability_scores = {
   "Strength": 0,
@@ -160,7 +161,7 @@ class CharacterGenerator():
         print("\n First choose a race.")
         print("\n   Options are: ")
         print("     Human")
-        attributes_dict["race"] = input(f"\n   Enter race: ").lower()
+        attributes_dict["race"] = char_race_gen(attributes_dict)
 
         attributes_dict["class"], self.chargen_skills_proficiency_dict = char_class_gen(attributes_dict)
 
