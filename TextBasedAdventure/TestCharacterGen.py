@@ -1,57 +1,8 @@
+import CharInitialization 
 from CharClassGen import char_class_gen
 from CharRaceGen import char_race_gen
 
-ability_scores = {
-  "Strength": 0,
-  "Dexterity": 0,
-  "Constitution": 0,
-  "Intelligence": 0,
-  "Wisdom": 0,
-  "Charisma": 0
-}
-
 score_options = ["15", "14", "13", "12", "10", "8"]
-
-
-def initialize_char_skills_prof():
-    char_initial_skills_proficiency_dict = {
-        "light armor": False,
-        "medium armor": False,
-        "heavy armor": False,
-        "shields": False,
-        "simple weapons": False,
-        "martial weapons": False,
-        "strength save": False,
-        "dexterity save": False,
-        "constitution save": False,
-        "intelligence save": False,
-        "wisdom save": False,
-        "charisma save": False,
-        "athletics": False,
-        "acrobatics": False,
-        "sleight of hand": False,
-        "stealth": False,
-        "arcana": False,
-        "history": False,
-        "investigation": False,
-        "nature": False,
-        "religion": False,
-        "animal handling": False,
-        "insight": False,
-        "medicine": False,
-        "perception": False,
-        "survival": False,
-        "deception": False,
-        "intimidation": False,
-        "performance": False,
-        "persuasion": False,
-        "": False
-    }
-    return char_initial_skills_proficiency_dict
-
-
-char_skills_proficiency_dict = initialize_char_skills_prof()
-    
 
 def calculate_ability_bonus(score):
     if score == "20":
@@ -124,36 +75,9 @@ def print_skill_bonuses(skill_bonuses):
         else:
             print("  ", skill, " -", abs(bonus))
 
-
+    attributes_dict = CharacterInitialization.attributes_dict
+    
 class CharacterGenerator():
-
-    skills_proficiency = initialize_char_skills_prof()
-
-    def calculate_proficiency_bonus(self, attributes_dict):
-        self.attributes = attributes_dict
-        if 1 <= self.attributes["level"] <= 4:
-            return 2
-        elif 5 <= self.attributes["level"] <= 8:
-            return 3
-        elif 9 <= self.attributes["level"] <= 12:
-            return 4
-        elif 13 <= self.attributes["level"] <= 16:
-            return 5
-        elif 17 <= self.attributes["level"] <= 20:
-            return 6
-        else:
-            return None
-
-    def calculate_skill_bonuses(self, ability_scores, proficiency_bonus, chargen_skills_proficiency_dict):
-        skill_ability_map = assign_skills_to_ability(chargen_skills_proficiency_dict)
-        skill_bonuses = {}
-
-        for skill, ability in skill_ability_map.items():
-            ability_bonus = calculate_ability_bonus(ability_scores[ability])
-            proficiency_bonus_with_ability = proficiency_bonus + ability_bonus
-            skill_bonuses[skill] = proficiency_bonus_with_ability
-
-        return skill_bonuses
 
     def character_input(self, attributes_dict):
 
@@ -171,8 +95,8 @@ class CharacterGenerator():
         print("  You must use one of each.")
         print("  Ability options are Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma")
 
-        attributes_dict["ability scores"] = {}
-
+        ability_scores = attributes_dict["ability scores"]
+        
         for ability in ability_scores:
             print("\n   Choose " + ability + " score:")
             while True:
@@ -202,18 +126,3 @@ class CharacterGenerator():
             "ability scores": self.ability_scores,
             "skills proficiency": self.chargen_skills_proficiency_dict
         }
-
-    def __init__(self):
-        self.name = False
-        self.race = False
-        self.char_class = False
-        self.ability_scores = False
-        self.chargen_skills_proficiency_dict = False
-
-    def initialize_attributes(self):
-        self.name = None
-        self.race = None
-        self.char_class = None
-        self.ability_scores = None
-        self.chargen_skills_proficiency_dict = None
-
