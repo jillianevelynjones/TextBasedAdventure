@@ -194,11 +194,4 @@ class CharacterGenerator():
         print(" \n \n \n \n ")
 
         PrintCharacter.print_character(attributes_dict)
-
-    def starting_equipment(self, attributes_dict):
-        if attributes_dict["class"] == "fighter":
-            attributes_dict["gp"] = Dice.d4(5)*10
-            print("You start out with ", attributes_dict["gp"], " gp")
-        
-        return attributes_dict
         
