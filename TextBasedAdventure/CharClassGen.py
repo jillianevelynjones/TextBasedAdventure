@@ -29,12 +29,18 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
     print("\n   You are also now proficienct in all armor, shields and weapons.")
     print("   You can now add your proficiency bonus to Strength and Constitution Saving Throws.")
     
-    class_skills_proficiency_dict["light armor"] = True
-    class_skills_proficiency_dict["medium armor"] = True
-    class_skills_proficiency_dict["heavy armor"] = True
-    class_skills_proficiency_dict["shields"] = True
-    class_skills_proficiency_dict["simple weapons"] = True
-    class_skills_proficiency_dict["martial weapons"] = True
+    weapons_and_armor_dict = class_skills_proficiency_dict.get("weapons and armor", {})
+    for weapon in weapons_and_armor_dict["martial weapons"]:
+        weapons_and_armor_dict["martial weapons"][weapon] = True
+    for weapon in weapons_and_armor_dict["simple weapons"]:         weapons_and_armor_dict["simple weapons"][weapon] = True
+    for armor in weapons_and_armor_dict["light armor"]:
+        weapons_and_armor_dict["light armor"][armor] = True
+    for armor in weapons_and_armor_dict["medium armor"]:
+        weapons_and_armor_dict["medium armor"][armor] = True
+    for armor in weapons_and_armor_dict["heavy armor"]:
+        weapons_and_armor_dict["heavy armor"][armor] = True
+    weapons_and_armor_dict["shields"] = True
+    
     class_skills_proficiency_dict["strength save"] = True
     class_skills_proficiency_dict["constitution save"] = True
     
@@ -85,11 +91,11 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
     print("\n   ......................")
     print("\n   Now it's time to choose your fighting style")
     print("   Options are: ")
-    print("      Defense")
+    print("      Defense (+1 bonus to AC)")
     while True:
-        char_class = input(f"\n   Enter fighting style: ")
-        if char_class in ("defense", "Defense"):
-            # AC SHIT
+        attributes_dict["sub class"] = input(f"\n   Enter fighting style: ")
+        if attributes_dict["sub class"] in ("defense", "Defense"):
+            attributes_dict["AC bonus"] = 1
             break
         else:
             print("Sorry! Only defense is available")
