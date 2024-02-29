@@ -4,15 +4,13 @@ import CharInitialization
 def char_class_gen(attributes_dict): 
     
     class_skills_proficiency_dict = CharInitialization.initialize_skills_prof()
-
-    print("\n \n SKILL PROF DURING CLASS BEFORE FIGHTER CHOSEN", attributes_dict["skills proficiency"])
     
     print("\n   ......................")
     print("\n   Now it's time to choose your class")
     print("   Options are: ")
     print("      Fighter")
     while True:
-        char_class = input(f"   Enter class: ")
+        char_class = input(f"\n   Enter class: ")
         if char_class in ("fighter", "Fighter"):
             char_class = fighter(class_skills_proficiency_dict, attributes_dict)
             break
@@ -54,7 +52,7 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
     chosen_skills = []
     temp_skill = ""
     while len(chosen_skills) < 2:
-        choice = input("Skill: > ")
+        choice = input("\n   Skill: > ")
         if choice.isdigit():
             choice = int(choice)
             if 1 <= choice <= 7:
@@ -83,15 +81,13 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
                 print("   Invalid choice. Please enter a number between 1 and 7.")
         else:
             print("   Invalid input. Please enter a number.")
-
-    print("\n \n SKILL PROF DURING CLASS AFTER FIGHTER CHOSEN", attributes_dict["skills proficiency"])
     
     print("\n   ......................")
     print("\n   Now it's time to choose your fighting style")
     print("   Options are: ")
     print("      Defense")
     while True:
-        char_class = input(f"   Enter fighting style: ")
+        char_class = input(f"\n   Enter fighting style: ")
         if char_class in ("defense", "Defense"):
             # AC SHIT
             break
