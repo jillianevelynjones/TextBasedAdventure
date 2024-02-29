@@ -1,5 +1,3 @@
-import ast
-
 def print_character(attributes_dict):
 
     print("  \n  ......................")
@@ -20,17 +18,22 @@ def print_character(attributes_dict):
 
     print("  \n  ......................")
 
-    print("\n   Ability Scores:")
-    
-    ability_score_dict = ast.literal_eval(attributes_dict["ability scores"])
-    ability_bonus_dict = ast.literal_eval(attributes_dict["ability bonus"])
-    
-    for ability, score in ability_score_dict.items():
-        bonus = ability_bonus_dict.get(ability, 0)
-        print(f"{ability}: {score} ({bonus})")
+    print("\n   Ability Scores: ")
+    for ability, score in attributes_dict["ability scores"].items():
+        bonus = attributes_dict["ability bonus"][ability]
+        if bonus >= 0:
+            print("   ", ability + ": " + str(score) + " (+" + str(bonus) + ")")
+        else:
+            print("   ", ability + ": " + str(score) + " (" + str(bonus) + ")")
 
     print("\n    ......................")
     
-    print("   Languages", attributes_dict["language 1"], attributes_dict["language 2"])
+    print("   Languages", attributes_dict["language 1"], ", ", attributes_dict["language 2"])
 
-    print("   Proficiency Bonus +", attributes_dict["proficiency bonus"])
+    print("   Proficient Skills: ")
+    for skill, bonus in attributes_dict["skill bonus"].items():
+        if attributes_dict["skills proficiency"].get(skill, True):
+            if bonus >= 0:
+                print(f"      {skill} +{bonus}, ")
+            else:
+                print(f"      {skill} {bonus}, ")
