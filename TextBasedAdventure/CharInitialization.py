@@ -1,4 +1,5 @@
 def initialize_attributes():
+    
     ability_scores = {
         "Strength": 0,
         "Dexterity": 0,
@@ -7,7 +8,9 @@ def initialize_attributes():
         "Wisdom": 0,
         "Charisma": 0
     }
+    
     initial_skills_prof = initialize_skills_prof()
+    
     initial_attributes = {
         "name": False,
         "race": False,
@@ -24,29 +27,20 @@ def initialize_attributes():
         "ability bonus": False,
         "skill bonus": False,
         "AC": False,
-        "hit point lvl 1": False
+        "hit point lvl 1": False,
+        "hit point max": 0,
+        "AC bonus": 0,
+        "darkvision": False,
+        "subrace": False
     }
+    
     return initial_attributes
 
-def initialize_ability_scores():
-    ability_scores = {
-        "Strength": 0,
-        "Dexterity": 0,
-        "Constitution": 0,
-        "Intelligence": 0,
-        "Wisdom": 0,
-        "Charisma": 0
-    }
-    return ability_scores
-
 def initialize_skills_prof():
+    weapons_and_armor_dict = weapons_and_armor()
+    
     char_initial_skills_proficiency_dict = {
-        "light armor": False,
-        "medium armor": False,
-        "heavy armor": False,
-        "shields": False,
-        "simple weapons": False,
-        "martial weapons": False,
+        "weapons and armor": weapons_and_armor_dict,
         "strength save": False,
         "dexterity save": False,
         "constitution save": False,
@@ -71,9 +65,88 @@ def initialize_skills_prof():
         "intimidation": False,
         "performance": False,
         "persuasion": False,
+        "smith's tools": False,
+        "brewer's tools": False,
+        "mason's tools": False,
         "": False
     }
     return char_initial_skills_proficiency_dict
+
+def weapons_and_armor():
+    simple_weapons = {
+        "club": False,
+        "dagger": False,
+        "greatclub": False,
+        "handaxe": False,
+        "javelin": False,
+        "light hammer": False,
+        "mace": False,
+        "quarterstaff": False,
+        "sickle": False,
+        "spear": False,
+        "light crossbow": False,
+        "dart": False,
+        "shortbow": False,
+        "sling": False  
+    }
+
+    martial_weapons = {
+        "battleaxe": False,
+        "flail": False,
+        "glaive": False,
+        "greataxe": False,
+        "greatsword": False,
+        "halberd": False,
+        "lance": False,
+        "longsword": False,
+        "maul": False,
+        "morningstar": False,
+        "pike": False,
+        "rapier": False,
+        "scrimitar": False,
+        "shortsword": False,
+        "trident": False,
+        "war pick": False,
+        "warhammer": False,
+        "whip": False,
+        "blowgun": False,
+        "hand crossbow": False,
+        "heavy crossbow": False,
+        "longbow": False,
+        "net": False
+    }
+
+    light_armor = {
+        "padded": False,
+        "leather": False,
+        "studded leather": False
+    }
+
+    medium_armor = {
+        "hide": False,
+        "chain shirt": False,
+        "scale mail": False,
+        "breastplate": False,
+        "half plate": False
+    }
+
+    heavy_armor = {
+        "ring mail": False,
+        "chain mail": False,
+        "splint": False,
+        "plate": False
+    }
+    
+    weapons_and_armor_dict = {
+        "simple weapons": simple_weapons,
+        "martial weapons": martial_weapons,
+        "light armor":  light_armor,
+        "medium armor": medium_armor,
+        "heavy armor":  heavy_armor,
+        "shields": False
+    }
+
+    return weapons_and_armor_dict
 
 
 attributes_dict = initialize_attributes() 
