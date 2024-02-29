@@ -1,7 +1,6 @@
-import CharacterGenerator
+from Character_Generator import CharacterGenerator
 import CharInitialization
 import PrintCharacter
-from TestCharacterGen import CharacterGenerator
 import time
 import sys
 import json
@@ -50,10 +49,6 @@ def load_character(load_name):
 
 
 def main():
-
-    '''character_generator = TestCharacterGen.CharacterGenerator()
-    print(character_generator)
-    CharInitialization.initialize_attributes()'''
 
     # Opening Menu
     while True:
