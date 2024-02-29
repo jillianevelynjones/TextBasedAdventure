@@ -76,5 +76,4 @@ def initialize_skills_prof():
     return char_initial_skills_proficiency_dict
 
 
-attributes_dict = initialize_attributes()
-
+attributes_dict = initialize_attributes() 
