@@ -9,7 +9,7 @@ class CharacterGenerator():
     
     def character_input(self, attributes_dict):
 
-        attributes_dict["race"], self.attributes_dict = char_race_gen(attributes_dict)
+        attributes_dict["race"], attributes_dict["skills proficiency"], self.attributes_dict = char_race_gen(attributes_dict)
         
         attributes_dict["class"], attributes_dict["skills proficiency"], self.attributes_dict = char_class_gen(attributes_dict)
 
@@ -34,11 +34,12 @@ class CharacterGenerator():
                     print("\n   Invalid " + ability + " score. Please choose from " + ', '.join(score_options))
 
         if attributes_dict["race"] in ("human", "Human"):
-            print('\n   Humans get a +1 to all ability scores')
             for ability in attributes_dict["ability scores"]:
                 attributes_dict["ability scores"][ability] = str(int(attributes_dict["ability scores"][ability]) + 1)
+        elif attributes_dict["race"] in ("dwarf", "Dwarf"):
+            attributes_dict["ability scores"]["Constitution"] = str(int(attributes_dict["ability scores"]["Constitution"]) + 2)
         else:
-            print("Error: add +1 to ability scores for being human")
+            print("Error: add racial bonus to ability score")
                 
         print("\n   Final Ability Scores:")
         for ability, score in attributes_dict["ability scores"].items():
@@ -176,9 +177,9 @@ class CharacterGenerator():
         
         print("    ......................")
 
-        attributes_dict['AC'] = str(10 + int(attributes_dict['ability bonus']['Dexterity']))
-        attributes_dict['hit point lvl 1'] = str(10 + int(attributes_dict['ability bonus']['Constitution']))
-        attributes_dict["hit point max"] = attributes_dict["hit point lvl 1"]
+        attributes_dict['AC'] = str(10 + int(attributes_dict['ability bonus']['Dexterity']) + int(attributes_dict["AC bonus"]))
+        attributes_dict['hit point lvl 1'] = 10 + int(attributes_dict['ability bonus']['Constitution'])
+        attributes_dict["hit point max"] = attributes_dict["hit point max"] + attributes_dict["hit point lvl 1"]
 
         print("   Armor Class: ", attributes_dict["AC"])
         print("   Hit Points: ", attributes_dict["hit point lvl 1"])
