@@ -31,7 +31,8 @@ def initialize_attributes():
         "hit point max": 0,
         "AC bonus": 0,
         "darkvision": False,
-        "subrace": False
+        "sub race": False,
+        "gp": False
     }
     
     return initial_attributes
