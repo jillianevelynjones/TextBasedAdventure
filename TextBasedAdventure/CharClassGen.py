@@ -101,4 +101,4 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
             print("Sorry! Only defense is available")
             continue
 
-    return "Fighter", class_skills_proficiency_dict, attributes_dict
+    return "fighter", class_skills_proficiency_dict, attributes_dict
