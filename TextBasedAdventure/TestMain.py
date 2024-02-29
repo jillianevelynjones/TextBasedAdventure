@@ -4,6 +4,7 @@ import PrintCharacter
 from TestCharacterGen import CharacterGenerator
 import time
 import sys
+import json
 
 
 def w(t):
@@ -17,29 +18,27 @@ def t(text):
         time.sleep(0.021)
 
 
+import json
+
 def save_character(save_name, attributes_dict):
-    save_name_txt = save_name + '.txt'
+    save_name_json = save_name + '.json'
     print('> saving character')
     try:
-        with open(save_name_txt, 'w') as f:
-            for key, value in attributes_dict.items():
-                f.write(f"{key}:{value}\n")
+        with open(save_name_json, 'w') as f:
+            json.dump(attributes_dict, f, indent=4)
         print('> character saved successfully')
     except Exception as e:
         print('> error saving character:', e)
 
 
 def load_character(load_name):
-    load_name_txt = load_name + '.txt'
-    print('\n > Loading character from:', load_name_txt)
+    load_name_json = load_name + '.json'
+    print('\n > Loading character from:', load_name_json)
     t(' > loading character...')
     w(1)
     try:
-        with open(load_name_txt, "r") as f:
-            attributes_dict = {}
-            for line in f:
-                key, value = line.strip().split(':', 1)
-                attributes_dict[key.strip()] = value.strip()
+        with open(load_name_json, "r") as f:
+            attributes_dict = json.load(f)
             print("\n > Character loaded successfully.")
             return attributes_dict
     except FileNotFoundError:
