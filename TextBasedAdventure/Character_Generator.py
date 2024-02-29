@@ -1,5 +1,6 @@
 import CharInitialization 
 import PrintCharacter
+import Dice
 from CharClassGen import char_class_gen
 from CharRaceGen import char_race_gen
 
@@ -33,11 +34,17 @@ class CharacterGenerator():
                 else:
                     print("\n   Invalid " + ability + " score. Please choose from " + ', '.join(score_options))
 
-        if attributes_dict["race"] in ("human", "Human"):
+        print("\n \n \n \n ", attributes_dict["race"], attributes_dict["sub race"])
+        
+        if attributes_dict["race"] == "human":
             for ability in attributes_dict["ability scores"]:
                 attributes_dict["ability scores"][ability] = str(int(attributes_dict["ability scores"][ability]) + 1)
-        elif attributes_dict["race"] in ("dwarf", "Dwarf"):
+        elif attributes_dict["race"] == "dwarf":
             attributes_dict["ability scores"]["Constitution"] = str(int(attributes_dict["ability scores"]["Constitution"]) + 2)
+            if attributes_dict["sub race"] == "hill dwarf":
+                attributes_dict["ability scores"]["Wisdom"] = str(int(attributes_dict["ability scores"]["Wisdom"]) + 1)
+            elif attributes_dict["sub race"] == "mountain dwarf":
+                attributes_dict["ability scores"]["Strength"] = str(int(attributes_dict["ability scores"]["Strength"]) + 2)
         else:
             print("Error: add racial bonus to ability score")
                 
@@ -187,3 +194,11 @@ class CharacterGenerator():
         print(" \n \n \n \n ")
 
         PrintCharacter.print_character(attributes_dict)
+
+    def starting_equipment(self, attributes_dict):
+        if attributes_dict["class"] == "fighter":
+            attributes_dict["gp"] = Dice.d4(5)*10
+            print("You start out with ", attributes_dict["gp"], " gp")
+        
+        return attributes_dict
+        
