@@ -18,13 +18,15 @@ def char_race_gen(attributes_dict):
             char_race = dwarf(race_skills_proficiency_dict, attributes_dict)
             break
         else:
-            print("Sorry! Only human is available")
+            print("Invalid response. Try again.")
             continue
     return char_race
 
 
 def human (race_skills_proficiency_dict, attributes_dict):
     print("\n   As a human all your ability scores increase by 1")
+    for ability in attributes_dict["ability scores"]:
+        attributes_dict["ability scores"][ability] = str(int(attributes_dict["ability scores"][ability]) + 1)
     print("   Your size is medium")
     attributes_dict["size"] = "5"
     print("   Your speed is 30")
@@ -51,7 +53,7 @@ def dwarf (race_skills_proficiency_dict, attributes_dict):
     attributes_dict["speed"] = "30"
     print("   You have dark vision")
     attributes_dict["dark vision"] = "60"
-    print("   You have advantage on saving throws against poison,and you have resistance against poison damage") #How do I code that?
+    print("   You have advantage on saving throws against poison,and you have resistance against poison damage")
     
     weapons_and_armor_dict = race_skills_proficiency_dict.get("weapons and armor", {})
     
@@ -106,16 +108,14 @@ def dwarf (race_skills_proficiency_dict, attributes_dict):
             print("You have chosen hill dwarf.")
             attributes_dict["sub race"] = "hill dwarf"
             print("Your wisdom score increases by 1 and your hit point maximum increases by 1, and it increases by 1 every time you gain a level.")
-            attributes_dict["ability scores"]["Wisdom"] = int(attributes_dict["ability scores"]["Wisdom"]) + 1
             attributes_dict["hit point max"] = int(attributes_dict["hit point max"]) + 1
             break
         elif sub_race_choice == "2":
             print("You have chosen mountain dwarf")
             attributes_dict["sub race"] = "mountain dwarf"
             print("Your strength score increases by 2 and you have proficiency with light and medium armor.")
-            attributes_dict["ability scores"]["Strength"] = int(attributes_dict["ability scores"]["Strength"]) + 2
             for armor in weapons_and_armor_dict["light armor"]:
-                weapons_and_armor_dict["light armor"][weapon] = True
+                weapons_and_armor_dict["light armor"][armor] = True
             for armor in weapons_and_armor_dict["medium armor"]:
                 weapons_and_armor_dict["medium armor"][armor] = True
             break
@@ -123,4 +123,4 @@ def dwarf (race_skills_proficiency_dict, attributes_dict):
             print("Invalid choice. Please enter either 1 or 2") 
             continue 
     
-    return "Dwarf", race_skills_proficiency_dict, attributes_dict
+    return "dwarf", race_skills_proficiency_dict, attributes_dict
