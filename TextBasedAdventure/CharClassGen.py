@@ -130,7 +130,9 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
         else:
             print("Sorry! Only defense is available")
             continue
-
+    
+    print("\n   ......................")
+    
     print("\n   Now it's time to choose starting equipment.")
     choices = []
     
