@@ -9,10 +9,6 @@ class CharacterGenerator():
     
     def character_input(self, attributes_dict):
 
-        print("\n ......................")
-        print("\n First choose a race.")
-        print("\n   Options are: ")
-        print("     Human")
         attributes_dict["race"], self.attributes_dict = char_race_gen(attributes_dict)
         
         attributes_dict["class"], attributes_dict["skills proficiency"], self.attributes_dict = char_class_gen(attributes_dict)
@@ -85,7 +81,7 @@ class CharacterGenerator():
             else:
                 return None
 
-        print("\n ......................")
+        print("\n   ......................")
         print("\n   You start at level 1")
         attributes_dict["level"] = 1
 
@@ -120,23 +116,18 @@ class CharacterGenerator():
             else:
                 return None
         
-        attributes_dict["ability bonuses"] = {ability: calculate_ability_bonus(score) for ability, score in attributes_dict["ability scores"].items()}
+        attributes_dict["ability bonus"] = {ability: calculate_ability_bonus(score) for ability, score in attributes_dict["ability scores"].items()}
         print("\n   With the ability scores you chose, your ability bonuses are: ")
 
         print("\n   Final Ability Scores:")
         for ability, score in attributes_dict["ability scores"].items():
-            bonus = attributes_dict["ability bonuses"][ability]
+            bonus = attributes_dict["ability bonus"][ability]
             if bonus >= 0:
                 print("   ", ability + ": " + str(score) + " (+" + str(bonus) + ")")
             else:
                 print("   ", ability + ": " + str(score) + " (" + str(bonus) + ")")
 
-        print("\n \n \n \n    ......................")
-        
-        print(type(attributes_dict["ability scores"]))
-        print(type(attributes_dict["ability bonus"]))
-
-        print("\n \n \n \n    ......................")
+        print("    ......................")
 
         def calculate_skill_bonuses(attributes_dict):
             skill_ability_map = {
@@ -166,13 +157,13 @@ class CharacterGenerator():
                 if proficiency:
                     ability = skill_ability_map.get(skill)
                     if ability:
-                        ability_bonus = attributes_dict["ability bonuses"].get(ability, 0)
+                        ability_bonus = attributes_dict["ability bonus"].get(ability, 0)
                         proficiency_bonus = attributes_dict["proficiency bonus"]
                         skill_bonuses[skill] = ability_bonus + proficiency_bonus
                 else:
                     ability = skill_ability_map.get(skill)
                     if ability:
-                        ability_bonus = attributes_dict["ability bonuses"].get(ability, 0)
+                        ability_bonus = attributes_dict["ability bonus"].get(ability, 0)
                         skill_bonuses[skill] = ability_bonus
         
             return skill_bonuses
@@ -185,8 +176,8 @@ class CharacterGenerator():
         
         print("    ......................")
 
-        attributes_dict['AC'] = str(10 + int(attributes_dict['ability bonuses']['Dexterity']))
-        attributes_dict['hit point lvl 1'] = str(10 + int(attributes_dict['ability bonuses']['Constitution']))
+        attributes_dict['AC'] = str(10 + int(attributes_dict['ability bonus']['Dexterity']))
+        attributes_dict['hit point lvl 1'] = str(10 + int(attributes_dict['ability bonus']['Constitution']))
         attributes_dict["hit point max"] = attributes_dict["hit point lvl 1"]
 
         print("   Armor Class: ", attributes_dict["AC"])
