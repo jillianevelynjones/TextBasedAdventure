@@ -1,4 +1,4 @@
-import TestCharacterGen
+import CharacterGenerator
 import CharInitialization
 import PrintCharacter
 from TestCharacterGen import CharacterGenerator
