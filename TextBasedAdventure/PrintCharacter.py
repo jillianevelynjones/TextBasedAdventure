@@ -17,7 +17,7 @@ def print_character(attributes_dict):
     print("  \n  Speed ", attributes_dict["speed"], " ft.")
 
     print("  \n  ......................")
- 
+
     print("\n   Ability Scores: ")
     for ability, score in attributes_dict["ability scores"].items():
         bonus = attributes_dict["ability bonus"][ability]
