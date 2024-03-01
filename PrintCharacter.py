@@ -1,3 +1,7 @@
+from Inventory import Inventory_Class
+
+
+
 def print_character(attributes_dict):
 
     print("  \n  ......................")
@@ -37,3 +41,9 @@ def print_character(attributes_dict):
                 print(f"      {skill} +{bonus}, ")
             else:
                 print(f"      {skill} {bonus}, ")
+
+    print("\n    ......................")
+
+    inventory = Inventory_Class(attributes_dict)
+    attributes_dict["inventory"] = inventory.get_inventory()
+    print(inventory.display_inventory())
