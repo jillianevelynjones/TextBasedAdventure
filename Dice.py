@@ -1,52 +1,65 @@
-import random 
+import random
 
-def d4(num_dice):
-    roll_results = []
-    for _ in range(num_dice):
-        roll = random.randint(1,4)
-        roll_results.append(roll)
-        total = sum(roll_results)
-    return total
+class Roll():
 
-def d6(num_dice):
-    roll_results = []
-    for _ in range(num_dice):
-        roll = random.randint(1,6)
-        total = sum(roll_results)
-    return total
-
-def d8(num_dice):
-    roll_results = []
-    for _ in range(num_dice):
-        roll = random.randint(1,8)
-        total = sum(roll_results)
-    return total
-
-def d10(num_dice):
-    roll_results = []
-    for _ in range(num_dice):
-        roll = random.randint(1,10)
-        total = sum(roll_results)
-    return total
-
-def d12(num_dice):
-    roll_results = []
-    for _ in range(num_dice):
-        roll = random.randint(1,12)
-        total = sum(roll_results)
-    return total
-
-def d20(num_dice):
-    roll_results = []
-    for _ in range(num_dice):
-        roll = random.randint(1,20)
-        total = sum(roll_results)
-    return total
-
-def d100(num_dice):
-    roll_results = []
-    for _ in range(num_dice):
-        roll = random.randint(1,100)
-        total = sum(roll_results)
-    return total
-
+    def d4(num_dice):
+        roll_results = []
+        for _ in range(num_dice):
+            roll = random.randint(1,4)
+            roll_results.append(roll)
+            total += roll 
+        return roll_results, total
+    
+    def d6(num_dice):
+        roll_results = []
+        total = 0
+        for _ in range(num_dice):
+            roll = random.randint(1,6)
+            roll_results.append(roll)
+            total += roll
+        return roll_results, total
+    
+    def d8(num_dice):
+        roll_results = []
+        total = 0
+        for _ in range(num_dice):
+            roll = random.randint(1,8)
+            roll_results.append(roll)
+            total += roll
+        return roll_results, total
+    
+    def d10(num_dice):
+        roll_results = []
+        total = 0
+        for _ in range(num_dice):
+            roll = random.randint(1,10)
+            roll_results.append(roll)
+            total += roll
+        return roll_results, total
+    
+    def d12(num_dice):
+        roll_results = []
+        total = 0
+        for _ in range(num_dice):
+            roll = random.randint(1,12)
+            roll_results.append(roll)
+            total += roll
+        return roll_results, total
+    
+    def d20(num_dice):
+        roll_results = []
+        total = 0
+        for _ in range(num_dice):
+            roll = random.randint(1,20)
+            roll_results.append(roll)
+            total += roll
+        return roll_results, total
+    
+    def d100(num_dice):
+        roll_results = []
+        total = 0
+        for _ in range(num_dice):
+            roll = random.randint(1,100)
+            roll_results.append(roll)
+            total += roll
+        return roll_results, total
