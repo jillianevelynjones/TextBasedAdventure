@@ -2,7 +2,7 @@ class Shield:
     """A shield that can be worn on one hand."""
 
     name = "Shield"
-    cost = "10 gp"
+    cost = 0, 0, 10 # cp, sp, gp
     base_armor_class = 2
     weight = 6  # In lbs
 
@@ -14,7 +14,7 @@ class NoShield(Shield):
     """If a character is carrying no shield."""
 
     name = "No shield"
-    cost = "0"
+    cost = 0, 0, 0
     base_armor_class = 0
 
     def __str__(self):
@@ -23,7 +23,7 @@ class NoShield(Shield):
 
 class Armor:
     name = "Unknown Armor"
-    cost = "0 gp"
+    cost = 0, 0, 0
     base_armor_class = 10
     dexterity_mod_max = None
     dexterity_applied = True
@@ -54,7 +54,7 @@ class HeavyArmor(Armor):
 
 class PaddedArmor(LightArmor):
     name = "Padded Armor"
-    cost = "5 gp"
+    cost = 0, 0, 5
     base_armor_class = 11
     weight = 8
     stealth_disadvantage = True
@@ -62,21 +62,21 @@ class PaddedArmor(LightArmor):
 
 class LeatherArmor(LightArmor):
     name = "Leather Armor"
-    cost = "10 gp"
+    cost = 0, 0, 10
     base_armor_class = 11
     weight = 10
 
 
 class StuddedLeatherArmor(LightArmor):
     name = "Studded Leather Armor"
-    cost = "45 gp"
+    cost = 0, 0, 45
     base_armor_class = 12
     weight = 13
 
 
 class HideArmor(MediumArmor):
     name = "Hide Armor"
-    cost = "10 gp"
+    cost = 0, 0, 10
     base_armor_class = 12
     dexterity_mod_max = 2
     weight = 12
@@ -84,7 +84,7 @@ class HideArmor(MediumArmor):
 
 class ChainShirt(MediumArmor):
     name = "Chain Shirt"
-    cost = "50 gp"
+    cost = 0, 0, 50
     base_armor_class = 13
     dexterity_mod_max = 2
     weight = 20
@@ -92,7 +92,7 @@ class ChainShirt(MediumArmor):
 
 class ScaleMail(MediumArmor):
     name = "Scale Mail"
-    cost = "50 gp"
+    cost = 0, 0, 50
     base_armor_class = 14
     dexterity_mod_max = 2
     stealth_disadvantage = True
@@ -101,7 +101,7 @@ class ScaleMail(MediumArmor):
 
 class Breastplate(MediumArmor):
     name = "Breastplate"
-    cost = "400 gp"
+    cost = 0, 0, 400
     base_armor_class = 14
     dexterity_mod_max = 2
     weight = 20
@@ -109,7 +109,7 @@ class Breastplate(MediumArmor):
 
 class HalfPlate(MediumArmor):
     name = "Half Plate"
-    cost = "750 gp"
+    cost = 0, 0, 750
     base_armor_class = 15
     dexterity_mod_max = 2
     stealth_disadvantage = True
@@ -118,7 +118,7 @@ class HalfPlate(MediumArmor):
 
 class RingMail(HeavyArmor):
     name = "Ring Mail"
-    cost = "30 gp"
+    cost = 0, 0, 30
     base_armor_class = 14
     stealth_disadvantage = True
     weight = 40
@@ -126,7 +126,7 @@ class RingMail(HeavyArmor):
 
 class ChainMail(HeavyArmor):
     name = "Chain Mail"
-    cost = "75 gp"
+    cost = 0, 0, 75
     base_armor_class = 16
     strength_required = 13
     stealth_disadvantage = True
@@ -135,7 +135,7 @@ class ChainMail(HeavyArmor):
 
 class SplintArmor(HeavyArmor):
     name = "Splint Armor"
-    cost = "200 gp"
+    cost = 0, 0, 200
     base_armor_class = 17
     strength_required = 15
     stealth_disadvantage = True
@@ -144,7 +144,7 @@ class SplintArmor(HeavyArmor):
 
 class PlateMail(HeavyArmor):
     name = "Plate Mail"
-    cost = "1,500 gp"
+    cost = 0, 0, 1500
     base_armor_class = 18
     strength_required = 15
     stealth_disadvantage = True
