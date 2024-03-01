@@ -1,9 +1,8 @@
 import CharInitialization
 import Armor
 import Weapons
+import Equipment
 from Inventory import Inventory_Class
-
-inventory = Inventory_Class()
 
 martial_weapons = {
     "1": Weapons.Battleaxe(),
@@ -133,6 +132,9 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
     
     print("\n   ......................")
     
+    inventory = Inventory_Class(attributes_dict)
+    attributes_dict["inventory"] = inventory.get_inventory()
+    
     print("\n   Now it's time to choose starting equipment.")
     choices = []
     
@@ -202,17 +204,36 @@ def fighter(class_skills_proficiency_dict, attributes_dict):
             "Invalid choice. Try again."
             continue
 
-    print(inventory.display_inventory())
-    '''while True:
+    while True:
         print("   1. dungeoneer's pack")
         print("   2. explorer's pack")
         choice = input("   > ")
         if choice == "1":
-           #code
+            inventory.add_item(Equipment.Backpack(), 1)
+            inventory.add_item(Equipment.Crowbar(), 1)
+            inventory.add_item(Equipment.Hammer(), 1)
+            inventory.add_item(Equipment.Piton(), 10)
+            inventory.add_item(Equipment.Torch(), 10)
+            inventory.add_item(Equipment.Tinderbox(), 1)
+            inventory.add_item(Equipment.Rations(), 10)
+            inventory.add_item(Equipment.Waterskin(), 1)
+            inventory.add_item(Equipment.HempenRope(), 1)
+            break
         elif choice == "2":
-            #code
+            inventory.add_item(Equipment.Backpack(), 1)
+            inventory.add_item(Equipment.Bedroll(), 1)
+            inventory.add_item(Equipment.MessKit(), 1)
+            inventory.add_item(Equipment.Tinderbox(), 1)
+            inventory.add_item(Equipment.Torch(), 10)
+            inventory.add_item(Equipment.Rations(), 10)
+            inventory.add_item(Equipment.Waterskin(), 1)
+            inventory.add_item(Equipment.HempenRope(), 1)
+            break
         else:
-            "Invalid choice. Try again."'''
+            "Invalid choice. Try again."
+            continue
 
+    
+    print(inventory.display_inventory())
     
     return "fighter", class_skills_proficiency_dict, attributes_dict
