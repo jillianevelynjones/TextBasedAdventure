@@ -10,6 +10,8 @@ def initialize_attributes():
     }
     
     initial_skills_prof = initialize_skills_prof()
+
+    initial_inventory = {}
     
     initial_attributes = {
         "name": False,
@@ -32,7 +34,7 @@ def initialize_attributes():
         "AC bonus": 0,
         "darkvision": False,
         "sub race": False,
-        "gp": False
+        "inventory": initial_inventory
     }
     
     return initial_attributes
