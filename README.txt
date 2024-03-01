@@ -1,4 +1,4 @@
-THE SAGA OF THE INFECTED: SECRETS AND PROPECIES OF KRYSMANTHIA
+THE SAGA OF THE INFECTED: SECRETS AND PROPHECIES OF KRYSMANTHIA
 
 This Text Based Advetnure uses the mechanicas of Dungeons and Dragons 5th Edition to run an adventure RPG based on my D&D Campaign
 
