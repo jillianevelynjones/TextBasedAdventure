@@ -1,4 +1,4 @@
-import random
+import random 
 
 def d4(num_dice):
     roll_results = []
