@@ -3,6 +3,7 @@ import PrintCharacter
 import Dice
 from CharClassGen import char_class_gen
 from CharRaceGen import char_race_gen
+from Inventory import Inventory_Class
 
 score_options = ["15", "14", "13", "12", "10", "8"]
     
@@ -193,5 +194,8 @@ class CharacterGenerator():
 
         print(" \n \n \n \n ")
 
+        inventory = Inventory_Class(attributes_dict)
+        attributes_dict["inventory"] = inventory.get_inventory()
+        
         PrintCharacter.print_character(attributes_dict)
         
