@@ -11,7 +11,7 @@ class Weapon:
     
     """
     name = ""
-    cost = "0 gp"
+    cost = 0, 0, 0
     base_damage = "1d4"
     damage_bonus = 0
     attack_bonus = 0
@@ -88,7 +88,7 @@ class MartialWeapon(Weapon):
 
 class Club(SimpleWeapon, MeleeWeapon):
     name = "Club"
-    cost = "1 sp"
+    cost = 0, 1, 0
     base_damage = "1d4"
     damage_type = "b"
     weight = 2
@@ -98,7 +98,7 @@ class Club(SimpleWeapon, MeleeWeapon):
 
 class Dagger(SimpleWeapon, MeleeWeapon):
     name = "Dagger"
-    cost = "2 gp"
+    cost = 0, 0, 2
     base_damage = "1d4"
     damage_type = "p"
     weight = 1
@@ -109,7 +109,7 @@ class Dagger(SimpleWeapon, MeleeWeapon):
 
 class Greatclub(SimpleWeapon, MeleeWeapon):
     name = "Greatclub"
-    cost = "2 sp"
+    cost = 0, 2, 0
     base_damage = "1d8"
     damage_type = "b"
     weight = 10
@@ -119,7 +119,7 @@ class Greatclub(SimpleWeapon, MeleeWeapon):
 
 class Handaxe(SimpleWeapon, MeleeWeapon):
     name = "Handaxe"
-    cost = "5 gp"
+    cost = 0, 0, 5
     base_damage = "1d6"
     damage_type = "s"
     weight = 2
@@ -129,7 +129,7 @@ class Handaxe(SimpleWeapon, MeleeWeapon):
 
 class Javelin(SimpleWeapon, MeleeWeapon):
     name = "Javelin"
-    cost = "5 sp"
+    cost = 0, 5, 0
     base_damage = "1d6"
     damage_type = "p"
     weight = 2
@@ -139,7 +139,7 @@ class Javelin(SimpleWeapon, MeleeWeapon):
 
 class LightHammer(SimpleWeapon, MeleeWeapon):
     name = "Light Hammer"
-    cost = "2 gp"
+    cost = 0, 0, 2
     base_damage = "1d4"
     damage_type = "b"
     weight = 2
@@ -149,7 +149,7 @@ class LightHammer(SimpleWeapon, MeleeWeapon):
 
 class Mace(SimpleWeapon, MeleeWeapon):
     name = "Mace"
-    cost = "5 gp"
+    cost = 0, 0, 5
     base_damage = "1d6"
     damage_type = "b"
     weight = 4
@@ -159,7 +159,7 @@ class Mace(SimpleWeapon, MeleeWeapon):
 
 class Quarterstaff(SimpleWeapon, MeleeWeapon):
     name = "Quarterstaff"
-    cost = "2 sp"
+    cost = 0, 2, 0
     base_damage = "1d6"
     damage_type = "b"
     weight = 4
@@ -169,7 +169,7 @@ class Quarterstaff(SimpleWeapon, MeleeWeapon):
 
 class Sickle(SimpleWeapon, MeleeWeapon):
     name = "Sickle"
-    cost = "1 gp"
+    cost = 0, 0, 1
     base_damage = "1d4"
     damage_type = "s"
     weight = 2
@@ -179,7 +179,7 @@ class Sickle(SimpleWeapon, MeleeWeapon):
 
 class Spear(SimpleWeapon, MeleeWeapon):
     name = "Spear"
-    cost = "1 gp"
+    cost = 0, 0, 1
     base_damage = "1d6"
     damage_type = "p"
     weight = 3
@@ -189,7 +189,7 @@ class Spear(SimpleWeapon, MeleeWeapon):
 
 class LightCrossbow(SimpleWeapon, RangedWeapon):
     name = "Light Crossbow"
-    cost = "25 gp"
+    cost = 0, 0, 25
     base_damage = "1d8"
     damage_type = "p"
     weight = 5
@@ -199,7 +199,7 @@ class LightCrossbow(SimpleWeapon, RangedWeapon):
 
 class Dart(SimpleWeapon, RangedWeapon):
     name = "Dart"
-    cost = "5 cp"
+    cost = 5, 0, 0
     base_damage = "1d4"
     damage_type = "p"
     weight = 0.25
@@ -210,7 +210,7 @@ class Dart(SimpleWeapon, RangedWeapon):
 
 class Shortbow(SimpleWeapon, RangedWeapon):
     name = "Shortbow"
-    cost = "25 gp"
+    cost = 0, 0, 25
     base_damage = "1d6"
     damage_type = "p"
     weight = 2
@@ -220,7 +220,7 @@ class Shortbow(SimpleWeapon, RangedWeapon):
 
 class Sling(SimpleWeapon, RangedWeapon):
     name = "Sling"
-    cost = "1 sp"
+    cost = 0, 1, 0
     base_damage = "1d4"
     damage_type = "b"
     weight = 0
@@ -230,7 +230,7 @@ class Sling(SimpleWeapon, RangedWeapon):
 
 class Battleaxe(MartialWeapon, MeleeWeapon):
     name = "Battleaxe"
-    cost = "10 gp"
+    cost = 0, 0, 10
     base_damage = "1d8"
     damage_type = "s"
     weight = 4
@@ -240,7 +240,7 @@ class Battleaxe(MartialWeapon, MeleeWeapon):
 
 class Flail(MartialWeapon, MeleeWeapon):
     name = "Flail"
-    cost = "10gp"
+    cost = 0, 0, 10
     base_damage = "1d8"
     damage_type = "b"
     weight = 2
@@ -250,7 +250,7 @@ class Flail(MartialWeapon, MeleeWeapon):
 
 class Glaive(MartialWeapon, MeleeWeapon):
     name = "Glaive"
-    cost = "20 gp"
+    cost = 0, 0, 20
     base_damage = "1d10"
     damage_type = "s"
     weight = 6
@@ -260,7 +260,7 @@ class Glaive(MartialWeapon, MeleeWeapon):
 
 class Greataxe(MartialWeapon, MeleeWeapon):
     name = "Greataxe"
-    cost = "30 gp"
+    cost = 0, 0, 30
     base_damage = "1d12"
     damage_type = "s"
     weight = 7
@@ -270,7 +270,7 @@ class Greataxe(MartialWeapon, MeleeWeapon):
 
 class Greatsword(MartialWeapon, MeleeWeapon):
     name = "Greatsword"
-    cost = "50 gp"
+    cost = 0, 0, 50
     base_damage = "2d6"
     damage_type = "s"
     weight = 6
@@ -280,7 +280,7 @@ class Greatsword(MartialWeapon, MeleeWeapon):
 
 class Halberd(MartialWeapon, MeleeWeapon):
     name = "Halberd"
-    cost = "20 gp"
+    cost = 0, 0, 20
     base_damage = "1d10"
     damage_type = "s"
     weight = 6
@@ -290,7 +290,7 @@ class Halberd(MartialWeapon, MeleeWeapon):
 
 class Lance(MartialWeapon, MeleeWeapon):
     name = "Lance"
-    cost = "10gp"
+    cost = 0, 0, 10
     base_damage = "1d12"
     damage_type = "p"
     weight = 6
@@ -300,7 +300,7 @@ class Lance(MartialWeapon, MeleeWeapon):
 
 class Longsword(MartialWeapon, MeleeWeapon):
     name = "Longsword"
-    cost = "15 gp"
+    cost = 0, 0, 15
     base_damage = "1d8"
     damage_type = "s"
     weight = 3
@@ -310,7 +310,7 @@ class Longsword(MartialWeapon, MeleeWeapon):
 
 class Maul(MartialWeapon, MeleeWeapon):
     name = "Maul"
-    cost = "10 gp"
+    cost = 0, 0, 10
     base_damage = "2d6"
     damage_type = "b"
     weight = 10
@@ -320,7 +320,7 @@ class Maul(MartialWeapon, MeleeWeapon):
 
 class Morningstar(MartialWeapon, MeleeWeapon):
     name = "Morningstar"
-    cost = "15 gp"
+    cost = 0, 0, 15
     base_damage = "1d8"
     damage_type = "p"
     weight = 4
@@ -330,7 +330,7 @@ class Morningstar(MartialWeapon, MeleeWeapon):
 
 class Pike(MartialWeapon, MeleeWeapon):
     name = "Pike"
-    cost = "5 gp"
+    cost = 0, 0, 5
     base_damage = "1d10"
     damage_type = "p"
     weight = 18
@@ -340,7 +340,7 @@ class Pike(MartialWeapon, MeleeWeapon):
 
 class Rapier(MartialWeapon, MeleeWeapon):
     name = "Rapier"
-    cost = "25 gp"
+    cost = 0, 0, 25
     base_damage = "1d8"
     damage_type = "p"
     weight = 2
@@ -351,7 +351,7 @@ class Rapier(MartialWeapon, MeleeWeapon):
 
 class Scimitar(MartialWeapon, MeleeWeapon):
     name = "Scimitar"
-    cost = "25 gp"
+    cost = 0, 0, 25
     base_damage = "1d6"
     damage_type = "s"
     weight = 3
@@ -362,7 +362,7 @@ class Scimitar(MartialWeapon, MeleeWeapon):
 
 class Shortsword(MartialWeapon, MeleeWeapon):
     name = "Shortsword"
-    cost = "10 gp"
+    cost = 0, 0, 10
     base_damage = "1d6"
     damage_type = "p"
     weight = 2
@@ -373,7 +373,7 @@ class Shortsword(MartialWeapon, MeleeWeapon):
 
 class ThrowingHammer(MartialWeapon, MeleeWeapon):
     name = "Throwing Hammer"
-    cost = "15 gp"
+    cost = 0, 0, 15
     base_damage = "1d6"
     damage_type = "b"
     weight = 4
@@ -383,7 +383,7 @@ class ThrowingHammer(MartialWeapon, MeleeWeapon):
 
 class Trident(MartialWeapon, MeleeWeapon):
     name = "Trident"
-    cost = "5 gp"
+    cost = 0, 0, 5
     base_damage = "1d6"
     damage_type = "p"
     weight = 4
@@ -393,7 +393,7 @@ class Trident(MartialWeapon, MeleeWeapon):
 
 class WarPick(MartialWeapon, MeleeWeapon):
     name = "War Pick"
-    cost = "5 gp"
+    cost = 0, 0, 5
     base_damage = "1d8"
     damage_type = "p"
     weight = 2
@@ -403,7 +403,7 @@ class WarPick(MartialWeapon, MeleeWeapon):
 
 class Warhammer(MartialWeapon, MeleeWeapon):
     name = "Warhammer"
-    cost = "15 gp"
+    cost = 0, 0, 15
     base_damage = "1d8"
     damage_type = "b"
     weight = 2
@@ -413,7 +413,7 @@ class Warhammer(MartialWeapon, MeleeWeapon):
 
 class Whip(MartialWeapon, MeleeWeapon):
     name = "Whip"
-    cost = "2 gp"
+    cost = 0, 0, 2
     base_damage = "1d4"
     damage_type = "s"
     weight = 3
@@ -424,7 +424,7 @@ class Whip(MartialWeapon, MeleeWeapon):
 
 class Blowgun(MartialWeapon, RangedWeapon):
     name = "Blowgun"
-    cost = "10 gp"
+    cost = 0, 0, 10
     base_damage = "1"
     damage_type = "p"
     weight = 1
@@ -434,7 +434,7 @@ class Blowgun(MartialWeapon, RangedWeapon):
 
 class HandCrossbow(MartialWeapon, RangedWeapon):
     name = "Hand Crossbow"
-    cost = "75 gp"
+    cost = 0, 0, 75
     base_damage = "1d6"
     damage_type = "p"
     weight = 3
@@ -444,7 +444,7 @@ class HandCrossbow(MartialWeapon, RangedWeapon):
 
 class HeavyCrossbow(MartialWeapon, RangedWeapon):
     name = "Heavy Crossbow"
-    cost = "50 gp"
+    cost = 0, 0, 50
     base_damage = "1d10"
     damage_type = "p"
     weight = 18
@@ -454,7 +454,7 @@ class HeavyCrossbow(MartialWeapon, RangedWeapon):
 
 class Longbow(MartialWeapon, RangedWeapon):
     name = "Longbow"
-    cost = "50 gp"
+    cost = 0, 0, 50
     base_damage = "1d8"
     damage_type = "p"
     weight = 2
@@ -464,7 +464,7 @@ class Longbow(MartialWeapon, RangedWeapon):
 
 class Net(MartialWeapon, RangedWeapon):
     name = "Net"
-    cost = "1 gp"
+    cost = 0, 0, 1
     base_damage = "-"
     damage_type = ""
     weight = 3
@@ -474,7 +474,7 @@ class Net(MartialWeapon, RangedWeapon):
 
 class Unarmed(MeleeWeapon):
     name = "Unarmed"
-    cost = "0 gp"
+    cost = 0, 0, 0
     base_damage = "1"
     damage_type = "b"
     weight = 0
@@ -484,101 +484,6 @@ class Unarmed(MeleeWeapon):
 
 MonkUnarmedStrike = Unarmed
 UnarmedStrike = Unarmed
-
-
-class SunBolt(RangedWeapon):
-    name = "Sun Bolt"
-    cost = "0 gp"
-    base_damage = "1d4"
-    damage_type = "r"
-    weight = 0
-    properties = "(range 20/60)"
-    ability = "dexterity"
-
-
-# Custom weapons
-class HeavyPunch(MeleeWeapon):
-    base_damage = "1d4"
-    name = "Heavy Punch"
-    damage_type = "b"
-    damage_bonus = 10  # Heavy weapon master
-    attack_bonus = -5  # Heavy weapon master
-
-
-class Bite(MeleeWeapon):
-    name = "Bite"
-    base_damage = "1d4"
-    damage_type = "p"
-    cost = "0 gp"
-    weight = 0
-    properties = ""
-    ability = "strength"
-
-
-class Talons(MeleeWeapon):
-    name = "Talons"
-    base_damage = "1d4"
-    damage_type = "s"
-    cost = "0 gp"
-    weight = 0
-    properties = ""
-    ability = "strength"
-
-
-class Claws(MeleeWeapon):
-    name = "Claws"
-    base_damage = "1d4"
-    damage_type = "s"
-    cost = "0 gp"
-    weight = 0
-    properties = ""
-    ability = "strength"
-
-
-class Firearm(RangedWeapon):
-    name = "Firearm"
-    ability = "dexterity"
-    damage_type = "p"
-
-
-class Blunderbuss(Firearm):
-    name = "Blunderbuss"
-    base_damage = "2d8"
-    cost = "300 gp"
-    weight = 10
-    properties = "Ammunition (range 15/60), Reload 1, Misfire 2"
-
-
-class Pistol(Firearm):
-    name = "Pistol"
-    base_damage = "1d10"
-    cost = "150 gp"
-    weight = 3
-    properties = "Ammunition (range 60/240), Reload 4, Misfire 1"
-
-
-class Musket(Firearm):
-    name = "Musket"
-    base_damage = "1d12"
-    cost = "300"
-    weight = 10
-    properties = "Ammunition (range 120/480), Two-Handed, Reload 1, Misfire 2"
-
-
-# Magic Items
-class FlameTongue(Greatsword):
-    name = "Flame Tongue +1"
-    damage_bonus = 1
-    attack_bonus = 1
-    base_damage = "4d6"
-    damage_type = "f"
-
-
-class SpearOfLightning(Spear):
-    name = "Spear +1"
-    damage_bonus = 1
-    attack_bonus = 1
-
 
 # Some lists of weapons for easy proficiency resolution
 simple_melee_weapons = (
@@ -593,6 +498,7 @@ simple_melee_weapons = (
     Sickle,
     Spear,
 )
+
 simple_ranged_weapons = (LightCrossbow, Dart, Shortbow, Sling)
 simple_weapons = simple_melee_weapons + simple_ranged_weapons
 
@@ -617,6 +523,7 @@ martial_melee_weapons = (
     Warhammer,
     Whip,
 )
+
 martial_ranged_weapons = (Blowgun, HandCrossbow, HeavyCrossbow, Longbow, Net)
 martial_weapons = martial_melee_weapons + martial_ranged_weapons
 
@@ -631,8 +538,5 @@ monk_weapons = (
     Mace,
     Quarterstaff,
     Sickle,
-    Spear,
-    SunBolt,
+    Spear
 )
-
-firearms = (Firearm, Blunderbuss, Pistol, Musket)
