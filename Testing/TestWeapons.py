@@ -1,3 +1,7 @@
+import re
+import random
+
+
 class Weapons:
 
     class SimpleMeleeWeapons:
@@ -47,7 +51,7 @@ class Weapons:
             self.rarity = rarity
 
 
-#simple weapons
+#simple melee weapons
 club = Weapons.SimpleMeleeWeapons("Club", "Items", 1, 4, "Bludgeoning", "Light", None, 2, "Standard")
 dagger = Weapons.SimpleMeleeWeapons("Dagger", "Items", 1, 4, "Piercing", "Finesse, Light, Range, Thrown", [20, 60], 1, "Standard")
 greatclub = Weapons.SimpleMeleeWeapons("Greatclub", "Items", 1, 8, "Bludgeoning", "Two-Handed", None, 10, "Standard")
@@ -59,4 +63,32 @@ quarterstaff = Weapons.SimpleMeleeWeapons("Quarterstaff", "Items", 1, 6, "Bludge
 sickle = Weapons.SimpleMeleeWeapons("Sickle", "Items", 1, 4, "Slashing", "Light", None, 2, "Standard")
 spear = Weapons.SimpleMeleeWeapons("Spear", "Items", 1, 6, "Piercing", "Range, Thrown, Versatile", [20, 60], 3, "Standard")
 
-def
+
+simple_melee_weapons = [club, dagger, greatclub,
+                  handaxe, javelin, light_hammer,
+                  mace, quarterstaff, sickle, spear]
+
+
+def rolldice(sides, num_rolls):
+
+    rolls = [random.randint(1, sides) for _ in range(num_rolls)]
+    total = sum(rolls)
+    print(f"Rolling {num_rolls}d{sides}: {rolls} -> Total: {total}")
+    return total
+
+
+def test_weapon():
+
+    weapon_name = input("Select a weapon: ")
+    pattern = re.compile(f"^{re.escape(weapon_name)}$", re.IGNORECASE)
+    weapon = next((w for w in simple_melee_weapons if pattern.match(w.name)), None)
+    if weapon:
+        print(f"Rolling damage for {weapon.name}:")
+        damage = rolldice(weapon.dice_value, weapon.num_dice,)
+        print(f"Damage rolled: {damage}")
+    else:
+        print(f"Weapon {weapon_name} not found in inventory.")
+
+
+# Example usage
+test_weapon()

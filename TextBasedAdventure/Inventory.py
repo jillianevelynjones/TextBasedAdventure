@@ -41,7 +41,7 @@ class Inventory_Class:
 
 # Example usage
 inventory = Inventory_Class()
-inventory.add_item(items("Sword", 10))
+inventory.add_item()
 inventory.add_item(Item("Shield", 5))
 inventory.add_item(Item("Helmet", 3))
 inventory.display_inventory()
