@@ -65,14 +65,67 @@ class Character:
             pass
 
         class Fighter:
-            name = "Fighter"
-            VALID_FIGHTING_STYLES = ["archery", "defense", "dueling",
-                                     "greatweaponfighting", "protection", "twoweaponfighting"]
-            fighter_dict = {}
+            def __init__(self):
+                self.fighting_style = None
 
             def set_fighting_style(self):
+                while True:
+                    print("Choose a fighting style:")
+                    print("1. Archery")
+                    print("2. Defense")
+                    print("3. Dueling")
+                    print("4. Great Weapon Fighting")
+                    print("5. Protection")
+                    print("6. Two-Weapon Fighting")
+                    print("For a description of each type help and then the fighting style number.")
+                    choice = input("Enter the number of your choice: ")
+                    if choice in ["1", "help 1", "Help 1"]:
+                        if choice == "1":
+                            self.fighting_style = "Archery"
+                            break
+                        else:
+                            print("You gain a +2 bonus to attack rolls you make with ranged weapons.\n")
+                    elif choice in ["2", "help 2", "Help 2"]:
+                        if choice == "2":
+                            self.fighting_style = "Defense"
+                            break
+                        else:
+                            print("While you are wearing armor, you gain a +1 bonus to AC.\n")
+                    elif choice in ["3", "help 3", "Help 3"]:
+                        if choice == "3":
+                            self.fighting_style = "Dueling"
+                            break
+                        else:
+                            print("When you are wielding a melee weapon in one hand and no other weapons,\n" +
+                                  "you gain a +2 bonus to damage rolls with that weapon.\n")
+                    elif choice in ["4", "help 4", "Help 4"]:
+                        if choice == "4":
+                            self.fighting_style = "Great Weapon Fighting"
+                            break
+                        else:
+                            print("When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon" +
+                                  "\nthat you are wielding with two hands, you can reroll the die and must use the new roll," +
+                                  "\neven if the new roll is a 1 or a 2. The weapon must have the two-handed or versatile" +
+                                  "\nproperty for you to gain this benefit.\n")
+                    elif choice in ["5", "help 5", "Help 5"]:
+                        if choice == "5":
+                            self.fighting_style = "Protection"
+                            break
+                        else:
+                            print("When a creature you can see attacks a target other than you that is within 5 feet of you," +
+                                  "\nyou can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield.\n")
+                    elif choice in ["6", "help 6", "Help 6"]:
+                        if choice == "6":
+                            self.fighting_style = "Two-Weapon Fighting"
+                            break
+                        else:
+                            print("When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.\n")
+                    else:
+                        print("INVALID CHOICE --- PLEASE CHOOSE AGAIN\n")
+                return
 
-            pass
+            def get_fighting_style(self):
+                return self.fighting_style
 
         class Monk:
             pass
@@ -402,7 +455,7 @@ class Character:
                          "\nCommon, Dwarvish, Elvish, Giant,\nGnomish, Goblin, Halfling, Orc,\n" +
                          "Abyssal, Celestial, Draconic, Deep Speech,\nInfernal, Primordial, Sylvan, Undercommon: ")
         self.attributes_dict["Languages"].append(language)
-        return
+        return self.attributes_dict["Languages"]
 
     def set_char_class(self):
         if "classes" not in self.attributes_dict:
@@ -417,6 +470,7 @@ class Character:
                 break
             else:
                 print(f"Invalid class. Please choose from: {', '.join(self.Classes.VALID_CLASSES)}")
+        return self.attributes_dict["classes"]
 
     def initial_attributes(self):
 
@@ -429,4 +483,5 @@ class Character:
 
 
 my_char = Character()
-
+my_char.set_char_class()
+my_char.attributes_dict["classes"].
