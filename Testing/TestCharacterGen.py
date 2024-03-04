@@ -47,6 +47,7 @@ class Character:
         self.set_char_name(input("What is your character's name? --> "))
         self.set_char_class()
         self.initialize_health()
+        self.initialize_attribute_scores()
         return
 
     class Classes:
@@ -212,6 +213,7 @@ class Character:
                 self.hit_dice_value = 6
                 self.hit_dice_num = 1
 
+    #Calls class functions from within the classes key of the attributes_dict
     def call_classes_functions(self, function_name):
         if "classes" in self.attributes_dict:
             for char_class in self.attributes_dict["classes"]:
@@ -476,6 +478,22 @@ class Character:
                     self.attributes_dict["hit points"] = initial_health
                 else:
                     print(f"Class {char_class.__class__.__name__} does not have hit_dice_value attribute")
+        return
+
+    def initialize_attribute_scores(self):
+        attributes = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+        scores = [15, 14, 13, 12, 10, 8]
+
+        for attribute in attributes:
+            print(f"Available scores for {attribute}: {scores}")
+            while True:
+                score = int(input(f"Choose a score for {attribute}: "))
+                if score in scores:
+                    scores.remove(score)
+                    self.attributes_dict[attribute] = score
+                    break
+                else:
+                    print("Invalid score. Please choose from the available scores.")
 
     def get_strength_bonus(self):
         strength_bonus = self.attributes_dict["Strength_Bonus"]
@@ -556,21 +574,4 @@ class Character:
         return
 
 
-
-    def initial_attributes(self):
-
-        self.set_char_name(input("What is your characters name? --> "))
-
-
-
-
-        charisma_score = input("")
-
-
 my_char = Character()
-my_char.call_classes_functions("second_wind")
-print(my_char.attributes_dict["hit points"])
-
-
-
-
