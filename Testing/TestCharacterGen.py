@@ -48,6 +48,8 @@ class Character:
         self.set_char_class()
         self.initialize_health()
         self.initialize_attribute_scores()
+        self.calculate_ability_bonus()
+        self.calculate_saving_throws()
         return
 
     class Classes:
@@ -159,6 +161,9 @@ class Character:
 
             def get_fighting_style(self):
                 return self.fighting_style
+
+            def apply_archery_bonus(self):
+                return
 
             def second_wind(self):
                 fighter_level = self.level
@@ -494,6 +499,15 @@ class Character:
                     break
                 else:
                     print("Invalid score. Please choose from the available scores.")
+        return
+
+    def calculate_saving_throws(self):
+        self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"] + self.attributes_dict["proficiency bonus"]
+        self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"] + self.attributes_dict["proficiency bonus"]
+        self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"] + self.attributes_dict["proficiency bonus"]
+        self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"] + self.attributes_dict["proficiency bonus"]
+        self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"] + self.attributes_dict["proficiency bonus"]
+        self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"] + self.attributes_dict["proficiency bonus"]
 
     def get_strength_bonus(self):
         strength_bonus = self.attributes_dict["Strength_Bonus"]
@@ -575,3 +589,4 @@ class Character:
 
 
 my_char = Character()
+print(my_char.attributes_dict)
