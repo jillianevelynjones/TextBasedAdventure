@@ -1,3 +1,5 @@
+import TestGameMechanics
+
 class Character:
     def __init__(self):
         self.attributes_dict = {
@@ -6,11 +8,11 @@ class Character:
             "Languages": [],
             "hit dice": None,
             "sub class": None,
-            "proficiency bonus": None,
+            "proficiency bonus": 2,
             "ability bonus": None,
             "skill bonus": None,
             "AC": None,
-            "hit point lvl 1": None,
+            "hit points": 0,
             "light armor": False,
             "medium armor": False,
             "heavy armor": False,
@@ -42,6 +44,9 @@ class Character:
             "performance": False,
             "persuasion": False,
         }
+        self.set_char_name(input("What is your character's name? --> "))
+        self.set_char_class()
+        self.initialize_health()
         return
 
     class Classes:
@@ -52,21 +57,42 @@ class Character:
                          "monk", "rogue", "barbarian"]
 
         class Barbarian:
-            name = "Barbarian"
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 12
+                self.hit_dice_num = 1
 
         class Bard:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 8
+                self.hit_dice_num = 1
 
         class Cleric:
-            pass
-
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 8
+                self.hit_dice_num = 1
         class Druid:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 8
+                self.hit_dice_num = 1
 
         class Fighter:
             def __init__(self):
+                self.level = 1
                 self.fighting_style = None
+                self.ranged_bonus = None
+                self.ac_bonus_w_armor = None
+                self.reroll_dmg = False
+                self.dmg_bonus_w_single_weapon = None
+                self.impose_disadvantage = False
+                self.add_ability_mod_to_second_attack = False
+                self.second_wind_charges = 1
+                self.hit_dice_value = 10
+                self.hit_dice_num = 1
+                self.set_fighting_style()
 
             def set_fighting_style(self):
                 while True:
@@ -82,18 +108,21 @@ class Character:
                     if choice in ["1", "help 1", "Help 1"]:
                         if choice == "1":
                             self.fighting_style = "Archery"
+                            self.ranged_bonus = 2
                             break
                         else:
                             print("You gain a +2 bonus to attack rolls you make with ranged weapons.\n")
                     elif choice in ["2", "help 2", "Help 2"]:
                         if choice == "2":
                             self.fighting_style = "Defense"
+                            self.ac_bonus_w_armor = 1
                             break
                         else:
                             print("While you are wearing armor, you gain a +1 bonus to AC.\n")
                     elif choice in ["3", "help 3", "Help 3"]:
                         if choice == "3":
                             self.fighting_style = "Dueling"
+                            self.dmg_bonus_w_single_weapon = 2
                             break
                         else:
                             print("When you are wielding a melee weapon in one hand and no other weapons,\n" +
@@ -101,6 +130,7 @@ class Character:
                     elif choice in ["4", "help 4", "Help 4"]:
                         if choice == "4":
                             self.fighting_style = "Great Weapon Fighting"
+                            self.reroll_dmg = True
                             break
                         else:
                             print("When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon" +
@@ -110,6 +140,7 @@ class Character:
                     elif choice in ["5", "help 5", "Help 5"]:
                         if choice == "5":
                             self.fighting_style = "Protection"
+                            self.impose_disadvantage = True
                             break
                         else:
                             print("When a creature you can see attacks a target other than you that is within 5 feet of you," +
@@ -117,6 +148,7 @@ class Character:
                     elif choice in ["6", "help 6", "Help 6"]:
                         if choice == "6":
                             self.fighting_style = "Two-Weapon Fighting"
+                            self.add_ability_mod_to_second_attack = True
                             break
                         else:
                             print("When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.\n")
@@ -127,26 +159,67 @@ class Character:
             def get_fighting_style(self):
                 return self.fighting_style
 
+            def second_wind(self):
+                fighter_level = self.level
+                if self.second_wind_charges > 0:
+                    total = TestGameMechanics.rolldice(self.hit_dice_value, self.hit_dice_num) + fighter_level
+                    self.second_wind_charges -= 1
+                else:
+                    print("You have no second wind charges left.\n")
+
+                return total
+
         class Monk:
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 8
+                self.hit_dice_num = 1
             pass
 
         class Paladin:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 10
+                self.hit_dice_num = 1
 
         class Ranger:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 10
+                self.hit_dice_num = 1
 
         class Rogue:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 8
+                self.hit_dice_num = 8
 
         class Sorcerer:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 6
+                self.hit_dice_num = 1
 
         class Warlock:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 8
+                self.hit_dice_num = 1
 
         class Wizard:
-            pass
+            def __init__(self):
+                self.level = 1
+                self.hit_dice_value = 6
+                self.hit_dice_num = 1
+
+    def call_classes_functions(self, function_name):
+        if "classes" in self.attributes_dict:
+            for char_class in self.attributes_dict["classes"]:
+                if hasattr(char_class, function_name):
+                    getattr(char_class, function_name)()
+                else:
+                    print(f"Class {char_class.__class__.__name__} does not have function {function_name}")
+        return
 
     def calculate_ability_bonus(self):
         scores = {"str_score": self.attributes_dict["Strength"], "dex_score": self.attributes_dict["Dexterity"],
@@ -394,6 +467,16 @@ class Character:
                     self.attributes_dict["Charisma_Bonus"] = cha_bonus
         return
 
+    def initialize_health(self):
+        if "classes" in self.attributes_dict:
+            for char_class in self.attributes_dict["classes"]:
+                if hasattr(char_class, "hit_dice_value"):
+                    hit_dice_value = char_class.hit_dice_value
+                    initial_health = hit_dice_value + 10
+                    self.attributes_dict["hit points"] = initial_health
+                else:
+                    print(f"Class {char_class.__class__.__name__} does not have hit_dice_value attribute")
+
     def get_strength_bonus(self):
         strength_bonus = self.attributes_dict["Strength_Bonus"]
         return strength_bonus
@@ -470,7 +553,9 @@ class Character:
                 break
             else:
                 print(f"Invalid class. Please choose from: {', '.join(self.Classes.VALID_CLASSES)}")
-        return self.attributes_dict["classes"]
+        return
+
+
 
     def initial_attributes(self):
 
@@ -483,5 +568,9 @@ class Character:
 
 
 my_char = Character()
-my_char.set_char_class()
-my_char.attributes_dict["classes"].
+my_char.call_classes_functions("second_wind")
+print(my_char.attributes_dict["hit points"])
+
+
+
+
