@@ -1,5 +1,6 @@
 import TestGameMechanics
 
+
 class Character:
     def __init__(self):
         self.attributes_dict = {
@@ -85,6 +86,8 @@ class Character:
         class Fighter:
             def __init__(self):
                 self.level = 1
+                self.strength_saving_prof = True
+                self.constitution_saving_prof = True
                 self.fighting_style = None
                 self.ranged_bonus = None
                 self.ac_bonus_w_armor = None
@@ -502,11 +505,31 @@ class Character:
         return
 
     def calculate_saving_throws(self):
-        if "classes" in self.attributes_dict:
-            for char_class in self.attributes_dict["classes"]:
-                if hasattr(char_class, "str_saving_throw"):
-                    self.attributes_dict["strength save"] = self.attributes_dict["proficiency bonus"] + self.attributes_dict["Strength_Bonus"]
-
+        for char_class in self.attributes_dict["classes"]:
+            if hasattr(char_class, "strength_saving_prof") and char_class.strength_saving_prof:
+                self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"]
+            if hasattr(char_class, "dexterity_saving_prof") and char_class.dexterity_saving_prof:
+                self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"]
+            if hasattr(char_class, "constitution_saving_prof") and char_class.constitution_saving_prof:
+                self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"]
+            if hasattr(char_class, "intelligence_saving_prof") and char_class.intelligence_saving_prof:
+                self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"]
+            if hasattr(char_class, "wisdom_saving_prof") and char_class.wisdom_saving_prof:
+                self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"]
+            if hasattr(char_class, "charisma_saving_prof") and char_class.charisma_saving_prof:
+                self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"]
 
         return
 
