@@ -502,12 +502,8 @@ class Character:
         return
 
     def calculate_saving_throws(self):
-        self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"] + self.attributes_dict["proficiency bonus"]
-        self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"] + self.attributes_dict["proficiency bonus"]
-        self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"] + self.attributes_dict["proficiency bonus"]
-        self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"] + self.attributes_dict["proficiency bonus"]
-        self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"] + self.attributes_dict["proficiency bonus"]
-        self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"] + self.attributes_dict["proficiency bonus"]
+
+        return
 
     def get_strength_bonus(self):
         strength_bonus = self.attributes_dict["Strength_Bonus"]
@@ -570,7 +566,7 @@ class Character:
                          "\nCommon, Dwarvish, Elvish, Giant,\nGnomish, Goblin, Halfling, Orc,\n" +
                          "Abyssal, Celestial, Draconic, Deep Speech,\nInfernal, Primordial, Sylvan, Undercommon: ")
         self.attributes_dict["Languages"].append(language)
-        return self.attributes_dict["Languages"]
+        return
 
     def set_char_class(self):
         if "classes" not in self.attributes_dict:
