@@ -19,12 +19,12 @@ class Character:
             "shields": False,
             "simple weapons": False,
             "martial weapons": False,
-            "strength save": False,
-            "dexterity save": False,
-            "constitution save": False,
-            "intelligence save": False,
-            "wisdom save": False,
-            "charisma save": False,
+            "strength save": 0,
+            "dexterity save": 0,
+            "constitution save": 0,
+            "intelligence save": 0,
+            "wisdom save": 0,
+            "charisma save": 0,
             "athletics": False,
             "acrobatics": False,
             "sleight of hand": False,
@@ -502,6 +502,11 @@ class Character:
         return
 
     def calculate_saving_throws(self):
+        if "classes" in self.attributes_dict:
+            for char_class in self.attributes_dict["classes"]:
+                if hasattr(char_class, "str_saving_throw"):
+                    self.attributes_dict["strength save"] = self.attributes_dict["proficiency bonus"] + self.attributes_dict["Strength_Bonus"]
+
 
         return
 
