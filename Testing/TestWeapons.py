@@ -68,19 +68,3 @@ simple_melee_weapons = [club, dagger, greatclub,
                   handaxe, javelin, light_hammer,
                   mace, quarterstaff, sickle, spear]
 
-
-def test_weapon():
-
-    weapon_name = input("Select a weapon: ")
-    pattern = re.compile(f"^{re.escape(weapon_name)}$", re.IGNORECASE)
-    weapon = next((w for w in simple_melee_weapons if pattern.match(w.name)), None)
-    if weapon:
-        print(f"Rolling damage for {weapon.name}:")
-        damage = rolldice(weapon.dice_value, weapon.num_dice,)
-        print(f"Damage rolled: {damage}")
-    else:
-        print(f"Weapon {weapon_name} not found in inventory.")
-
-
-# Example usage
-test_weapon()

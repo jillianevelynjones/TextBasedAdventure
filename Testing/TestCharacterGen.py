@@ -11,7 +11,7 @@ class Character:
             "sub class": None,
             "proficiency bonus": 2,
             "ability bonus": None,
-            "skill bonus": None,
+            "skill proficiencies": [],
             "AC": None,
             "hit points": 0,
             "light armor": False,
@@ -26,24 +26,6 @@ class Character:
             "intelligence save": 0,
             "wisdom save": 0,
             "charisma save": 0,
-            "athletics": False,
-            "acrobatics": False,
-            "sleight of hand": False,
-            "stealth": False,
-            "arcana": False,
-            "history": False,
-            "investigation": False,
-            "nature": False,
-            "religion": False,
-            "animal handling": False,
-            "insight": False,
-            "medicine": False,
-            "perception": False,
-            "survival": False,
-            "deception": False,
-            "intimidation": False,
-            "performance": False,
-            "persuasion": False,
         }
         self.set_char_name(input("What is your character's name? --> "))
         self.set_char_class()
@@ -51,7 +33,31 @@ class Character:
         self.initialize_attribute_scores()
         self.calculate_ability_bonus()
         self.calculate_saving_throws()
+        self.initialize_skill_proficiencies()
+        self.calculate_skill_bonuses()
         return
+
+    class Race:
+
+        def __init__(self, name, stat_bonuses):
+            self.name = name
+            self.stat_bonuses = stat_bonuses
+
+    class Dragonborn(Race):
+        def __init__(self, dragon_type):
+            super().__init__("Dragonborn", {"Strength": 2, "Charisma": 1})
+            self.dragon_type = dragon_type
+
+        def apply_breath_weapon(self):
+            if self.dragon_type == "Black":
+                # Apply 5 by 30 ft. line of Acid damage (Dex. save)
+                # Implement logic here
+                pass
+            elif self.dragon_type == "Blue":
+                # Apply 5 by 30 ft. line of Lightning damage (Dex. save)
+                # Implement logic here
+                pass
+            # Add other dragon types here
 
     class Classes:
 
@@ -60,7 +66,7 @@ class Character:
                          "druid", "sorcerer", "warlock",
                          "monk", "rogue", "barbarian"]
 
-        class Barbarian:
+        class Barbarian():
             def __init__(self):
                 self.level = 1
                 self.hit_dice_value = 12
@@ -84,10 +90,13 @@ class Character:
                 self.hit_dice_num = 1
 
         class Fighter:
+
+            available_skills = ["Acrobatics", "Animal Handling", "Athletics",
+                                "History", "Perception", "Survival"]
+            strength_saving_prof = True
+            constitution_saving_prof = True
             def __init__(self):
                 self.level = 1
-                self.strength_saving_prof = True
-                self.constitution_saving_prof = True
                 self.fighting_style = None
                 self.ranged_bonus = None
                 self.ac_bonus_w_armor = None
@@ -229,6 +238,71 @@ class Character:
                     getattr(char_class, function_name)()
                 else:
                     print(f"Class {char_class.__class__.__name__} does not have function {function_name}")
+        return
+
+    def calculate_saving_throws(self):
+        for char_class in self.attributes_dict["classes"]:
+            if hasattr(char_class, "strength_saving_prof") and char_class.strength_saving_prof:
+                self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"]
+            if hasattr(char_class, "dexterity_saving_prof") and char_class.dexterity_saving_prof:
+                self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"]
+            if hasattr(char_class, "constitution_saving_prof") and char_class.constitution_saving_prof:
+                self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"]
+            if hasattr(char_class, "intelligence_saving_prof") and char_class.intelligence_saving_prof:
+                self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"]
+            if hasattr(char_class, "wisdom_saving_prof") and char_class.wisdom_saving_prof:
+                self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"]
+            if hasattr(char_class, "charisma_saving_prof") and char_class.charisma_saving_prof:
+                self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"] + self.attributes_dict["proficiency bonus"]
+            else:
+                self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"]
+
+        return
+
+    def calculate_skill_bonuses(self):
+        skills = {
+            "Athletics": {"ability": "Strength_Bonus"},
+            "Acrobatics": {"ability": "Dexterity_Bonus"},
+            "Slight of Hand": {"ability": "Dexterity_Bonus"},
+            "Stealth": {"ability": "Dexterity_Bonus"},
+            "Arcana": {"ability": "Intelligence_Bonus"},
+            "History": {"ability": "Intelligence_Bonus"},
+            "Investigation": {"ability": "Intelligence_Bonus"},
+            "Nature": {"ability": "Intelligence_Bonus"},
+            "Religion": {"ability": "Intelligence_Bonus"},
+            "Animal Handling": {"ability": "Wisdom_Bonus"},
+            "Insight": {"ability": "Wisdom_Bonus"},
+            "Medicine": {"ability": "Wisdom_Bonus"},
+            "Perception": {"ability": "Wisdom_Bonus"},
+            "Survival": {"ability": "Wisdom_Bonus"},
+            "Deception": {"ability": "Charisma_Bonus"},
+            "Intimidation": {"ability": "Charisma_Bonus"},
+            "Performance": {"ability": "Charisma_Bonus"},
+            "Persuasion": {"ability": "Charisma_Bonus"}
+        }
+
+        proficiency_bonus = self.attributes_dict["proficiency bonus"]
+
+        proficiency_skills = self.attributes_dict["skill proficiencies"]
+        print(f"Proficiency skills: {proficiency_skills}")
+
+        for skill, info in skills.items():
+            ability_bonus_key = info["ability"]
+            ability_bonus = self.attributes_dict[ability_bonus_key]
+            proficiency = skill in proficiency_skills
+            skill_bonus = ability_bonus + (proficiency_bonus if proficiency else 0)
+            self.attributes_dict[skill + " Bonus"] = skill_bonus
+
         return
 
     def calculate_ability_bonus(self):
@@ -504,58 +578,47 @@ class Character:
                     print("Invalid score. Please choose from the available scores.")
         return
 
-    def calculate_saving_throws(self):
-        for char_class in self.attributes_dict["classes"]:
-            if hasattr(char_class, "strength_saving_prof") and char_class.strength_saving_prof:
-                self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"] + self.attributes_dict["proficiency bonus"]
-            else:
-                self.attributes_dict["strength save"] = self.attributes_dict["Strength_Bonus"]
-            if hasattr(char_class, "dexterity_saving_prof") and char_class.dexterity_saving_prof:
-                self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"] + self.attributes_dict["proficiency bonus"]
-            else:
-                self.attributes_dict["dexterity save"] = self.attributes_dict["Dexterity_Bonus"]
-            if hasattr(char_class, "constitution_saving_prof") and char_class.constitution_saving_prof:
-                self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"] + self.attributes_dict["proficiency bonus"]
-            else:
-                self.attributes_dict["constitution save"] = self.attributes_dict["Constitution_Bonus"]
-            if hasattr(char_class, "intelligence_saving_prof") and char_class.intelligence_saving_prof:
-                self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"] + self.attributes_dict["proficiency bonus"]
-            else:
-                self.attributes_dict["intelligence save"] = self.attributes_dict["Intelligence_Bonus"]
-            if hasattr(char_class, "wisdom_saving_prof") and char_class.wisdom_saving_prof:
-                self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"] + self.attributes_dict["proficiency bonus"]
-            else:
-                self.attributes_dict["wisdom save"] = self.attributes_dict["Wisdom_Bonus"]
-            if hasattr(char_class, "charisma_saving_prof") and char_class.charisma_saving_prof:
-                self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"] + self.attributes_dict["proficiency bonus"]
-            else:
-                self.attributes_dict["charisma save"] = self.attributes_dict["Charisma_Bonus"]
+    def initialize_skill_proficiencies(self):
+        class_skill_choices = {
+            "fighter": Character.Classes.Fighter.available_skills,
+            # Add other classes and their skill choices here
+        }
 
+        if "classes" in self.attributes_dict:
+            for char_class in self.attributes_dict["classes"]:
+                class_name = char_class.__class__.__name__.lower()
+                if class_name in class_skill_choices:
+                    class_skills = class_skill_choices[class_name]
+                    print(f"Choose 2 skills from {', '.join(class_skills)}:")
+                    chosen_skills = []
+                    while len(chosen_skills) < 2:
+                        skill = input("Enter the skill name: ")
+                        if skill in class_skills and skill not in chosen_skills:
+                            chosen_skills.append(skill)
+                        else:
+                            print("Invalid skill choice. Please choose from the available skills.")
+                    self.attributes_dict["skill proficiencies"].extend(chosen_skills)
+                else:
+                    print(f"Class {class_name} has no skill proficiencies to choose.")
         return
 
     def get_strength_bonus(self):
-        strength_bonus = self.attributes_dict["Strength_Bonus"]
-        return strength_bonus
+        return self.attributes_dict["Strength_Bonus"]
 
     def get_dexterity_bonus(self):
-        dexterity_bonus = self.attributes_dict["Dexterity_Bonus"]
-        return dexterity_bonus
+        return self.attributes_dict["Dexterity_Bonus"]
 
     def get_constitution_bonus(self):
-        constitution_bonus = self.attributes_dict["Constitution_Bonus"]
-        return constitution_bonus
+        return self.attributes_dict["Constitution_Bonus"]
 
     def get_intelligence_bonus(self):
-        intelligence_bonus = self.attributes_dict["Intelligence_Bonus"]
-        return intelligence_bonus
+        return self.attributes_dict["Intelligence_Bonus"]
 
     def get_wisdom_bonus(self):
-        wisdom_bonus = self.attributes_dict["Wisdom_Bonus"]
-        return wisdom_bonus
+        return self.attributes_dict["Wisdom_Bonus"]
 
     def get_charisma_bonus(self):
-        charisma_bonus = self.attributes_dict["Charisma_Bonus"]
-        return charisma_bonus
+        return self.attributes_dict["Charisma_Bonus"]
 
     def set_strength_score(self, strength):
         self.attributes_dict["Strength"] = strength
