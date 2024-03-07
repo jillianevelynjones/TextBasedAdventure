@@ -1,0 +1,55 @@
+using System;
+
+class Program {
+    static void Main (string[] args)
+    {
+        SimpleMeleeWeapons weapons = new SimpleMeleeWeapons();
+        Console.WriteLine("Name " + weapons.simple_melee[0].name);
+    }
+}
+
+public class Weapons 
+{
+    public string name;
+    public string category;
+    public int num_dice;
+    public int dice_value;
+    public string damage_type;
+    public string properties;
+    public int min_range;
+    public int max_range;
+    public int weight; 
+    public string rarity;
+
+    public Weapons (string name, string category, int num_dice,
+                          int dice_value, string damage_type, string properties,
+                          int min_range, int max_range, int weight, string rarity) 
+    {
+        this.name = name;
+        this.category = category;
+        this.num_dice = num_dice;
+        this.dice_value = dice_value;
+        this.damage_type = damage_type;
+        this.properties = properties;
+        this.min_range = min_range;
+        this.max_range = max_range;
+        this.weight = weight;
+        this.rarity = rarity;
+    }
+}
+
+public class SimpleMeleeWeapons
+{
+    public Weapons[] simple_melee;
+
+    public SimpleMeleeWeapons()
+    {
+        simple_melee = new Weapons[]
+        {
+            new Weapons("Club", "Items", 1, 4,
+                        "Bludgeoning", "Light", 0, 0,
+                        2, "Standard"),
+        
+        };
+    }
+}
