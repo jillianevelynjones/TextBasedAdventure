@@ -4,14 +4,14 @@ using System.Collections.Generic;
 class Program {
     static void Main (string[] args)
     {
-        SimpleRangedWeapons weapons = new SimpleRangedWeapons();
+        MartialMeleeWeapons weapons = new MartialMeleeWeapons();
         
         Console.Write("Enter the name of a weapon: ");
         string weaponName = Console.ReadLine();
 
-        if (weapons.simpleRanged.ContainsKey(weaponName))
+        if (weapons.martialMelee.ContainsKey(weaponName))
         {
-            Weapons weapon = weapons.simpleRanged[weaponName];
+            Weapons weapon = weapons.martialMelee[weaponName];
             Console.WriteLine("You selected: " + weapon.name);
             RollDice(weapon);
         }
@@ -134,3 +134,68 @@ public class SimpleRangedWeapons
     }
 }
             
+public class MartialMeleeWeapons
+{
+    public Dictionary<string, Weapons> martialMelee;
+
+    public MartialMeleeWeapons()
+    {
+        martialMelee = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
+        {
+            {"Battleaxe", new Weapons("Battleaxe", "Items", 1, 8,
+             "Slashing", "Versatile 1d10", 0, 0,
+             4, "Standard")},
+            {"Flail", new Weapons("Flail", "Items", 1, 8,
+             "Bludgeoning", "None", 0, 0,
+             2, "Standard")},
+            {"Glaive", new Weapons("Glaive", "Items", 1, 10,
+             "Slashing", "Heavy, Reach, Two Handed", 0, 0,
+             6, "Standard")},
+            {"Greataxe", new Weapons("Greataxe", "Items", 1, 12,
+             "Slashing", "Heavy, Two Handed", 0, 0,
+             7, "Standard")},
+            {"Greatsword", new Weapons("Greatsword", "Items", 2, 6,
+             "Slashing", "Heavy, Two Handed", 0, 0,
+             6, "Standard")},
+            {"Halberd", new Weapons("Halberd", "Items", 1, 10,
+             "Slashing", "Heavy, Reach, Two Handed", 0, 0,
+             6, "Standard")},
+            {"Lance", new Weapons("Lance", "Items", 1, 12,
+             "Piercing", "Reach, Special", 0, 0,
+             6, "Standard")},
+            {"Longsword", new Weapon("Longsword", "Items", 1, 8,
+             "Slashing", "Versatile, 1d10", 0, 0,
+             3, "Standard")},
+            {"Maul", new Weapon("Maul", "Items", 2, 6,
+            "Bludgeoning", "Heavy, Two Handed", 0, 0,
+             10, "Standard")},
+            {"Morningstar", new Weapon("Morningstar", "Items", 1, 8,
+             "Piercing", "None" 0, 0,
+             4, "Standard")},
+            {"Pike", new Weapon("Pike", "Items", 1, 10,
+             "Piercing", "Heavy, Reach, Two Handed", 0, 0,
+             18, "Standard")},
+            {"Rapier", new Weapon("Rapier", "Items", 1, 8, 
+             "Piercing", "Finesse", 0, 0,
+             2, "Standard")},
+            {"Scimitar", new Weapon("Scimitar", "Items", 1, 6,
+             "Slashing", "Finesse, Light", 0, 0, 
+             3, "Standard")},
+            {"Shortsword", new Weapon("Shortsword", "Items", 1, 6,
+             "Piercing", "Finesse, Light", 0, 0,
+             2, "Standard")}
+            {"Trident", new Weapon("Trident", "Items", 1, 6, 
+             "Piercing", "Finesse, Light", 0, 0,
+             4, "Standard")}
+            {"War Pick", new Weapon("War Pick", "Items", 1, 8,
+             "Piercing", "None", 0, 0,
+             2, "Standard")}
+            {"Warhammer", new Weapon("Warhammer", "Items", 1, 8,
+             "Bludgeoning", "Versatile 1d10", 0, 0,
+             2, "Standard")},
+            {"Whip", new Weapon("Whip", "Items", 1, 4,
+             "Slashing", "Finesse, Reach", 0, 0,
+             3, "Standard")}
+        };
+    }
+}
