@@ -4,14 +4,14 @@ using System.Collections.Generic;
 class Program {
     static void Main (string[] args)
     {
-        MartialMeleeWeapons weapons = new MartialMeleeWeapons();
+        MartialRangedWeapons weapons = new MartialRangedWeapons();
         
         Console.Write("Enter the name of a weapon: ");
         string weaponName = Console.ReadLine();
 
-        if (weapons.martialMelee.ContainsKey(weaponName))
+        if (weapons.martialRanged.ContainsKey(weaponName))
         {
-            Weapons weapon = weapons.martialMelee[weaponName];
+            Weapons weapon = weapons.martialRanged[weaponName];
             Console.WriteLine("You selected: " + weapon.name);
             RollDice(weapon);
         }
@@ -199,3 +199,27 @@ public class MartialMeleeWeapons
         };
     }
 }
+
+public class MartialRangedWeapons
+{
+    public Dictionary<string, Weapons> martialRanged;
+
+    public MartialRangedWeapons()
+    {
+        martialRanged = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
+        {
+            {"Blowgun", new Weapons("Blowgun", "Items", 1, 1,
+             "Piercing", "Ammunition, Loading", 25, 100,
+             1, "Standard")},
+            {"Hand Crossbow", new Weapons("Hand Crossbow", "Items", 1, 6,
+             "Piercing", "Ammunition, Light, Loading", 30, 120,
+             3, "Standard")},
+            {"Heavy Crossbow", new Weapons("Heavy Crossbow", "Items", 1, 10,
+             "Piercing", "Ammunition, Heavy, Loading, Two Handed", 100, 400,
+             18, "Standard")},
+            {"Longbow", new Weapons("Longbow", "Items", 1, 8,
+             "Piercing", "Ammunition, Heavy, Two Handed", 150, 600,
+             2, "Standard")},
+            ("Net", new Weapons)("Net", "Items", 0, 0,
+             "None", "Special, Thrown", 4, 15,
+             3, "Standard")}
