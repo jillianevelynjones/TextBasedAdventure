@@ -220,6 +220,9 @@ public class MartialRangedWeapons
             {"Longbow", new Weapons("Longbow", "Items", 1, 8,
              "Piercing", "Ammunition, Heavy, Two Handed", 150, 600,
              2, "Standard")},
-            ("Net", new Weapons)("Net", "Items", 0, 0,
+            {"Net", new Weapons("Net", "Items", 0, 0,
              "None", "Special, Thrown", 4, 15,
              3, "Standard")}
+        };
+    }
+}
