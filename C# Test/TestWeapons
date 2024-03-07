@@ -4,14 +4,14 @@ using System.Collections.Generic;
 class Program {
     static void Main (string[] args)
     {
-        SimpleMeleeWeapons weapons = new SimpleMeleeWeapons();
+        SimpleRangedWeapons weapons = new SimpleRangedWeapons();
         
         Console.Write("Enter the name of a weapon: ");
         string weaponName = Console.ReadLine();
 
-        if (weapons.meleeWeapons.ContainsKey(weaponName))
+        if (weapons.simpleRanged.ContainsKey(weaponName))
         {
-            Weapons weapon = weapons.meleeWeapons[weaponName];
+            Weapons weapon = weapons.simpleRanged[weaponName];
             Console.WriteLine("You selected: " + weapon.name);
             RollDice(weapon);
         }
@@ -48,12 +48,12 @@ public class Weapons
     public string properties;
     public int min_range;
     public int max_range;
-    public int weight; 
+    public decimal weight; 
     public string rarity;
 
     public Weapons (string name, string category, int num_dice,
                           int dice_value, string damage_type, string properties,
-                          int min_range, int max_range, int weight, string rarity) 
+                          int min_range, int max_range, decimal weight, string rarity) 
     {
         this.name = name;
         this.category = category;
@@ -70,11 +70,11 @@ public class Weapons
 
 public class SimpleMeleeWeapons
 {
-    public Dictionary<string, Weapons> meleeWeapons;
+    public Dictionary<string, Weapons> simpleMelee;
 
     public SimpleMeleeWeapons()
     {
-        meleeWeapons = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
+        simpleMelee = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
         {
             { "Club", new Weapons("Club", "Items", 1, 4,
                                   "Bludgeoning", "Light", 0, 0,
@@ -109,3 +109,28 @@ public class SimpleMeleeWeapons
         };
     }
 }
+
+public class SimpleRangedWeapons
+{
+    public Dictionary<string, Weapons> simpleRanged;
+
+    public SimpleRangedWeapons()
+    {
+        simpleRanged = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Light Crossbow", new Weapons("Light Crossbow", "Items", 1, 8,
+                                           "Piercing", "Ammunition, Loading, Two Handed",
+                                           80, 320, 5, "Standard")},
+            {"Dart", new Weapons("Dart", "Items", 1, 4,
+                                "Piercing", "Finesse, Thrown", 20, 60,
+                                0.25m, "Standard")},
+            {"Shortbow", new Weapons("Shortbow", "Items", 1, 6,
+                                    "Piercing", "Ammunition, Two Handed", 80, 320,
+                                    2, "Standard")},
+            {"Sling", new Weapons("Sling", "Items", 1, 4,
+                                 "Bludgeoning", "Ammunition", 30, 120,
+                                 0, "Standard")}
+        };
+    }
+}
+            
