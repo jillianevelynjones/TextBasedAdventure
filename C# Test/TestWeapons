@@ -1,10 +1,40 @@
 using System;
+using System.Collections.Generic;
 
 class Program {
     static void Main (string[] args)
     {
         SimpleMeleeWeapons weapons = new SimpleMeleeWeapons();
-        Console.WriteLine("Name " + weapons.simple_melee[0].name);
+        
+        Console.Write("Enter the name of a weapon: ");
+        string weaponName = Console.ReadLine();
+
+        if (weapons.meleeWeapons.ContainsKey(weaponName))
+        {
+            Weapons weapon = weapons.meleeWeapons[weaponName];
+            Console.WriteLine("You selected: " + weapon.name);
+            RollDice(weapon);
+        }
+        else
+        {
+            Console.WriteLine("Weapon not found.");
+        }
+    }
+
+    static void RollDice(Weapons weapon)
+    {
+        Console.WriteLine("Rolling damage for: " + weapon.name);
+        int totalDamage = 0;
+        Random random = new Random();
+
+        for (int i = 0; i < weapon.num_dice; i++)
+        {
+            int result = random.Next(1, weapon.dice_value + 1);
+            Console.WriteLine("Roll " + (i + 1) + ": " + result);
+            totalDamage += result;
+        }
+
+        Console.WriteLine("Total damage: " + totalDamage);
     }
 }
 
@@ -40,16 +70,42 @@ public class Weapons
 
 public class SimpleMeleeWeapons
 {
-    public Weapons[] simple_melee;
+    public Dictionary<string, Weapons> meleeWeapons;
 
     public SimpleMeleeWeapons()
     {
-        simple_melee = new Weapons[]
+        meleeWeapons = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
         {
-            new Weapons("Club", "Items", 1, 4,
-                        "Bludgeoning", "Light", 0, 0,
-                        2, "Standard"),
-        
+            { "Club", new Weapons("Club", "Items", 1, 4,
+                                  "Bludgeoning", "Light", 0, 0,
+                                   2, "Standard") },
+            { "Dagger", new Weapons("Dagger", "Items", 1, 4,
+                                    "Piercing", "Finesse, Light, Thrown", 20, 60,
+                                     1, "Standard") },
+            { "Great Club", new Weapons("Great Club", "Items", 1, 8,
+                                       "Bludgeoning", "Two Handed", 0, 0,
+                                       10, "Standard") },
+            {"Handaxe", new Weapons("Handaxe", "Items", 1, 6,
+                                   "Slashing", "Light, Range, Thrown", 
+                                   20, 60, 2, "Standard")},
+            {"Javelin", new Weapons("Javelin", "Items", 1, 6,
+                                   "Piercing", "Thrown", 30, 120,
+                                   2, "Standard")},
+            {"Light Hammer", new Weapons("Light Hammer", "Items", 1, 4,
+                                        "Bludgeoning", "Light, Thrown", 20, 60,
+                                        2, "Standard")},
+            {"Mace", new Weapons("Mace", "Items", 1, 6,
+                                "Bludgeoning", "None", 0, 0,
+                                4, "Standard")},
+            {"Quarterstaff", new Weapons("Quarterstaff", "Items", 1, 6,
+                                         "Bludgeoning", "Versatile 1d8", 0, 0,
+                                         4, "Standard")},
+            {"Sickle", new Weapons("Sickle", "Items", 1, 4,
+                                   "Slashing", "Light", 0, 0,
+                                   2, "Standard")},
+            {"Spear", new Weapons("Spear", "Items", 1, 6,
+                                 "Piercing", "Thrown, Versatile 1d8", 20, 60,
+                                 3, "Standard")}
         };
     }
 }
