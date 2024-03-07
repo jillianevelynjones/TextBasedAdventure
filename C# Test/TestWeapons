@@ -44,6 +44,8 @@ public class Weapons
     public string category;
     public int num_dice;
     public int dice_value;
+    public int vers_num_dice;
+    public int vers_dice_value;
     public string damage_type;
     public string[] properties;
     public int min_range;
@@ -59,6 +61,8 @@ public class Weapons
         this.category = category;
         this.num_dice = num_dice;
         this.dice_value = dice_value;
+        this.vers_num_dice = vers_num_dice;
+        this.vers_dice_value = vers_dice_value;
         this.damage_type = damage_type;
         this.properties = properties;
         this.min_range = min_range;
@@ -76,34 +80,34 @@ public class SimpleMeleeWeapons
     {
         simpleMelee = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
         {
-            { "Club", new Weapons("Club", "Items", 1, 4,
+            { "Club", new Weapons("Club", "Items", 1, 4, 0, 0,
                                   "Bludgeoning", new string[]{"Light"}, 5, 5,
                                    2, "Standard") },
-            { "Dagger", new Weapons("Dagger", "Items", 1, 4,
+            { "Dagger", new Weapons("Dagger", "Items", 1, 4, 0, 0,
                                     "Piercing", new string[]{"Finesse", "Light", "Thrown"}, 20, 60,
                                      1, "Standard") },
-            { "Great Club", new Weapons("Great Club", "Items", 1, 8,
+            { "Great Club", new Weapons("Great Club", "Items", 1, 8, 0, 0,
                                        "Bludgeoning", new string[]{"Two Handed"}, 5, 5,
                                        10, "Standard") },
-            {"Handaxe", new Weapons("Handaxe", "Items", 1, 6,
+            {"Handaxe", new Weapons("Handaxe", "Items", 1, 6, 0, 0,
                                    "Slashing", new string[]{"Light", "Thrown"}, 
                                    20, 60, 2, "Standard")},
             {"Javelin", new Weapons("Javelin", "Items", 1, 6,
                                    "Piercing", new string[]{"Thrown"}, 30, 120,
                                    2, "Standard")},
-            {"Light Hammer", new Weapons("Light Hammer", "Items", 1, 4,
+            {"Light Hammer", new Weapons("Light Hammer", "Items", 1, 4, 0, 0,
                                         "Bludgeoning", new string[]{"Light", "Thrown"}, 20, 60,
                                         2, "Standard")},
             {"Mace", new Weapons("Mace", "Items", 1, 6,
-                                "Bludgeoning", new string[]{" "}, 5, 5,
+                                "Bludgeoning", new string[]{" "}, 5, 5, 0, 0,
                                 4, "Standard")},
-            {"Quarterstaff", new Weapons("Quarterstaff", "Items", 1, 6,
+            {"Quarterstaff", new Weapons("Quarterstaff", "Items", 1, 6, 1, 8,
                                          "Bludgeoning", new string[]{"Versatile 1d8"}, 5, 5,
                                          4, "Standard")},
-            {"Sickle", new Weapons("Sickle", "Items", 1, 4,
+            {"Sickle", new Weapons("Sickle", "Items", 1, 4, 0, 0,
                                    "Slashing", new string[]{"Light"}, 5, 5,
                                    2, "Standard")},
-            {"Spear", new Weapons("Spear", "Items", 1, 6,
+            {"Spear", new Weapons("Spear", "Items", 1, 6, 1, 8,
                                  "Piercing", new string[]{"Thrown", "Versatile 1d8"}, 20, 60,
                                  3, "Standard")}
         };
@@ -118,16 +122,16 @@ public class SimpleRangedWeapons
     {
         simpleRanged = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
         {
-            { "Light Crossbow", new Weapons("Light Crossbow", "Items", 1, 8,
+            { "Light Crossbow", new Weapons("Light Crossbow", "Items", 1, 8, 0, 0,
                                            "Piercing", new string[]{"Ammunition", "Loading", "Two Handed"},
                                            80, 320, 5, "Standard")},
-            {"Dart", new Weapons("Dart", "Items", 1, 4,
+            {"Dart", new Weapons("Dart", "Items", 1, 4, 0, 0,
                                 "Piercing", new string[]{"Finesse", "Thrown"}, 20, 60,
                                 0.25m, "Standard")},
-            {"Shortbow", new Weapons("Shortbow", "Items", 1, 6,
+            {"Shortbow", new Weapons("Shortbow", "Items", 1, 6, 0, 0,
                                     "Piercing", new string[]{"Ammunition", "Two Handed"}, 80, 320,
                                     2, "Standard")},
-            {"Sling", new Weapons("Sling", "Items", 1, 4,
+            {"Sling", new Weapons("Sling", "Items", 1, 4, 0, 0,
                                  "Bludgeoning", new string[]{"Ammunition"}, 30, 120,
                                  0, "Standard")}
         };
@@ -142,58 +146,58 @@ public class MartialMeleeWeapons
     {
         martialMelee = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
         {
-            {"Battleaxe", new Weapons("Battleaxe", "Items", 1, 8,
+            {"Battleaxe", new Weapons("Battleaxe", "Items", 1, 8, 1, 10,
              "Slashing", new string[]{"Versatile 1d10"}, 5, 5,
              4, "Standard")},
-            {"Flail", new Weapons("Flail", "Items", 1, 8,
+            {"Flail", new Weapons("Flail", "Items", 1, 8, 0, 0,
              "Bludgeoning", new string[]{" "}, 5, 5,
              2, "Standard")},
-            {"Glaive", new Weapons("Glaive", "Items", 1, 10,
+            {"Glaive", new Weapons("Glaive", "Items", 1, 10, 0, 0,
              "Slashing", new string[]{"Heavy", "Reach", "Two Handed"}, 10, 10,
              6, "Standard")},
-            {"Greataxe", new Weapons("Greataxe", "Items", 1, 12,
+            {"Greataxe", new Weapons("Greataxe", "Items", 1, 12, 0, 0,
              "Slashing", new string[]{"Heavy", "Two Handed"}, 5, 5,
              7, "Standard")},
-            {"Greatsword", new Weapons("Greatsword", "Items", 2, 6,
+            {"Greatsword", new Weapons("Greatsword", "Items", 2, 6, 0, 0,
              "Slashing", new string[]{"Heavy", "Two Handed"}, 5, 5,
              6, "Standard")},
-            {"Halberd", new Weapons("Halberd", "Items", 1, 10,
+            {"Halberd", new Weapons("Halberd", "Items", 1, 10, 0, 0,
              "Slashing", new string[]{"Heavy", "Reach", "Two Handed"}, 10, 10,
              6, "Standard")},
-            {"Lance", new Weapons("Lance", "Items", 1, 12,
+            {"Lance", new Weapons("Lance", "Items", 1, 12, 0, 0,
              "Piercing", new string[]{"Reach", "Special"}, 10, 10,
              6, "Standard")},
-            {"Longsword", new Weapons("Longsword", "Items", 1, 8,
+            {"Longsword", new Weapons("Longsword", "Items", 1, 8, 1, 10
              "Slashing", new string[]{"Versatile, 1d10"}, 5, 5,
              3, "Standard")},
-            {"Maul", new Weapons("Maul", "Items", 2, 6,
+            {"Maul", new Weapons("Maul", "Items", 2, 6, 0, 0,
             "Bludgeoning", new string[]{"Heavy", "Two Handed"}, 5, 5,
              10, "Standard")},
-            {"Morningstar", new Weapons("Morningstar", "Items", 1, 8,
+            {"Morningstar", new Weapons("Morningstar", "Items", 1, 8, 0, 0,
              "Piercing", new string[]{" "}, 5, 5,
              4, "Standard")},
-            {"Pike", new Weapons("Pike", "Items", 1, 10,
+            {"Pike", new Weapons("Pike", "Items", 1, 10, 0, 0,
              "Piercing", new string[]{"Heavy", "Reach", "Two Handed"}, 10, 10,
              18, "Standard")},
-            {"Rapier", new Weapons("Rapier", "Items", 1, 8, 
+            {"Rapier", new Weapons("Rapier", "Items", 1, 8, 0, 0,
              "Piercing", new string[]{"Finesse"}, 5, 5,
              2, "Standard")},
-            {"Scimitar", new Weapons("Scimitar", "Items", 1, 6,
+            {"Scimitar", new Weapons("Scimitar", "Items", 1, 6, 0, 0,
              "Slashing", new string[]{"Finesse", "Light"}, 5, 5, 
              3, "Standard")},
-            {"Shortsword", new Weapons("Shortsword", "Items", 1, 6,
+            {"Shortsword", new Weapons("Shortsword", "Items", 1, 6, 0, 0,
              "Piercing", new string[]{"Finesse", "Light"}, 5, 5,
              2, "Standard")},
-            {"Trident", new Weapons("Trident", "Items", 1, 6, 
+            {"Trident", new Weapons("Trident", "Items", 1, 6, 0, 0,
              "Piercing", new string[]{"Finesse", "Light"}, 5, 5,
              4, "Standard")},
-            {"War Pick", new Weapons("War Pick", "Items", 1, 8,
+            {"War Pick", new Weapons("War Pick", "Items", 1, 8, 0, 0,
              "Piercing", new string[]{" "}, 5, 5,
              2, "Standard")},
-            {"Warhammer", new Weapons("Warhammer", "Items", 1, 8,
+            {"Warhammer", new Weapons("Warhammer", "Items", 1, 8, 1, 10
              "Bludgeoning", new string[]{"Versatile 1d10"}, 5, 5,
              2, "Standard")},
-            {"Whip", new Weapons("Whip", "Items", 1, 4,
+            {"Whip", new Weapons("Whip", "Items", 1, 4, 0, 0,
              "Slashing", new string[]{"Finesse", "Reach"}, 10, 10,
              3, "Standard")}
         };
@@ -208,19 +212,19 @@ public class MartialRangedWeapons
     {
         martialRanged = new Dictionary<string, Weapons>(StringComparer.OrdinalIgnoreCase)
         {
-            {"Blowgun", new Weapons("Blowgun", "Items", 1, 1,
+            {"Blowgun", new Weapons("Blowgun", "Items", 1, 1, 0, 0,
              "Piercing", new string[]{"Ammunition", "Loading"}, 25, 100,
              1, "Standard")},
-            {"Hand Crossbow", new Weapons("Hand Crossbow", "Items", 1, 6,
+            {"Hand Crossbow", new Weapons("Hand Crossbow", "Items", 1, 6, 0, 0,
              "Piercing", new string[]{"Ammunition", "Light", "Loading"}, 30, 120,
              3, "Standard")},
-            {"Heavy Crossbow", new Weapons("Heavy Crossbow", "Items", 1, 10,
+            {"Heavy Crossbow", new Weapons("Heavy Crossbow", "Items", 1, 10, 0, 0,
              "Piercing", new string[]{"Ammunition", "Heavy", "Loading", "Two Handed"}, 100, 400,
              18, "Standard")},
-            {"Longbow", new Weapons("Longbow", "Items", 1, 8,
+            {"Longbow", new Weapons("Longbow", "Items", 1, 8, 0, 0,
              "Piercing", new string[]{"Ammunition", "Heavy", "Two Handed"}, 150, 600,
              2, "Standard")},
-            {"Net", new Weapons("Net", "Items", 0, 0,
+            {"Net", new Weapons("Net", "Items", 0, 0, 0, 0,
              "None", new string[]{"Special", "Thrown"}, 4, 15,
              3, "Standard")}
         };
