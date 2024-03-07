@@ -167,10 +167,10 @@ public class MartialMeleeWeapons
              "Slashing", new string[]{"Versatile, 1d10"}, 5, 5,
              3, "Standard")},
             {"Maul", new Weapons("Maul", "Items", 2, 6,
-            "Bludgeoning", new string[]"Heavy", "Two Handed"}, 5, 5,
+            "Bludgeoning", new string[]{"Heavy", "Two Handed"}, 5, 5,
              10, "Standard")},
             {"Morningstar", new Weapons("Morningstar", "Items", 1, 8,
-             "Piercing", new string[]{" "}, 5, 05
+             "Piercing", new string[]{" "}, 5, 5,
              4, "Standard")},
             {"Pike", new Weapons("Pike", "Items", 1, 10,
              "Piercing", new string[]{"Heavy", "Reach", "Two Handed"}, 10, 10,
