@@ -156,4 +156,67 @@ public class FoxlightFestival
             }
         }
     }
+
+    public static void Puzzle()
+    {
+	Console.WriteLine(" \n \n As you wander the festival grounds, you notice a group of excited festival-goers gathered around a colorful tent.");
+	Console.WriteLine("Inside, you find a puzzle master challenging people to solve three intricate manipulative puzzles related to the Foxlights.");
+	Console.WriteLine("The reward? A small glowing crystal that temporarily grants a bonus to Intelligence checks.");
+	Console.WriteLine("Would you like to play? \( yes/no \) ");
+	string response;
+        while (true)
+        {
+            response = Console.ReadLine();
+            if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
+	    {
+                Console.WriteLine("Making an Intelligence Check...");
+		Console.WriteLine("Rolling...");
+		perception = RollD20();
+		if intelligence < 10
+		{
+			Console.WriteLine(" The puzzle master checks your work and smiles. \" Good job! You got it! On to the next one! \" ");
+			Console.WriteLine("Making an Intelligence Check...");
+			Console.WriteLine("Rolling...");
+			perception = RollD20();
+			if intelligence < 12
+			{
+				Console.WriteLine(" The puzzle master checks your work and claps his hands. \" Another great job! You got it! On to the next one! \" ");
+				Console.WriteLine("Making an Intelligence Check...");
+				Console.WriteLine("Rolling...");
+				perception = RollD20();
+				if intelligence < 15
+				{
+					Console.WriteLine(" The puzzle master checks your work. \" Unbelievable! You got it! You won the challenge. Here is your prize. \" ");
+					// Add crystal to inventory
+					break;
+				}
+				else
+				{
+					Console.WriteLine("The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
+					break;
+				}
+			}
+			else
+			{
+				Console.WriteLine("The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
+				break;
+			}
+
+		}
+		else
+		{
+			Console.WriteLine("The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
+			break;
+		}
+		else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("You move on to the next part of the festival");
+                break;
+            }
+        else
+        {
+            Console.WriteLine("Sorry, that's an invalid response. Please try again.");
+            continue;
+        }
+    }
 }
