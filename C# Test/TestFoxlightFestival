@@ -11,6 +11,7 @@ class Program
         FoxlightFestival.Stargaze();
         FoxlightFestival.HideAndSeek();
         FoxlightFestival.Puzzle();
+	FoxlightFestival.Lantern();
     }
 }
 
@@ -163,63 +164,119 @@ public class FoxlightFestival
         Console.WriteLine("\n\n As you wander the festival grounds, you notice a group of excited festival-goers gathered around a colorful tent.");
         Console.WriteLine("Inside, you find a puzzle master challenging people to solve three intricate manipulative puzzles related to the Foxlights.");
         Console.WriteLine("The reward? A small glowing crystal that temporarily grants a bonus to Intelligence checks.");
-        Console.WriteLine("Would you like to play? (yes/no) ");
+        Console.WriteLine("Would you like to play? Cost is 5 silver pieces (yes/no) ");
         string response;
         while (true)
         {
             response = Console.ReadLine();
             if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("Making an Intelligence Check...");
+                // Take 5 silver pieces
+		Console.WriteLine("\n Making an Intelligence Check...");
                 Console.WriteLine("Rolling...");
                 int intelligence = RollD20();
                 if (intelligence > 10)
                 {
-                    Console.WriteLine(" The puzzle master checks your work and smiles. \" Good job! You got it! On to the next one! \" ");
+                    Console.WriteLine("\n The puzzle master checks your work and smiles. \" Good job! You got it! On to the next one! \" ");
                     Console.WriteLine("Making an Intelligence Check...");
                     Console.WriteLine("Rolling...");
                     intelligence = RollD20();
                     if (intelligence > 12)
                     {
-                        Console.WriteLine(" The puzzle master checks your work and claps his hands. \" Another great job! You got it! On to the next one! \" ");
+                        Console.WriteLine("\n The puzzle master checks your work and claps his hands. \" Another great job! You got it! On to the next one! \" ");
                         Console.WriteLine("Making an Intelligence Check...");
                         Console.WriteLine("Rolling...");
                         intelligence = RollD20();
                         if (intelligence > 15)
                         {
-                            Console.WriteLine(" The puzzle master checks your work. \" Unbelievable! You got it! You won the challenge. Here is your prize. \" ");
+                            Console.WriteLine("\n The puzzle master checks your work. \" Unbelievable! You got it! You won the challenge. Here is your prize. \" ");
                             // Add crystal to inventory
                             break;
                         }
                         else
                         {
-                            Console.WriteLine("The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
+                            Console.WriteLine("\n The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
                             break;
                         }
                     }
                     else
                     {
-                        Console.WriteLine("The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
+                        Console.WriteLine("\n The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
                         break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
+                    Console.WriteLine("\n The puzzle master shakes his head. \" Time's up! Sorry, but looks like you weren't able to figure it out. Have a nice day! \" ");
                     break;
                 }
             }
             else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("You move on to the next part of the festival");
+                Console.WriteLine("\n You move on to the next part of the festival");
                 break;
             }
             else
             {
-                Console.WriteLine("Sorry, that's an invalid response. Please try again.");
+                Console.WriteLine("\n Sorry, that's an invalid response. Please try again.");
                 continue;
             }
         }
     }
 
+    public static void Lantern()
+    {
+        Console.WriteLine("\n\n Nearby, a stall is offering lanterns designed to mimic the Foxlights.");
+	Console.WriteLine(" For a small fee, you can purchase a lantern and try your hand at painting it.");
+        Start:
+	Console.WriteLine("Would you like to buy a lantern? Cost is 5 silver pieces (yes/no) ");
+        string response;
+        while (true)
+        {
+            response = Console.ReadLine();
+            if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
+            {
+                // Take 5 silver pieces
+		Console.WriteLine("\n Making a Sleight of Hand Check...");
+                Console.WriteLine("Rolling...");
+                int SleightOfHand = RollD20();
+                if (SleightOfHand > 12)
+                {
+                    Console.WriteLine("\n The woman selling the lanterns, a human with kinky curly brown hair and paint over her clothes comes over to you.");
+		    Console.WriteLine(" \"Very good job! \" She takes the lantern and sprinkle a glittering dust over the wet paint. \" There, now your lantern will last longer and help you see better than a normal lantern. \" ");
+		    Console.WriteLine(" You recieve a magic Foxlight lantern. This lantern is magical light source that doesn't run out of oil and grants advantage on Perception checks in dark areas for the duration of the festival.");
+		    // Add lantern to inventory
+		}
+		else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
+		{
+		    Console.WriteLine("\n The woman selling the lanterns, a human with kinky curly brown hair and paint over her clothes comes over to you.");
+		    Console.WriteLine(" She shakes her head and grins. \" Well... that sure is... something. I'm sure you at least had fun. Feel free to buy another and try again.");
+		    Console.WriteLine("Would you like to buy another lantern? Cost is 5 silver pieces (yes/no) ");
+        	    string response;
+		    while (true)
+        	    {
+            		response = Console.ReadLine();    
+		    	if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
+		    	{
+				goto Start;
+			}
+			else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
+            		{
+                		Console.WriteLine("\n You move on to the next part of the festival");
+                		break;
+            		}
+            		else
+            		{
+                		Console.WriteLine("\n Sorry, that's an invalid response. Please try again.");
+                		continue;
+            		}
+		}
+		else
+		{
+		    Console.WriteLine("Invalid response. Please try again.");
+		    continue;
+		}
+                    
+	}
+    }
 }
