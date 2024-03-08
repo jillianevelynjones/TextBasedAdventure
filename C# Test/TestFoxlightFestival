@@ -8,20 +8,23 @@ class Program
         Console.WriteLine("The last day of the month of Leaffall, today is the celebration of the Foxlight Festival.");
         Console.WriteLine("Tonight when the world goes dark, an iridescent light in the shape of a fox will fill the sky.");
         Console.WriteLine("Everyone gathered in the city will watch in wonder and awe at the magic that fills the realm of Krysmanthia.");
-        Astronomy.Stargaze();
+        FoxlightFestival.Stargaze();
     }
-}
 
-public class Astronomy
-{
-    static int RollD20()
+    static void RollD20()
     {
         Random random = new Random();
         int result = random.Next(1, 21);
         Console.WriteLine("You rolled: " + result);
-        return result;
-    }
+	return result;
 
+    }
+}
+
+
+
+public class FoxlightFestival
+{
     public static void Stargaze()
     {
         Console.WriteLine("\n   As a part of the festival, a local astronomer has set up a makeshift observatory, offering stargazing sessions.");
@@ -36,32 +39,22 @@ public class Astronomy
             if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine("Making a Perception Check...");
-                Console.WriteLine("Rolling...");
-                int perception = RollD20();
-                if (perception < 12)
-                {
-                    Console.WriteLine("The sky is beautiful but you don't see any constellations.");
-                }
-                else if (perception == 12 || perception == 13)
-                {
-                    Console.WriteLine("You see the Twilight Serpent. A long, winding constellation resembling a serpent with iridescent scales. It is associated with mysteries and hidden knowledge.");
-                }
-                else if (perception == 14 || perception == 15)
-                {
-                    Console.WriteLine("You see the Starfall Cascade. A dazzling meteor shower that appears as a cascade of shimmering stars. It's believed to be the leftover memory of a long-forgotten fallen angel.");
-                }
-                else if (perception == 16 || perception == 17)
-                {
-                    Console.WriteLine("You see the Dragon's Eclipse. A complex alignment of stars that forms the shape of a dragon partially eclipsing the moon. It is said to foretell the awakening of an ancient dragon or a great conflict.");
-                }
-                else if (perception == 18 || perception == 19)
-                {
-                    Console.WriteLine("You see the Aurora Phoenix. An incredibly rare celestial event that occurs just before the Foxlight's arrival. It resembles a blazing phoenix in the twilight sky, seemingly heralding the imminent arrival of the Foxlights.");
-                }
-                else if (perception == 20)
-                {
-                    Console.WriteLine("You see the constellation the Fox's Tail. This constellation resembles a graceful fox with its tail extended. It's said to represent the Foxlights themselves and is associated with good fortune and protection.");
-                }
+		Console.WriteLine("Rolling...");
+		perception = RollD20();
+		if perception < 12;
+		{
+			Console.WriteLine("The sky is beautiful but you don't see any constellations.")
+		else if perception == 12 || perception == 13
+			Console.WriteLine("You see the Twilight Serpent. A long, winding consellation resembling a serpent with iridescent scales. It is associated with mysteries and hidden knowledge.);
+		else if perception == 14 || perception == 15
+			Console.WriteLine("You see the Starfall Casage. A dazzeling meteor shower that appears as a cascade of shimmering stars. It's believed to be the leftover memory of a long forgotten fallen angel.");
+		else if perception == 16 || perception == 17
+			Console.WriteLine("You see the Dragon's Eclipse. A complex alignment of stars that forms the shape of a dragon partially eclipsing the moon. It is said to foretell the awakening of an acient dragon or a great conflict."
+		else if perception == 18 || perception == 19
+			Console.WriteLine("You see the Aurora Phonenix. An incredibly rare celestial even that occurs just before the Foxlight's arrival. It resembles a blazing phoenix in the twilight sky, seemingly heralding the imminent arrival of the Foxlights.");
+		else if perception == 20
+			Console.WriteLine("You see the constellation the Fox's Tail. This constellation resembles a graceful fox with it tail extended. It's said to represent the Foxlights themselves and is associated with good fortune and protection");
+		}
                 break;
             }
             else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
@@ -75,4 +68,77 @@ public class Astronomy
             }
         }
     }
+    public static void HideAndSeek()
+    {
+	Console.WriteLine("While you are enjoying the festival, a little Firbolg girl in a yellow dress pulls on your sleeve.");
+	Console.WriteLine("She asks you \" Will you play hide and seek with me? \" \(yes / no \) ");
+	string response;
+        while (true)
+        {
+            response = Console.ReadLine();
+            if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
+		Console.WriteLine ("She gives a huge smile. \" Great! Do you want to hide or seek? \" |);
+		string hideOrSeek;
+		while (true)
+		{
+            		hideOrSeek = Console.ReadLine();
+            		if (response.Equals("hide", StringComparison.OrdinalIgnoreCase))
+		 		{
+					Console.WriteLike(" She nods \" Okay! I'll seek. \" She turns around, covering her eyes and starts counting.");
+					Console.WriteLine("Making a Stealth Check...");
+					Console.WriteLine("Rolling...");
+					perception = RollD20();
+					if stealth < 12
+					{
+						Console.WriteLine("You watch from your hiding place as the little girl looks high and low for you. She looks for a few minutes before calling out. \" Olly olly oxen free! I give up, you win. \" And you come out of your hiding spot");
+						Console.WriteLine(" She races over to you. "That was a good hiding place! Thank you for playing with me.");
+					}
+					else
+					{
+						Console.WriteLine(" After looking for a few moments Emily find you in your hiding place. \" I got you! \" ");
+					}	
+					break;	
+				}
+				else if (response.Equals("seek", StringComparison.OrdinalIgnoreCase))
+				{
+					Console.WriteLine(" She nods \" Okay! I'll hide. \" You turn around, covering your eyes and starts counting. After reaching 20 you uncover your eyes, turn around and start looking.");
+					Console.WriteLine("Making a Perception Check...");
+					Console.WriteLine("Rolling...");
+					perception = RollD20();
+					if stealth > 12
+					{
+						Console.WriteLine("You look for a few moments before finding her hiding behind a bench. She moanes \"Awwww, you got me! \" ");
+					}
+					else
+					{
+						Console.WriteLine("You look high and low for her, but are unable to find her before giving up and calling out \" All right, I give up! \" ");
+						Console.WriteLine("She jumps out from behind a bench and yells out \"Boo! I win! \" ");
+					}
+					break;
+				}
+				else
+				{
+					Console.WriteLine(" Invalid response, please try again.");
+					Continue;
+				}
+					
+			Console.WriteLine("Just then her mother comes over. \" There you are Emily, I was looking all over for you. \" ");
+			Console.WriteLine("She looks up at her mother \" I was just playing hide and seek. \" ");
+			Console.WriteLine("Emily's mother looks to you. \" Thank you for playing with her, but we have to go. Have a nice day! \" ");
+			
+           		else
+           		{
+           		     Console.WriteLine("Sorry, that's an invalid response. Please try again.");
+            		}
+		}
+	    else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("You move on to the next part of the festival");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that's an invalid response. Please try again.");
+            }
+        }
 }
