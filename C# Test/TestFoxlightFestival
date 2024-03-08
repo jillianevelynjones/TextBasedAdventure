@@ -12,6 +12,7 @@ class Program
         FoxlightFestival.HideAndSeek();
         FoxlightFestival.Puzzle();
 	FoxlightFestival.Lantern();
+	FoxlightFestival.Charades();
     }
 }
 
@@ -246,13 +247,14 @@ public class FoxlightFestival
                     Console.WriteLine("\n The woman selling the lanterns, a human with kinky curly brown hair and paint over her clothes comes over to you.");
                     Console.WriteLine(" \"Very good job! \" She takes the lantern and sprinkle a glittering dust over the wet paint. \" There, now your lantern will last longer and help you see better than a normal lantern. \" ");
                     Console.WriteLine(" You receive a magic Foxlight lantern. This lantern is a magical light source that doesn't run out of oil and grants advantage on Perception checks in dark areas for the duration of the festival.");
-                    // Add lantern to inventory
+                    // Add magic lantern to inventory
                 }
                 else
                 {
                     Console.WriteLine("\n The woman selling the lanterns, a human with kinky curly brown hair and paint over her clothes comes over to you.");
                     Console.WriteLine(" She shakes her head and grins. \" Well... that sure is... something. I'm sure you at least had fun. Feel free to buy another and try again.\" ");
-                    goto Start;
+                    // Add lantern to inventory
+		    goto Start;
                 }
             }
             else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
@@ -267,5 +269,88 @@ public class FoxlightFestival
             }
         }
     }
+
+public static void Charades()
+    {
+        Console.WriteLine("While you are enjoying the festival, you see a lively group of festival-goers.");
+	Console.WriteLine("A man in with a mask of an exaggerated smile comes up to you. \" How about you? Would you like to play a game of Foxlight Charades? \" (yes/no)");
+        string response;
+
+        while (true)
+        {
+            response = Console.ReadLine();
+
+            if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine(" \" Would you like to \( 1 \) act something out, or \( 2 \) take a guess? \"");
+                string actOrGuess;
+
+                while (true)
+                {
+                    actOrGuess = Console.ReadLine();
+
+                    if (actOrGuess.Equals("1")
+                    {
+                        Console.WriteLine("The man claps his hands. \" Very well! Just go ahead and pull a clue out of the bowl here: \" ");
+                        Console.WriteLine("You put your hand in and pull out a piece of paper that says \" Fox \" Time to act it out!");
+			Console.WriteLine("Making a Performance Check...");
+                        Console.WriteLine("Rolling...");
+                        int performance = RollD20();
+
+                        if (performance < 12)
+                        {
+                            Console.WriteLine(" Try as you might no one can guess what you are acting out. The timer goes off and the man with the mask says \" Awww chucks. I wish you better luck in the future. \" "); ");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine(" You act it out and the man in the mask snaps his fingers. \" I got it! You're a fox! \" ");
+			    Console.WriteLine(" \"Congratulations! As your prize you win this charming tailsman. \" ");
+			    Console.WriteLine(" This talisman shows two masks, one smiling and one frowning. It will grant you advantage on Charisma checks for the remainder of the day.");
+			    // Add talisman to inventory
+			    break;
+                        }
+                    }
+                    else if (actOrGuess.Equals("2", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine(" \"Perfect! \" The man in the mask says. I'll act out something and you guess! \" ");
+			Console.WriteLine(" He then begins to act out something...");
+                        Console.WriteLine("Making an Insight Check...");
+                        Console.WriteLine("Rolling...");
+                        int insight = RollD20();
+
+                        if (insight < 12)
+                        {
+                            Console.WriteLine(" You guess \" A fox \" and the man in the mask claps his hands. \" Wonderful job! You guessed correctly! As your prize you win this charming talisman. \" ");");
+                            Console.WriteLine(" This talisman shows two masks, one smiling and one frowning. It will grant you advantage on Charisma checks for the remainder of the day.");
+			    // Add talisman to inventory
+			    break;
+
+			}
+                        else
+                        {
+                            Console.WriteLine(" You make a few wrong guesses before the man in the mask sighs and says \" Unfortunately you did not succeed. I wish you will on future endeavors! \" ");
+                            break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid response, please try again.");
+                        continue;
+                    }
+                }
+            }
+            else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("You move on to the next part of the festival");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that's an invalid response. Please try again.");
+                continue;
+            }
+        }
+    }
+
 
 }
