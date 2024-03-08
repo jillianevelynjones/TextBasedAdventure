@@ -1,59 +1,44 @@
-Using System;
+using System;
 
-
-class Program {
-	static void Main(string[] args)
-		{
-			Console.WriteLine("It's a beautiful day in the city of Adenasa.");
-			Console.WriteLine("The last day of the month of Leaffall, today is the celebration of the Foxlight Festival.");
-			Console.WriteLine("Tonight when the world goes dark, an iridescent light in the shape of a fox will fill the sky.");
-			Console.WriteLine("Everyone gathered in the city will watch in wonder and awe at the magic that fills the realm of Krysmanthia.");
-			Astronomy();
-		}
-
-
-	static void RollDice(Weapons weapon)
-	{
-		Console.WriteLine("Rolling damage for: " + weapon.name);
-	        int totalDamage = 0;
-	        Random random = new Random();
-	
-	        for (int i = 0; i < weapon.num_dice; i++)
-	        {
-	            int result = random.Next(1, weapon.dice_value + 1);
-	            Console.WriteLine("Roll " + (i + 1) + ": " + result);
-	            totalDamage += result;
-	        }
-		Console.WriteLine("Total damage: " + totalDamage);
-	}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("It's a beautiful day in the city of Adenasa.");
+        Console.WriteLine("The last day of the month of Leaffall, today is the celebration of the Foxlight Festival.");
+        Console.WriteLine("Tonight when the world goes dark, an iridescent light in the shape of a fox will fill the sky.");
+        Console.WriteLine("Everyone gathered in the city will watch in wonder and awe at the magic that fills the realm of Krysmanthia.");
+        Astronomy.Stargaze();
+    }
 }
-
 
 public class Astronomy
 {
-	Console.WriteLine("\n   As a part of the festival a local astronomer has set up a makeshift observatory, offering stargazing sessions.");
-	Console.WriteLine("   A cluster of telescopes, their lenses gleaming in the moonlight, points skyward, inviting eager stargazers to peer into the cosmos.");
-	Console.WriteLine("   The astronomer, a figure of quiet intensity, stands beside a chalkboard adorned with celestial diagrams, ready to unravel the mysteries of the night sky.");
-	Console.WriteLine("\n   Would you like to stargaze? yes or no?");
-	while
-	{
-		response = Console.ReadLine();
-		if (validWords.Contains(response, StringComparer.OrdinalIgnoreCase);
-		{
-			switch (response)
-			{
-				case "yes";
-					Console.WriteLine("You said yes");
-				case "no";
-					Console.WriteLine("You said no");
-				default
-					Console.WriteLine("Sorry That's an invalid response. Please try again.");
-					continue;
-			}
-		}
-		else
-		{
-			Console.WriteLine("Invalid response, please try again");
-		}
-	}
+    public static void Stargaze()
+    {
+        Console.WriteLine("\n   As a part of the festival, a local astronomer has set up a makeshift observatory, offering stargazing sessions.");
+        Console.WriteLine("   A cluster of telescopes, their lenses gleaming in the moonlight, points skyward, inviting eager stargazers to peer into the cosmos.");
+        Console.WriteLine("   The astronomer, a figure of quiet intensity, stands beside a chalkboard adorned with celestial diagrams, ready to unravel the mysteries of the night sky.");
+        Console.WriteLine("\n   Would you like to stargaze? yes or no?");
+        
+        string response;
+        while (true)
+        {
+            response = Console.ReadLine();
+            if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("You said yes");
+                break;
+            }
+            else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("You said no");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that's an invalid response. Please try again.");
+            }
+        }
+    }
 }
