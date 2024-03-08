@@ -10,7 +10,18 @@ class Program
         Console.WriteLine("Everyone gathered in the city will watch in wonder and awe at the magic that fills the realm of Krysmanthia.");
         Astronomy.Stargaze();
     }
+
+    static void RollD20()
+    {
+        Random random = new Random();
+        int result = random.Next(1, 21);
+        Console.WriteLine("You rolled: " + result);
+	return result;
+
+    }
 }
+
+
 
 public class Astronomy
 {
@@ -27,12 +38,28 @@ public class Astronomy
             response = Console.ReadLine();
             if (response.Equals("yes", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("You said yes");
+                Console.WriteLine("Making a Perception Check...");
+		Console.WriteLine("Rolling...");
+		perception = RollD20();
+		if perception < 12;
+		{
+			Console.WriteLine("The sky is beautiful but you don't see any constellations.")
+		else if perception == 12 || perception == 13
+			Console.WriteLine("You see the Twilight Serpent. A long, winding consellation resembling a serpent with iridescent scales. It is associated with mysteries and hidden knowledge.);
+		else if perception == 14 || perception == 15
+			Console.WriteLine("You see the Starfall Casage. A dazzeling meteor shower that appears as a cascade of shimmering stars. It's believed to be the leftover memory of a long forgotten fallen angel.");
+		else if perception == 16 || perception == 17
+			Console.WriteLine("You see the Dragon's Eclipse. A complex alignment of stars that forms the shape of a dragon partially eclipsing the moon. It is said to foretell the awakening of an acient dragon or a great conflict."
+		else if perception == 18 || perception == 19
+			Console.WriteLine("You see the Aurora Phonenix. An incredibly rare celestial even that occurs just before the Foxlight's arrival. It resembles a blazing phoenix in the twilight sky, seemingly heralding the imminent arrival of the Foxlights.");
+		else if perception == 20
+			Console.WriteLine("You see the constellation the Fox's Tail. This constellation resembles a graceful fox with it tail extended. It's said to represent the Foxlights themselves and is associated with good fortune and protection");
+		}
                 break;
             }
             else if (response.Equals("no", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("You said no");
+                Console.WriteLine("You move on to the next part of the festival");
                 break;
             }
             else
