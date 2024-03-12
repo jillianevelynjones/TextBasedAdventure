@@ -1,0 +1,26 @@
+// Top menu Beginner Code > Create Item Effect
+// Name it "AddHealthEffect"
+// In Project window go to Assets/Saga of the Infected/ Scripts/ NEW FOLDER CALLED "ItemEffects"
+// Open AddHealthEffect in IDE
+
+using System.Collections;
+using System.Collections.Generic;
+using CreatorKitCode;
+using UnityEngine;
+
+public class AddHealthEffect : UsableItem.UsageEffect
+{
+    public override bool Use(CharacterData user)
+    {
+        user.Stats.ChangeHealth(HealthAmount);
+        return true;
+    }
+}
+
+// In Project window go open prefab for item image
+// In inspector use the Add New Effect drop down menu to select the AddHealthEffect Script.
+// In Description add a description
+// Save changes
+// In Inspector you should see a Health Amount field for the exposed variable in the Description field.
+// Change value
+// Save changes
